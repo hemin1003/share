@@ -183,7 +183,7 @@
 			articleUrl = params.articleUrl;
 			phoneNum = params.phoneNum;
 			name = params.nickName.split(",")[1];
-			icon = params.headImg[1];
+			icon = params.headImg;
 			
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum};
 			Ajax('get', 'http://jiayou88.cn/yfax-htt-api/api/htt/doArticleAward', sendData, function(data){
@@ -191,17 +191,17 @@
 			    	articleUrl = articleUrl.replace('&ttaccid=null', '');
 					window.location.href = articleUrl;
 				} else {
-					// console.log(icon);
-					// console.log(name);
 					document.getElementById("mainIframe").src = articleUrl;
-					if(name == "null") {
+					if(name == "null" || name == 'undefined') {
 						document.getElementById("shareBtnDiv").style.display = "flex";
 					}else {
-						if (icon == "null") {
-							icon = "./images/logo.png";
+						console.log(icon);
+						if (icon[1] == "null" || icon == null) {
+							document.getElementsByClassName('logo2')[0].src = "./images/logo.png";
+						}else {
+							document.getElementsByClassName('logo2')[0].src = icon[1];
 						}
 						document.getElementById("shareBtnDiv2").style.display = "flex";
-						document.getElementsByClassName('logo2')[0].src = icon;
 						document.getElementsByClassName('title2')[0].innerHTML = name;
 					}
 				}
