@@ -112,8 +112,8 @@
 
 		function GetParams(){
 			var r = window.location.search.substr(1);
-			var icon = r.match(/headImg=(\S+)&nickName/)[1];
-			var name = decodeURI(r.match(/nickName=(\S+)/)[1]);
+			var icon = r.match(/headImg=(\S+)&nickName/);
+			var name = decodeURI(r.match(/nickName=(\S+)/));
 			var articleUrl = r.split('&phoneNum=')[0];
 			articleUrl = articleUrl.split('articleUrl=')[1];
 			phoneNum = r.split('&phoneNum=')[1];
@@ -182,8 +182,8 @@
 			var params = GetParams();
 			articleUrl = params.articleUrl;
 			phoneNum = params.phoneNum;
-			name = params.nickName;
-			icon = params.headImg;
+			name = params.nickName.split(",")[1];
+			icon = params.headImg[1];
 			
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum};
 			Ajax('get', 'http://jiayou88.cn/yfax-htt-api/api/htt/doArticleAward', sendData, function(data){
@@ -191,7 +191,8 @@
 			    	articleUrl = articleUrl.replace('&ttaccid=null', '');
 					window.location.href = articleUrl;
 				} else {
-					console.log(name)
+					// console.log(icon);
+					// console.log(name);
 					document.getElementById("mainIframe").src = articleUrl;
 					if(name == "null") {
 						document.getElementById("shareBtnDiv").style.display = "flex";
