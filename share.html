@@ -29,7 +29,8 @@
        		bottom: 0;
        		padding-left: 5%;
        		padding-right: 3%;
-       		background-color: rgba(0,0,0,0.5);
+       		/*background-color: rgba(0,0,0,0.6);*/
+       		background: white;
        		display: flex;
     		align-items: center;
     		justify-content: space-between;
@@ -46,7 +47,7 @@
 		}
 
 		.text-div {
-			color: #fff;
+			color: black;
 			display: flex;
 			flex-direction: column;
 			height: 100%;
@@ -76,6 +77,22 @@
 			color: #fff;   
 			text-decoration: none;   
 		}
+
+		#shareBtnDiv2 {
+			background: white;
+			color: black;
+		}
+			.logo2 {
+				width: 14%;
+				height: 75%;
+				border-radius: 50%;
+			}
+			.detail font {
+				color: #fe7800;
+			}
+			.text-div2 {
+				margin-left: -10vw;
+			}
     </style>
 
     <script type="text/javascript">
@@ -95,12 +112,16 @@
 
 		function GetParams(){
 			var r = window.location.search.substr(1);
+			var icon = r.match(/headImg=(\S+)&nickName/)[1];
+			var name = decodeURI(r.match(/nickName=(\S+)/)[1]);
 			var articleUrl = r.split('&phoneNum=')[0];
 			articleUrl = articleUrl.split('articleUrl=')[1];
 			phoneNum = r.split('&phoneNum=')[1];
 			return {
 				'articleUrl': articleUrl,
-				'phoneNum': phoneNum
+				'phoneNum': phoneNum,
+				'nickName': name,
+				'headImg': icon
 			};
 		}
 
@@ -161,6 +182,8 @@
 			var params = GetParams();
 			articleUrl = params.articleUrl;
 			phoneNum = params.phoneNum;
+			name = params.nickName;
+			icon = params.headImg;
 			
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum};
 			Ajax('get', 'http://jiayou88.cn/yfax-htt-api/api/htt/doArticleAward', sendData, function(data){
@@ -168,8 +191,18 @@
 			    	articleUrl = articleUrl.replace('&ttaccid=null', '');
 					window.location.href = articleUrl;
 				} else {
+					console.log(name)
 					document.getElementById("mainIframe").src = articleUrl;
-					document.getElementById("shareBtnDiv").style.display = "flex";
+					if(name == "null") {
+						document.getElementById("shareBtnDiv").style.display = "flex";
+					}else {
+						if (icon == "null") {
+							icon = "./images/logo.png";
+						}
+						document.getElementById("shareBtnDiv2").style.display = "flex";
+						document.getElementsByClassName('logo2')[0].src = icon;
+						document.getElementsByClassName('title2')[0].innerHTML = name;
+					}
 				}
 			}, function(error){
 			    console.log(error);
@@ -189,6 +222,17 @@
     	</div>
     	<div class="download-btn">
     		<a href="http://url.cn/5fEeGsL" style="height: 80%;">立即下载</a>
+    	</div>
+    </div>
+
+     <div id="shareBtnDiv2" class="footer" style="display: none; overflow: hidden;color: black">
+    	<img class="logo2" src=""/>
+    	<div class="text-div text-div2">
+    		<span class="title2"></span>
+    		<span class="detail detail2">在用<font>悦头条</font>邀你一起</span>
+    	</div>
+    	<div class="download-btn">
+    		<a href="http://url.cn/569cYV7" style="height: 80%;">立即下载</a>
     	</div>
     </div>
 </body>
