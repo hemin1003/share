@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>悦头条</title>
+	<script src="js/jquery.min.js"></script>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	$(function() {
+		$.ajax({
+			type:"get",
+			url: "http://odysseytravel.com.cn/yfax-htt-api/api/htt/queryDomainConfigForWechat",
+			success:function(res){
+				var Url = window.location.href;
+				var domain = res.data.domain;
+				var goUrl = Url.replace('ykccjiaju.cn', domain);
+				if(goUrl.indexOf("ykccjiaju.cn") > -1){
+					console.log(goUrl);
+					return;
+				}
+				goUrl = goUrl.replace('pre-share.html', 'share.html');
+				console.log(goUrl);
+				window.location.href = goUrl;
+			}
+		});
+	});
+</script>

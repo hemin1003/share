@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <title>悦头条</title>
+    <style type="text/css">
+      *{ -webkit-box-sizing:border-box;
+         -moz-box-sizing:border-box;
+         box-sizing:border-box;
+      }
+
+       .footer,.wrap-page, #mainIframe{ 
+       		position: absolute; 
+       		left: 0;
+       		right: 0;
+       	} 
+       .footer{ 
+       		height: 10%; 
+       		text-align: left; 
+       		z-index: 900;
+       		bottom: 0;
+       		padding-left: 5%;
+       		padding-right: 3%;
+       		background-color: rgba(0,0,0,0.5);
+       		display: flex;
+    		align-items: center;
+    		justify-content: space-between;
+       	}
+       .wrap-page, #mainIframe{ 
+       		top: 0px; 
+       		bottom: 0px; 
+       		overflow-y: auto; 
+       		-webkit-overflow-scrolling:touch;
+       	}
+
+       .logo {
+			height: 70%;
+		}
+
+		.text-div {
+			color: #fff;
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			line-height: 30px;
+		    justify-content: center;
+		}
+		.text-div .title {
+			font-size: 1.125rem;
+		}
+		.text-div .detail {
+			font-size: .8rem;
+		}
+
+		.download-btn {
+			background-color: #fe7800;
+			padding: 8px 15px;
+			border-radius: 6px;
+			margin-left: 5%;
+		}
+		.download-btn a:link {   
+			font-size: 0.9rem;   
+			color: #fff;   
+			text-decoration: none;   
+		}   
+		.download-btn a:visited {   
+			font-size: 0.9rem;   
+			color: #fff;   
+			text-decoration: none;   
+		}
+    </style>
+
+    <script type="text/javascript">
+		// 微信分享跳转
+    	pushHistory();  
+            window.addEventListener("popstate", function(e) {  
+                //需要跳转的页面 
+                window.location.href="http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1394791029432";
+               }, false);  
+            function pushHistory() {  
+                var state = {  
+                    title: "title",  
+                    url: "#"  
+                };  
+                window.history.pushState(state, "title", "#");  
+            }		
+
+		function GetParams(){
+			var r = window.location.search.substr(1);
+			var articleUrl = r.split('&phoneNum=')[0];
+			articleUrl = articleUrl.split('articleUrl=')[1];
+			phoneNum = r.split('&phoneNum=')[1];
+			return {
+				'articleUrl': articleUrl,
+				'phoneNum': phoneNum
+			};
+		}
+
+		function Ajax(type, url, data, success, failed){
+		    // 创建ajax对象
+		    var xhr = null;
+		    if(window.XMLHttpRequest){
+		        xhr = new XMLHttpRequest();
+		    } else {
+		        xhr = new ActiveXObject('Microsoft.XMLHTTP')
+		    }
+		 
+		    var type = type.toUpperCase();
+		    // 用于清除缓存
+		    var random = Math.random();
+		 
+		    if(typeof data == 'object'){
+		        var str = '';
+		        for(var key in data){
+		            str += key+'='+data[key]+'&';
+		        }
+		        data = str.replace(/&$/, '');
+		    }
+		 
+		    if(type == 'GET'){
+		        if(data){
+		            xhr.open('GET', url + '?' + data, true);
+		        } else {
+		            xhr.open('GET', url + '?t=' + random, true);
+		        }
+		        xhr.send();
+		 
+		    } else if(type == 'POST'){
+		        xhr.open('POST', url, true);
+		        // 如果需要像 html 表单那样 POST 数据，请使用 setRequestHeader() 来添加 http 头。
+		        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		        xhr.send(data);
+		    }
+		 
+		    // 处理返回数据
+		    xhr.onreadystatechange = function(){
+		        if(xhr.readyState == 4){
+		            if(xhr.status == 200){
+		                success(xhr.responseText);
+		            } else {
+		                if(failed){
+		                    failed(xhr.status);
+		                }
+		            }
+		        }
+		    }
+		}
+
+		var articleUrl ="";
+		var phoneNum = "";
+
+		window.onload = function() {
+			var params = GetParams();
+			articleUrl = params.articleUrl;
+			phoneNum = params.phoneNum;
+			
+			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum};
+			Ajax('get', 'http://jiayou88.cn/yfax-htt-api/api/htt/doArticleAward', sendData, function(data){
+			    if (articleUrl.indexOf('eastday.com') > -1) {
+			    	articleUrl = articleUrl.replace('&ttaccid=null', '');
+					window.location.href = articleUrl;
+				} else {
+					document.getElementById("mainIframe").src = articleUrl;
+					document.getElementById("shareBtnDiv").style.display = "flex";
+				}
+			}, function(error){
+			    console.log(error);
+			});
+		}
+	</script>
+</head>
+<body>
+    <div class="wrap-page">
+         <iframe id="mainIframe" frameBorder=0 width="100%" height="100%" src=""></iframe>
+    </div> 
+    <div id="shareBtnDiv" class="footer" style="display: none; overflow: hidden;">
+    	<img class="logo" src="./images/logo.png">
+    	<div class="text-div">
+    		<span class="title">悦头条</span>
+    		<span class="detail">看资讯就送大礼包</span>
+    	</div>
+    	<div class="download-btn">
+    		<a href="http://url.cn/5fEeGsL" style="height: 80%;">立即下载</a>
+    	</div>
+    </div>
+</body>
+</html>
