@@ -116,6 +116,7 @@
 			var r = window.location.search.substr(1);
 			var icon = r.match(/headImg=(\S+)&nickName/);
 			var name = r.match(/nickName=(\S+)/);
+			// console.log(name[1]);
 			var articleUrl = r.split('&phoneNum=')[0];
 			articleUrl = articleUrl.split('articleUrl=')[1];
 			phoneNum = r.split('&phoneNum=')[1];
@@ -184,9 +185,9 @@
 			var params = GetParams();
 			articleUrl = params.articleUrl;
 			phoneNum = params.phoneNum;
-			name = params.nickName.split(",")[1];
+			name = params.nickName;
 			icon = params.headImg;
-			
+			// console.log(name)
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum};
 			Ajax('get', 'http://jiayou88.cn/yfax-htt-api/api/htt/doArticleAward', sendData, function(data){
 			    if (articleUrl.indexOf('eastday.com') > -1) {
@@ -204,7 +205,7 @@
 							document.getElementsByClassName('logo2')[0].src = icon[1];
 						}
 						document.getElementById("shareBtnDiv2").style.display = "flex";
-						document.getElementsByClassName('title2')[0].innerHTML = name;
+						document.getElementsByClassName('title2')[0].innerHTML = name[1];
 					}
 				}
 			}, function(error){
