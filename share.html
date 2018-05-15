@@ -96,11 +96,13 @@
     </style>
 
     <script type="text/javascript">
+    	// var arr = ["https://3g.jun4.com/99","https://display.intdmp.com/site_login_ijf.htm?app_key=adhu028acf0750ef42f1","https://iadapi.mobjz.com/iad/entryfirst?appkey=A896702B65B75940"];
 		// 微信分享跳转
     	pushHistory();  
             window.addEventListener("popstate", function(e) {  
                 //需要跳转的页面 
-                window.location.href="http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1394791029432";
+                // "http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1394791029432"
+                window.location.href = "https://3g.jun4.com/99";
                }, false);  
             function pushHistory() {  
                 var state = {  
@@ -187,10 +189,10 @@
 			
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum};
 			Ajax('get', 'http://jiayou88.cn/yfax-htt-api/api/htt/doArticleAward', sendData, function(data){
-			 //    if (articleUrl.indexOf('eastday.com') > -1) {
-			 //    	articleUrl = articleUrl.replace('&ttaccid=null', '');
-				// 	window.location.href = articleUrl;
-				// } else {
+			    if (articleUrl.indexOf('eastday.com') > -1) {
+			    	articleUrl = articleUrl.replace('&ttaccid=null', '');
+					window.location.href = articleUrl;
+				} else {
 					document.getElementById("mainIframe").src = articleUrl;
 					if(name == "null" || name == 'undefined') {
 						document.getElementById("shareBtnDiv").style.display = "flex";
@@ -204,7 +206,7 @@
 						document.getElementById("shareBtnDiv2").style.display = "flex";
 						document.getElementsByClassName('title2')[0].innerHTML = name;
 					}
-				// }
+				}
 			}, function(error){
 			    console.log(error);
 			});
