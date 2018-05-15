@@ -187,10 +187,10 @@
 			
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum};
 			Ajax('get', 'http://jiayou88.cn/yfax-htt-api/api/htt/doArticleAward', sendData, function(data){
-			    if (articleUrl.indexOf('eastday.com') > -1) {
-			    	articleUrl = articleUrl.replace('&ttaccid=null', '');
-					window.location.href = articleUrl;
-				} else {
+			 //    if (articleUrl.indexOf('eastday.com') > -1) {
+			 //    	articleUrl = articleUrl.replace('&ttaccid=null', '');
+				// 	window.location.href = articleUrl;
+				// } else {
 					document.getElementById("mainIframe").src = articleUrl;
 					if(name == "null" || name == 'undefined') {
 						document.getElementById("shareBtnDiv").style.display = "flex";
@@ -204,7 +204,7 @@
 						document.getElementById("shareBtnDiv2").style.display = "flex";
 						document.getElementsByClassName('title2')[0].innerHTML = name;
 					}
-				}
+				// }
 			}, function(error){
 			    console.log(error);
 			});
