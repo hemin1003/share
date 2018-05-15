@@ -115,7 +115,7 @@
 		function GetParams(){
 			var r = window.location.search.substr(1);
 			var icon = r.match(/headImg=(\S+)&nickName/);
-			var name = decodeURI(r.match(/nickName=(\S+)/));
+			var name = r.match(/nickName=(\S+)/);
 			var articleUrl = r.split('&phoneNum=')[0];
 			articleUrl = articleUrl.split('articleUrl=')[1];
 			phoneNum = r.split('&phoneNum=')[1];
