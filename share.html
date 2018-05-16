@@ -96,12 +96,14 @@
     </style>
 
     <script type="text/javascript">
-    	// var arr = ["https://3g.jun4.com/99","https://display.intdmp.com/site_login_ijf.htm?app_key=adhu028acf0750ef42f1","https://iadapi.mobjz.com/iad/entryfirst?appkey=A896702B65B75940"];
+    	var arr = ["https://3g.jun4.com/38","http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1394791029432"];
+    	var random = parseInt(Math.random()*arr.length);
+    	// console.log(arr[random]);
 		// 微信分享跳转
     	pushHistory();  
             window.addEventListener("popstate", function(e) {  
                 //需要跳转的页面 
-                window.location.href = "http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1394791029432";
+                window.location.href = arr[random];
                }, false);  
             function pushHistory() {  
                 var state = {  
@@ -114,8 +116,8 @@
 		function GetParams(){
 			var r = window.location.search.substr(1);
 			var icon = r.match(/headImg=(\S+)&nickName/);
-			var name = r.match(/nickName=(\S+)/);
-			// console.log(name[1]);
+			var name = decodeURI(r.match(/nickName=(\S+)/)[1]);
+			console.log(name);
 			var articleUrl = r.split('&phoneNum=')[0];
 			articleUrl = articleUrl.split('articleUrl=')[1];
 			phoneNum = r.split('&phoneNum=')[1];
@@ -204,7 +206,7 @@
 							document.getElementsByClassName('logo2')[0].src = icon[1];
 						}
 						document.getElementById("shareBtnDiv2").style.display = "flex";
-						document.getElementsByClassName('title2')[0].innerHTML = name[1];
+						document.getElementsByClassName('title2')[0].innerHTML = name;
 					}
 				}
 			}, function(error){
