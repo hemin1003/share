@@ -1,0 +1,1495 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/"><channel><title>博客园-Lafitewu</title><link>http://www.cnblogs.com/lafitewu/</link><description>心中无敌，则无敌于天下。</description><language>zh-cn</language><lastBuildDate>Thu, 17 May 2018 10:01:06 GMT</lastBuildDate><pubDate>Thu, 17 May 2018 10:01:06 GMT</pubDate><ttl>60</ttl><item><title>《shoe dog》 - 初读鞋狗</title><link>http://www.cnblogs.com/lafitewu/archive/2018/04/19/8879957.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Thu, 19 Apr 2018 01:20:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/04/19/8879957.html</guid><description><![CDATA[<p>"敢于冒险，别让你的才能掩埋在这片平庸的土地上。" &nbsp; &nbsp; &nbsp;--2014年6月 斯坦福大学 &nbsp;-菲尔.奈特。</p>
+<p>雅典娜胜利神庙（Temple of Athena Nike） &nbsp; --这也就是Nike名字的由来，象征着胜利。</p>
+<p>&nbsp;</p>
+<p>"在驱车返回的路上，我都在思考自己的销售大获成功的原因。我认为我之所以没法销售百科全书，是因为自己打心底里瞧不起它。</p>
+<p>销售共同基金时表现也只是稍有改进，因为我没有投入热情。那为什么卖鞋会如此不同呢？那是因为我发现这不是在销售，而是我对跑步的信赖。" &nbsp; - p60</p>
+<p>&nbsp;</p>
+<p>"作为会计师的我依旧能看出风险的存在，而作为创业者的我却也见到了可能性。所以我折中了一下，继续前行。" &nbsp;- p82</p>
+<p>&nbsp;</p>
+<p>"我走的路正是我觉得像是我的路，我不确定这条路会通往何方，但是我已经准备好找出属于我的终点。" - p130</p>
+<p>&nbsp;</p>
+<p>"生活就是成长，不成长就是死亡。"</p>
+<p>&nbsp;</p>
+<p>" '这个似乎是翅膀。'一个人说。&lsquo;像是 嗖的一声在空中留下的痕迹。&rsquo;另一个人说。也像某个跑者飞速留下的踪影。我们都觉得这个标志新颖、创意十足，多少又透露</p>
+<p>出一股子古老的气息。它具有永不过时的气质。"</p>]]></description></item><item><title>jquery - (delegate的使用)</title><link>http://www.cnblogs.com/lafitewu/archive/2018/04/13/8821387.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Fri, 13 Apr 2018 08:29:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/04/13/8821387.html</guid><description><![CDATA[<p>以前jq绑定点击事件，是不是都是$("xxxx").click(function(){})&nbsp;</p>
+<p>嗯，人都是这样，不碰到坑，是不知悔改的。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201804/1298851-20180413161910068-1202740689.jpg" alt="" width="300" height="374" /></p>
+<p>讲讲为什么要用delegate绑定事件。</p>
+<p>举个例子：我在class为demo的标签内的a 标签加了个点击事件，而点击事件里面执行的是把demo标签内，所有内容替换，同时也会重新插入a标签。</p>
+<p>比如：</p>
+<div class="cnblogs_code">
+<pre>$(".app_infro_con").delegate("a","click",<span style="color: #0000ff;">function</span><span style="color: #000000;">() {     // 给class名为app_infro_con内的a 标签一个点击事件
+    $.ajax({
+        type:</span>"get"<span style="color: #000000;">,
+        url: Url,
+        dataType:</span>"jsonp"<span style="color: #000000;">,
+        async: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+        beforeSend:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(XMLHttpRequest){ 
+            $(</span>".app_infro_con").html("&lt;img style='width: 100%;' src='./images/loading.gif'/&gt;"<span style="color: #000000;">);  // 替换app_infro_con内的内容，这时app_infro_con里面已经没有a标签了
+        }, 
+        success:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(res){
+            </span><span style="color: #0000ff;">var</span> infro =<span style="color: #000000;"> res.data.notice
+            $(</span>".app_infro_con"<span style="color: #000000;">).html(infro);  // 这里的infro 是我外部定义的一个内容，里面是有a标签的，但是 如果用直接click去绑定，你会发现click只会触发一次,这是因为这里的a标签是新插入进来的。
+        }
+    })
+})</span></pre>
+</div>
+<p>嗯，终于从坑里出来了。可怕~</p>]]></description></item><item><title>js - (ajax loading加载)</title><link>http://www.cnblogs.com/lafitewu/archive/2018/04/13/8821097.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Fri, 13 Apr 2018 08:03:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/04/13/8821097.html</guid><description><![CDATA[<p>先上图：</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201804/1298851-20180413160044773-1823235414.gif" alt="" width="236" height="177" /></p>
+<p>在上代码：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">$.ajax({
+   type:</span>"get"<span style="color: #000000;">,
+   url: Url,
+   dataType:</span>"jsonp"<span style="color: #000000;">,
+   async: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+   beforeSend:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(XMLHttpRequest){ 
+   　　$(</span>".app_infro_con").html("&lt;img src='./images/loading.gif'/&gt;"<span style="color: #000000;">);
+   }, 
+   success:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(res){
+   　　</span><span style="color: #0000ff;">var</span> infro =<span style="color: #000000;"> res.data.notice
+   　　$(</span>".app_infro_con"<span style="color: #000000;">).html(infro);
+   }
+})</span></pre>
+</div>
+<p>嗯，ok ,人狠话不多。</p>]]></description></item><item><title>vue - (vue-cookies的安装及使用)</title><link>http://www.cnblogs.com/lafitewu/archive/2018/04/11/8796475.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Wed, 11 Apr 2018 08:22:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/04/11/8796475.html</guid><description><![CDATA[<p>vue-cookies主要是用于登录的应用。</p>
+<p>由于vue自己不带，所以需要自己安装依赖。安装步骤如下：</p>
+<p>1.<code>npm install vue-cookies --save</code></p>
+<p>可参考npm 官方地址：https://www.npmjs.com/package/vue-cookies</p>
+<p>设置完成之后，可能还会碰到一个问题，vue请求时无法携带cookie？</p>
+<p>在请求的地址后面加个东东就好了。代码如下：</p>
+<div class="cnblogs_code">
+<pre>that.$http.jsonp("http://XXXXXXXXXX",{withCredentials:<span style="color: #0000ff;">true</span>}).then(<span style="color: #0000ff;">function</span><span style="color: #000000;">(response){
+                    console.log(response);
+                });</span></pre>
+</div>
+<pre>withCredentials:true ==&gt;就是它了。<br /><br />ok,收工。</pre>]]></description></item><item><title>vue - (axios与vue-resource)</title><link>http://www.cnblogs.com/lafitewu/archive/2018/04/10/8780450.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Tue, 10 Apr 2018 08:50:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/04/10/8780450.html</guid><description><![CDATA[<p>今天我们来讲讲vue中调api的两种常见方法。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201804/1298851-20180410163233949-267935878.jpg" alt="" width="361" height="329" /></p>
+<p>由于vue2.0开始，对vue-resource不在维护更新。所以导致很多人开始入坑axios。</p>
+<p>当我用起了axios，嗯，它是真的坑。最坑的是它不支持跨域。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201804/1298851-20180410163935724-162725235.jpg" alt="" /></p>
+<p>如果你项目打包上线依旧需要跨域，我劝你就不要用axios 了 ，会把自己坑死的。（这时候就可以用vue-resource）</p>
+<p>但是如果只是在环境上测试，你可以使用&nbsp;proxyTable代理。</p>
+<p>具体使用如下，找到config文件夹中的index.js文件：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">proxyTable: {
+            </span>'/api'<span style="color: #000000;">:{
+                target:</span>'https://api.douban.com'<span style="color: #000000;">,
+                changeOrigin:</span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+                pathRewrite:{
+                    </span>'/api':''<span style="color: #000000;">
+                }
+            }
+        }</span></pre>
+</div>
+<p>调用时：</p>
+<div class="cnblogs_code">
+<pre>that.$axios.post('/api//v2/movie/top250').then(<span style="color: #0000ff;">function</span><span style="color: #000000;">(response){console.log(response.data);
+  }).</span><span style="color: #0000ff;">catch</span>(<span style="color: #0000ff;">function</span><span style="color: #000000;">(error){
+   console.log(error);
+ });</span></pre>
+</div>
+<p>这里就相当于用 /api &nbsp;==&nbsp;https://api.douban.com</p>
+<p>但是如果打包后还是要实现跨域，那么用vue - resource 吧，小伙子别执着了。</p>
+<p>vue - reource 安装步骤</p>
+<p>&nbsp;1.&nbsp;npm install vue-resource --save</p>
+<p>&nbsp;2. 找到main.js　</p>
+<p>　　import &nbsp;VueResource &nbsp;from 'vue-resource'</p>
+<p>　　Vue.use(VueResource)</p>
+<p>跨域调用：</p>
+<div class="cnblogs_code">
+<pre>that.$http.jsonp("http://xxxxxxxxxxx",{params:{"callback":"jsonPCallback"}}).then(<span style="color: #0000ff;">function</span><span style="color: #000000;">(response){
+                    console.log(response.body);
+                });</span></pre>
+</div>
+<p>ok，收工。</p>
+<p>&nbsp;</p>]]></description></item><item><title>vue - (切换class)</title><link>http://www.cnblogs.com/lafitewu/archive/2018/04/09/8760956.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Mon, 09 Apr 2018 08:38:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/04/09/8760956.html</guid><description><![CDATA[<p>先上效果图</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201804/1298851-20180409163043940-1832161488.gif" alt="" width="743" height="270" /></p>
+<p>用惯了jq的朋友，一眼望过去，这个很简单呀。是的，用jq是很简单。当然用vue其实也很简单。</p>
+<p>很久没用vue，有点生疏了，所以分享出来，也防止下次自己再忘记。嘿嘿~，代码走你~</p>
+<p>dom:</p>
+<div class="cnblogs_code">
+<pre> &lt;div class="chart_btn" @click="tap(index)" :class="{echat_active: active ==index}" v-<span style="color: #0000ff;">for</span>="(item,index) in echart_btn" key="index"&gt;{{item.name}}&lt;/div&gt;</pre>
+</div>
+<p>methods:</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">methods: {
+            tap(a) {
+                </span><span style="color: #0000ff;">this</span>.active =<span style="color: #000000;"> a
+            }
+        }</span></pre>
+</div>
+<p>当然还要在data中定义active，初始值可根据实际需求来。</p>
+<p>ok,今天的分享就到这里了。</p>
+<p>&nbsp;</p>]]></description></item><item><title>netlify联合github搭建自己的主页</title><link>http://www.cnblogs.com/lafitewu/archive/2018/04/03/8706436.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Tue, 03 Apr 2018 02:22:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/04/03/8706436.html</guid><description><![CDATA[<p>首先你得有自己的github,如果没有赶紧先去自己注册一个。ps: <a href="https://github.com/" target="_blank">github官网</a></p>
+<p>然后先在github上放上自己的项目。 ps: <a href="https://github.com/lafitewu/desktop" target="_blank">查看demo</a> （我的github项目目录，仅供参考。）</p>
+<p>目录图如下：</p>
+<p>&nbsp;<img src="https://images2018.cnblogs.com/blog/1298851/201804/1298851-20180403094428076-847487034.png" alt="" width="814" height="251" /></p>
+<p>git地址：https://github.com/lafitewu/desktop.git</p>
+<p>这时，今天的主角就到登场了 -&nbsp;netlify &nbsp; ps: <a href="https://www.netlify.com/" target="_blank">netlify官网</a></p>
+<p>请自行在官网注册登录。</p>
+<p>登录成功之后， OK，看图</p>
+<p>1.新建一个站点</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201804/1298851-20180403094843552-549494479.png" alt="" width="806" height="103" /></p>
+<p>2.联合github</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201804/1298851-20180403094938628-1032864076.png" alt="" width="718" height="384" /></p>
+<p>&nbsp;3.选择自己的github中的项目。 （我这里是用的desktop项目）</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201804/1298851-20180403095247562-388985842.png" alt="" width="717" height="497" /></p>
+<p>4.确定连接</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201804/1298851-20180403095445023-396737010.png" alt="" width="678" height="432" /></p>
+<p>5.可绑定自己的域名。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201804/1298851-20180403102004668-355896229.png" alt="" width="667" height="216" /></p>
+<p>如果不需要绑定自己域名的，OK。那恭喜你，你的葵花宝典已经修炼完成了。</p>
+<p>&nbsp;</p>]]></description></item><item><title>js - (截取网址参数)</title><link>http://www.cnblogs.com/lafitewu/archive/2018/03/23/8628366.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Fri, 23 Mar 2018 01:05:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/03/23/8628366.html</guid><description><![CDATA[<p>比如：detail.html?url=http://dev.mdap.com/api/ads/cpl?t=1&amp;cid=16&amp;cuid=53&amp;deviceid=xxx&amp;unixt=xxx</p>
+<p>这个网址，我想截取http://dev.mdap.com/api/ads/cpl?t=1&amp;cid=16&amp;cuid=53&amp;deviceid=xxx&amp;unixt=xxx 这个，怎么办</p>
+<p>来，走你~ &nbsp;</p>
+<p>var Url = &nbsp;detail.html?url=http://dev.mdap.com/api/ads/cpl?t=1&amp;cid=16&amp;cuid=53&amp;deviceid=xxx&amp;unixt=xxx;</p>
+<p>Url.split("url=")[1];</p>
+<p>可以了。收工，就这么简单。</p>]]></description></item><item><title>css - (左右滑动 时，隐藏底部滚动条)</title><link>http://www.cnblogs.com/lafitewu/archive/2018/03/19/8600389.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Mon, 19 Mar 2018 02:35:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/03/19/8600389.html</guid><description><![CDATA[<p>先上效果图，如下：</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201803/1298851-20180319101351102-1859263994.gif" alt="" /></p>
+<p>是不是经常看到此类效果？</p>
+<p>这里如果不借用其它框架，单纯的利用css 来实现怎么做呢？</p>
+<p>1.这一看就要用到overflow，但是用它会有一个默认的滚动条；</p>
+<p>2.那么重点来了，怎么解决这个问题呢？</p>
+<p>3.用&nbsp;::-webkit-scrollbar 就可以很好地解决。</p>
+<p>代码如下：</p>
+<p>css</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">* {
+        padding: 0;
+        margin: 0; 
+    } 
+    .nav {
+        position: fixed;
+        top: 0;
+        background: white;
+        width: 100%;
+        height: 30px;
+        overflow-x: auto;
+    }
+    .nav::-webkit-scrollbar {
+        display: none;
+    }
+        .nav ul {
+            width: 200%;
+            height: 100%;
+        }
+            .nav ul li {
+                float: left;
+                list-style: none;
+                width: 10%;
+                height: 100%;
+                text-align: center;
+                line-height: 30px;
+            }</span></pre>
+</div>
+<p>html:&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="nav"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">ul</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>头条<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>新闻<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>搞笑<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>视频<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>动漫<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>科技<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>农业<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>社会<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>人文<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">ul</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>    </pre>
+</div>
+<p>好，大功告成。</p>]]></description></item><item><title>vue - (引入jq)</title><link>http://www.cnblogs.com/lafitewu/archive/2018/03/14/8567106.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Wed, 14 Mar 2018 05:51:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/03/14/8567106.html</guid><description><![CDATA[<p>以前很拒绝vue+jq一起使用。但是vue写动画特效实在是难受，所以就试着去尝试了下，vue+jq的开发。</p>
+<p>嗯，挺爽的，哈哈。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201803/1298851-20180314115559005-1920536042.jpg" alt="" width="303" height="303" /></p>
+<p>这里讲下，如何在vue-cli中引入jquery。</p>
+<p>1.找到package.json文件，打开</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;"> "dependencies": {
+    "vue": "^2.5.2",
+    "vue-router": "^3.0.1",
+    "jquery": "^3.1.1"   // 加入此行，版本号可自己定义
+  },</span></pre>
+</div>
+<p>2.找到webpack.base.conf.js文件，打开</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">const path = require('path')
+const utils = require('./utils')
+const config = require('../config')
+const webpack = require("webpack")  //加入此行
+const vueLoaderConfig = require('./vue-loader.conf')</span></pre>
+</div>
+<p>3.在webpack.base.conf.js 文件中，加入</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">module.exports = {
+  context: path.resolve(__dirname, '../'),
+  entry: {
+    app: './src/main.js'
+  },
+  output: {
+    path: config.build.assetsRoot,
+    filename: '[name].js',
+    publicPath: process.env.NODE_ENV === 'production'
+      ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath
+  },
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
+    }
+  },<br />　// 加入以下代码
+  plugins: [
+  new webpack.optimize.CommonsChunkPlugin('common.js'),
+  new webpack.ProvidePlugin({
+      jQuery: "jquery",
+      $: "jquery"
+  })
+  ],</span></pre>
+</div>
+<p>4.找到main.js 打开</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">import Vue from 'vue'
+import App from './App'
+import router from './router'
+import $ from 'jquery'  // 加入此行</span></pre>
+</div>
+<p>好了，大功告成。</p>
+<p>npm run dev 走一波！！！</p>]]></description></item><item><title>vue - (加载ico)</title><link>http://www.cnblogs.com/lafitewu/archive/2018/03/13/8555368.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Tue, 13 Mar 2018 03:39:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/03/13/8555368.html</guid><description><![CDATA[<p>这一节就是告诉大家如何在vue-cli下，加载favicon.ico</p>
+<p>效果如下：</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201803/1298851-20180313113447555-232924800.png" alt="" /></p>
+<p>首先找到build文件下的webpack.dev.conf.js</p>
+<p>然后</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'index.html',
+      inject: true,
+      favicon: './favicon.ico'  // 加入此行代码
+}),</span></pre>
+</div>
+<p>ps: 记得把自己的favicon.ico文件放在如下目录下：</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201803/1298851-20180313113840415-612194598.png" alt="" /></p>
+<p>好了，这就ok了! 走起~</p>]]></description></item><item><title>Scss - (入门篇)</title><link>http://www.cnblogs.com/lafitewu/archive/2018/03/07/8523744.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Wed, 07 Mar 2018 09:24:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/03/07/8523744.html</guid><description><![CDATA[<p>因为网上此类教程有很多，我就抓重点，让项目快速上手。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201803/1298851-20180307171343974-940388070.jpg" alt="" width="456" height="456" /></p>
+<p>如果是在windows系统下，就先安装ruby，官网下载地址：https://rubyinstaller.org/downloads/</p>
+<p>安装完之后，来跟着节奏燥起来。</p>
+<p>1、在命令行中：gem install sass</p>
+<p>2、这时候就可以直接进到你的项目文件中：sass &nbsp;--watch scss/:scss/ &nbsp; &nbsp; // 这监听scss整个文件夹，并生成新的css到scss文件夹中。（ps: 这里生成的文件夹也可以自己替换）</p>
+<p>提醒： 这里如果只想改变文件夹中某一个scss文件，可以直接取到确切的值，个人觉得监听整个文件夹比较方便。</p>]]></description></item><item><title>ES6 - （数组与对象）</title><link>http://www.cnblogs.com/lafitewu/archive/2018/03/07/8521072.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Wed, 07 Mar 2018 02:53:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/03/07/8521072.html</guid><description><![CDATA[<p>之前的es6 教程中有说过一句代码实现数组去重的方法（http://www.cnblogs.com/lafitewu/p/8480055.html）</p>
+<p>今天还给大家带来一个新的去重方法：Set</p>
+<p>const arr = [1,0,2,0,5,4,4,5,0,1]</p>
+<p>let newArr = [...new Set([1,0,2,0,5,4,4,5,0,1])]</p>
+<p>console.log(newArr) &nbsp;// [1,0,2,5,4]</p>
+<p>感觉这种方法更为简洁。</p>
+<p>说到这里，此处也碰到一个奇怪的问题。</p>
+<p>console.log(typeof(newArr)) &nbsp;// object</p>
+<p>what? ? ? 这是什么个情况？它不是应该打印出array么？</p>
+<p><img src="https://images2018.cnblogs.com/blog/1298851/201803/1298851-20180307105212980-1813443002.jpg" alt="" width="393" height="393" /></p>
+<p>&nbsp;</p>
+<p>懵逼中... &nbsp; 10分钟过去后，独自折腾，终于</p>
+<p>要想判断一个类型是不是数组类型，可以用&nbsp;console.log(Array.isArray(arr)) // true</p>
+<p>这时突然想起，以前面试时，总有面试官会问，你如何判断一个变量类型是数组还是对象啊？ 我毫无防备的说 typeof ，嗯还是自己太年轻。</p>
+<p>typeof 也可以，但是得这样玩&nbsp;console.log(typeof(arr.length))&nbsp; // number ，之所以可以这样判断，是因为对象是没有 length 这个属性的， 你get了吗？</p>
+<p>最后new Set() 出来的是一个object 类型，这时候可以用 ... 或者 Array.from(newArr) 来转化成数组类型。 ps: 这是es6 对象转数组</p>
+<p>es5: &nbsp;[].slice.call(newArr2)</p>
+<p>&nbsp;</p>]]></description></item><item><title>css - (默认自动添加省略号)</title><link>http://www.cnblogs.com/lafitewu/archive/2018/03/06/8514388.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Tue, 06 Mar 2018 07:01:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/03/06/8514388.html</guid><description><![CDATA[<p>当你不确定一行有多少文字时，怎么办？ 就让文字显示一部分，其他部分用...代替。</p>
+<p>这个时候，在css中加入以下代码，就大功告成了！</p>
+<p>1.单行</p>
+<p>text-overflow:ellipsis;<br />white-space:nowrap;<br />overflow:hidden;</p>
+<p>2.多行</p>
+<pre class="prettyprint"><span class="pln">display<span class="pun">:<span class="pln">&nbsp;<span class="pun">-<span class="pln">webkit<span class="pun">-<span class="pln">box<span class="pun">;<span class="pln">
+<span class="pun">-<span class="pln">webkit<span class="pun">-<span class="pln">box<span class="pun">-<span class="pln">orient<span class="pun">:<span class="pln">&nbsp;vertical<span class="pun">;<span class="pln">
+<span class="pun">-<span class="pln">webkit<span class="pun">-<span class="pln">line<span class="pun">-<span class="pln">clamp<span class="pun">:<span class="pln">&nbsp;<span class="lit">3<span class="pun">;  // 行数<span class="pln">
+overflow<span class="pun">:<span class="pln">&nbsp;hidden<span class="pun">;</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></pre>
+<p>开不开心？意不意外？</p>]]></description></item><item><title>ES6 - 一条代码实现数组去重</title><link>http://www.cnblogs.com/lafitewu/archive/2018/02/27/8480055.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Tue, 27 Feb 2018 09:31:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/02/27/8480055.html</guid><description><![CDATA[<p>arr = [12,5,6,4,5,6,7,12,0,5,6,7,5,4,5,0]</p>
+<p>let newarr = arr.filter((item,index,nowArr) =&gt; nowArr.indexOf(item) === index) //数组去重</p>
+<p>拆分：</p>
+<p>let newarr = arr.filter (function (item,index,nowArr) {<br />      　　return nowArr.indexOf(item) === index;<br />    })</p>
+<p>console.log(newarr) &nbsp;//&nbsp;[12, 5, 6, 4, 7, 0]</p>]]></description></item><item><title>vue.js - 安装各种依赖</title><link>http://www.cnblogs.com/lafitewu/archive/2018/02/27/8479866.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Tue, 27 Feb 2018 09:07:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/02/27/8479866.html</guid><description><![CDATA[<p>1.搭建淘宝镜像<br />npm install cnpm -g --tegistry=https://registry.npm.taobao.or</p>
+<p>2.vue-cli搭建vue项目流程<br />a. npm install --global vue-cli<br />b. vue init webpack my-project<br />c. cd my-project<br />d. npm install<br />e. npm run dev</p>
+<p>3.安装vue-router<br />cnpm i vue-router -D</p>
+<p>4.安装scss/sass<br />npm install --save-dev sass-loader</p>
+<p>npm install --save-dev node-sass</p>
+<p>&nbsp;</p>
+<p>5.安装 axios<br />cnpm install axios<br />ps: 在main.js 中加入<br />import axios from 'axios'<br />Vue.prototype.$ajax = axios</p>
+<p>6.安装vuex<br />cnpm install vuex --save</p>
+<p>在组件中使用：<br />this.$ajax.get('https://route.showapi.com/341-3?maxResult=20&amp;page=1&amp;showapi_appid=36844&amp;showapi_test_draft=false&amp;showapi_sign=858dfaba2d9549608fca5e3af273f36e').then((res)=&gt;{<br />	　　　　console.log(res.data);<br />	　　}).catch((err)=&gt;{<br />	　　　　console.log(err);<br />	　　});</p>
+<p>&nbsp;</p>
+<p>7.安装element<br />npm i element-ui -S</p>]]></description></item><item><title>css - (单位)</title><link>http://www.cnblogs.com/lafitewu/archive/2018/01/29/8379284.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Mon, 29 Jan 2018 12:06:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/01/29/8379284.html</guid><description><![CDATA[<p>今天主要来整理整理css中一些我会用到的单位，及区别。</p>
+<p>1. px</p>
+<p>2.%</p>
+<p>3.em</p>
+<p>4.rem</p>
+<p>5.vh</p>
+<p>6.vw</p>
+<p>今天主要就来讲讲这6种css 单位</p>
+<p>1.px &nbsp; =》 它的大小是相对于浏览器屏幕分辨率来决定的；</p>
+<p>2.% &nbsp; =》 它的大小是相对于它的父级元素来决定的；</p>
+<p>3.em &nbsp;=&gt; 它是相对于当前对象的大小来决定的；</p>
+<p>4.rem &nbsp;=&gt; 它是相对于根目录（html）下的单位来决定大小的；</p>
+<p>5.vh &nbsp;=&gt; 它是相对于整个屏幕的高度来决定的；</p>
+<p>6.vw &nbsp;=&gt; 它就是相对于屏幕的宽度来决定的；</p>
+<p>通过这波比较是对这些单位有了一个大概的了解呢?</p>]]></description></item><item><title>vue.js - 解决vue-cli打包后自动压缩代码</title><link>http://www.cnblogs.com/lafitewu/archive/2018/01/18/8309305.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Thu, 18 Jan 2018 03:28:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/01/18/8309305.html</guid><description><![CDATA[<p>当我们用vue脚手架做完项目后，npm run build打包之后，</p>
+<p>有没有查看源码，全是压缩好的。但是我就不想让它压缩，该怎么办呢？</p>
+<p>困惑了几天，查了各种资料。终于终于...</p>
+<p>来，上干货：</p>
+<p>首先，我们得了解一点点webpack的知识。</p>
+<p>webpack中压缩js 的插件叫&nbsp;uglifyjs-webpack-plugin，</p>
+<p>压缩css 的插件叫&nbsp;optimize-css-assets-webpack-plugin</p>
+<p>然后我们找到/build/webpack.prod.conf.js 文件，</p>
+<p>然后你会发现：</p>
+<div class="cnblogs_code">
+<pre>const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin'<span style="color: #000000;">)
+const UglifyJsPlugin </span>= require('uglifyjs-webpack-plugin')</pre>
+</div>
+<p>然后我们就可以在页面中搜索OptimizeCSSPlugin 和&nbsp;UglifyJsPlugin 这两个关键词所在的地方</p>
+<p>配置如下：</p>
+<div class="cnblogs_code">
+<pre>    <span style="color: #008000;">//</span><span style="color: #008000;"> css 压缩代码，将下面代码注释掉</span>
+    <span style="color: #0000ff;">new</span><span style="color: #000000;"> OptimizeCSSPlugin({
+      cssProcessorOptions: config.build.productionSourceMap
+        </span>? { safe: <span style="color: #0000ff;">true</span>, map: { inline: <span style="color: #0000ff;">false</span><span style="color: #000000;"> } }
+        : { safe: </span><span style="color: #0000ff;">true</span><span style="color: #000000;"> }
+    }),</span></pre>
+</div>
+<div class="cnblogs_code">
+<pre>   <span style="color: #008000;">//</span><span style="color: #008000;"> 压缩js代码，将下面代码注释掉</span>
+    <span style="color: #0000ff;">new</span><span style="color: #000000;"> UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          warnings: </span><span style="color: #0000ff;">false</span><span style="color: #000000;">
+        }
+      },
+      sourceMap: config.build.productionSourceMap,
+      parallel: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">
+    }),</span></pre>
+</div>
+<p>只要将上面代码注释掉，npm run build 你就会发现，欧了。</p>
+<p>然后是html 了，</p>
+<p>配置如下：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">new</span><span style="color: #000000;"> HtmlWebpackPlugin({
+      filename: process.env.NODE_ENV </span>=== 'testing'
+        ? 'index.html'<span style="color: #000000;">
+        : config.build.index,
+      template: </span>'index.html'<span style="color: #000000;">,
+      inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      minify: {
+        removeComments: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+        collapseWhitespace: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+        removeAttributeQuotes: </span><span style="color: #0000ff;">true</span>
+        <span style="color: #008000;">//</span><span style="color: #008000;"> more options:</span>
+        <span style="color: #008000;">//</span><span style="color: #008000;"> https://github.com/kangax/html-minifier#options-quick-reference</span>
+      },</pre>
+</div>
+<p>这里我们将上面的&nbsp;minify 改成&nbsp;minify：false</p>
+<p>是的，就可以了。</p>]]></description></item><item><title>vue.js - 修改eslint</title><link>http://www.cnblogs.com/lafitewu/archive/2018/01/18/8308636.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Thu, 18 Jan 2018 01:41:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/01/18/8308636.html</guid><description><![CDATA[<p>当我们使用vue开发项目时，发现经常报一些莫名的错误，什么空格没写、</p>
+<p>什么双引号要改为单引号，这对于有强迫症的同学来说，真是有句mmp不知当讲不当讲。</p>
+<p>因为vue版本的不同，所以不同版本的去掉eslint的方式也不同。因为网上没看到我这个版本的去除方法。</p>
+<p>所以我斗胆上传我这个版本的方法1:</p>
+<p>首先找到/build/webpack.base.conf.js文件，然后找到createLintingRule关键词所在地方</p>
+<p>具体配置如下：</p>
+<div class="cnblogs_code">
+<pre>const createLintingRule = () =&gt;<span style="color: #000000;"> ({
+  </span><span style="color: #008000;">//</span><span style="color: #008000;"> test: /\.(js|vue)$/,</span>
+  <span style="color: #008000;">//</span><span style="color: #008000;"> loader: 'eslint-loader',</span>
+  <span style="color: #008000;">//</span><span style="color: #008000;"> enforce: 'pre',</span>
+  <span style="color: #008000;">//</span><span style="color: #008000;"> include: [resolve('src'), resolve('test')],</span>
+  <span style="color: #008000;">//</span><span style="color: #008000;"> options: {</span>
+  <span style="color: #008000;">//</span><span style="color: #008000;">   formatter: require('eslint-friendly-formatter'),</span>
+  <span style="color: #008000;">//</span><span style="color: #008000;">   emitWarning: !config.dev.showEslintErrorsInOverlay</span>
+  <span style="color: #008000;">//</span><span style="color: #008000;"> }</span>
+})</pre>
+</div>
+<p>如上所示，把里面内容注释掉，然后npm run dev跑一跑。</p>
+<p>没错只要你不犯原则上的错误，它都是可以原谅的。</p>
+<p>如果你觉得上面的方法麻烦，没事还有一个简单点的方法：</p>
+<p>首先找到config/index.js文件夹，打开，</p>
+<div class="cnblogs_code">
+<pre> <span style="color: #008000;">//</span><span style="color: #008000;"> Various Dev Server settings</span>
+    host: 'localhost', <span style="color: #008000;">//</span><span style="color: #008000;"> can be overwritten by process.env.HOST</span>
+    port: 8080, <span style="color: #008000;">//</span><span style="color: #008000;"> can be overwritten by process.env.PORT, if port is in use, a free one will be determined</span>
+    autoOpenBrowser: <span style="color: #0000ff;">true</span><span style="color: #000000;">,
+    errorOverlay: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+    notifyOnErrors: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+    poll: </span><span style="color: #0000ff;">false</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-</span>
+
+    <span style="color: #008000;">//</span><span style="color: #008000;"> Use Eslint Loader?</span>
+    <span style="color: #008000;">//</span><span style="color: #008000;"> If true, your code will be linted during bundling and</span>
+    <span style="color: #008000;">//</span><span style="color: #008000;"> linting errors and warnings will be shown in the console.</span>
+    useEslint: <span style="color: #0000ff;">false</span>,  // 将这里改成false 就ok 了，默认是true。</pre>
+</div>
+<p>上面两张方法任意一种都可以让你肆无忌惮的写代码了。</p>]]></description></item><item><title>vue.js - 打包后，css中背景图路径出错</title><link>http://www.cnblogs.com/lafitewu/archive/2018/01/17/8302922.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Wed, 17 Jan 2018 06:58:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/01/17/8302922.html</guid><description><![CDATA[<p>当我们通过vue-cli 搭建好项目，并做完项目之后，开开心心的npm run build 之后，</p>
+<p>发现项目中的背景图片不见了，蒙圈中....</p>
+<p>别懵了，我来拯救你。</p>
+<p>首先，我的静态资源目录如下：</p>
+<p><img src="http://images2017.cnblogs.com/blog/1298851/201801/1298851-20180117145026006-29759591.png" alt="" /></p>
+<p>首先我们找到/build/webpack.prod.conf.js文件，并打开。找到output 关键词所在的地方</p>
+<p>配置代码如下：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">  output: {
+    publicPath: </span>'./'<span style="color: #000000;">, // 只加入了这一行，其它的未变
+    path: config.build.assetsRoot,
+    filename: utils.assetsPath(</span>'js/[name].[chunkhash].js'<span style="color: #000000;">),
+    chunkFilename: utils.assetsPath(</span>'js/[id].[chunkhash].js'<span style="color: #000000;">)
+  },</span></pre>
+</div>
+<p>然后第二步：找到/build/utils.js文件，找到options.extract 关键词所在地方</p>
+<p>配置如下：</p>
+<div class="cnblogs_code">
+<pre>   <span style="color: #0000ff;">if</span><span style="color: #000000;"> (options.extract) {
+      </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> ExtractTextPlugin.extract({
+        use: loaders,
+        fallback: </span>'vue-style-loader'<span style="color: #000000;">,
+        publicPath: </span>'../../' // 只加入了这一行<span style="color: #000000;">
+      })</span></pre>
+</div>
+<p>这个时候，在重启，npm run build ，</p>
+<p>怎么样，妈妈再也不用担心我路径出错了吧。</p>
+<p>&nbsp;</p>]]></description></item><item><title>vue.js - 基本配置</title><link>http://www.cnblogs.com/lafitewu/archive/2018/01/17/8302833.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Wed, 17 Jan 2018 06:45:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/01/17/8302833.html</guid><description><![CDATA[<p>这一章，主要讲下vue基于vue-cli 脚手架做项目时遇到的一些问题及解决方案。</p>
+<p>首页，vue做多页面的项目，如官网的制作，该怎么配置页面呢？</p>
+<p>下面就来讲下，我是如何配置的吧。</p>
+<p>首先：先找到 \build\webpack.base.conf.js文件，在代码中找到出现module.exports的地方，可以看到entry</p>
+<p>配置如下：</p>
+<div class="cnblogs_code">
+<pre>app: './src/main.js'<span style="color: #000000;">, // 源文件已有的
+news: </span>'./src/js/news.js'<span style="color: #000000;">, // news、strategy、material都是自己加的，有多少个子页面就加多少个入口
+strategy: </span>'./src/js/strategy.js'<span style="color: #000000;">,
+material: </span>'./src/js/material.js'</pre>
+</div>
+<p>第二步：找到\build\webpack.dev.conf.js文件，在代码中找到module.exports的地方，可以看到plugins</p>
+<p>配置如下：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">　　<br />　　// 源代码已有<br />　　new</span><span style="color: #000000;"> HtmlWebpackPlugin({
+      filename: </span>'index.html'<span style="color: #000000;">,
+      template: </span>'index.html'<span style="color: #000000;">,
+      inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      chunks: [</span>'app'<span style="color: #000000;">]
+    }),<br />　　// 以下为配置添加，根据子页面进行添加
+    </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> HtmlWebpackPlugin({
+      filename: </span>'news.html'<span style="color: #000000;">,
+      template: </span>'news.html'<span style="color: #000000;">,
+      inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      chunks: [</span>'news'<span style="color: #000000;">]
+    }),
+    </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> HtmlWebpackPlugin({
+      filename: </span>'strategy.html'<span style="color: #000000;">,
+      template: </span>'strategy.html'<span style="color: #000000;">,
+      inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      chunks: [</span>'strategy'<span style="color: #000000;">]
+    }),
+    </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> HtmlWebpackPlugin({
+      filename: </span>'material.html'<span style="color: #000000;">,
+      template: </span>'material.html'<span style="color: #000000;">,
+      inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      chunks: [</span>'material'<span style="color: #000000;">]
+    }),</span></pre>
+</div>
+<p>第三步：找到/build/webpack.prod.conf.js文件，找到HTMLWebpackPlugin所在的地方</p>
+<p>配置如下：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">　　// 源代码已有<br />　　new</span><span style="color: #000000;"> HtmlWebpackPlugin({
+      filename: process.env.NODE_ENV </span>=== 'testing'
+        ? 'index.html'<span style="color: #000000;">
+        : config.build.index,
+      template: </span>'index.html'<span style="color: #000000;">,
+      inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      minify: {
+        removeComments: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+        collapseWhitespace: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+        removeAttributeQuotes: </span><span style="color: #0000ff;">true</span>
+        <span style="color: #008000;">//</span><span style="color: #008000;"> more options:</span>
+        <span style="color: #008000;">//</span><span style="color: #008000;"> https://github.com/kangax/html-minifier#options-quick-reference</span>
+<span style="color: #000000;">      },
+      </span><span style="color: #008000;">//</span><span style="color: #008000;"> necessary to consistently work with multiple chunks via CommonsChunkPlugin</span>
+      chunksSortMode: 'dependency'<span style="color: #000000;">,
+      chunks: [</span>'manifest', 'vendor', 'app'<span style="color: #000000;">]
+    }),<br />　　// 以下均为自己配置的文件
+    </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> HtmlWebpackPlugin({
+      filename: config.build.news,
+      template: </span>'news.html'<span style="color: #000000;">,
+      inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      minify: {
+        removeComments: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+        collapseWhitespace: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+        removeAttributeQuotes: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">
+      },
+      chunksSortMode: </span>'dependency'<span style="color: #000000;">,
+      chunks: [</span>'manifest', 'vendor', 'news'<span style="color: #000000;">]
+    }),
+    </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> HtmlWebpackPlugin({
+      filename: config.build.strategy,
+      template: </span>'strategy.html'<span style="color: #000000;">,
+      inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      minify: {
+        removeComments: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+        collapseWhitespace: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+        removeAttributeQuotes: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">
+      },
+      chunksSortMode: </span>'dependency'<span style="color: #000000;">,
+      chunks: [</span>'manifest', 'vendor', 'strategy'<span style="color: #000000;">]
+    }),
+    </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> HtmlWebpackPlugin({
+      filename: config.build.material,
+      template: </span>'material.html'<span style="color: #000000;">,
+      inject: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+      minify: {
+        removeComments: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+        collapseWhitespace: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">,
+        removeAttributeQuotes: </span><span style="color: #0000ff;">true</span><span style="color: #000000;">
+      },
+      chunksSortMode: </span>'dependency'<span style="color: #000000;">,
+      chunks: [</span>'manifest', 'vendor', 'material'<span style="color: #000000;">]
+    }),</span></pre>
+</div>
+<p>第四步：找到\config\index.js文件，并找到build</p>
+<p>配置如下：</p>
+<div class="cnblogs_code">
+<pre>    index: path.resolve(__dirname, '../dist/index.html'<span style="color: #000000;">),  // 源文件已有
+    news: path.resolve(__dirname, </span>'../dist/news.html'<span style="color: #000000;">), // 以下均为配置文件
+    strategy: path.resolve(__dirname, </span>'../dist/strategy.html'<span style="color: #000000;">),
+    material: path.resolve(__dirname, </span>'../dist/material.html'),</pre>
+</div>
+<p>最后需要修改每个页面的xx.js,xx.vue文件，这里以news为例。</p>
+<p>news.js</p>
+<div class="cnblogs_code">
+<pre>import Vue from 'vue'<span style="color: #000000;">
+import news from </span>'./news.vue'<span style="color: #000000;">
+
+Vue.config.productionTip </span>= <span style="color: #0000ff;">false</span>
+
+<span style="color: #008000;">/*</span><span style="color: #008000;"> eslint-disable no-new </span><span style="color: #008000;">*/</span>
+<span style="color: #0000ff;">new</span><span style="color: #000000;"> Vue({
+  el: </span>'#news'<span style="color: #000000;">,
+  render: h </span>=&gt;<span style="color: #000000;"> h(news)
+})</span></pre>
+</div>
+<p>news.vue</p>
+<div class="cnblogs_code">
+<pre>&lt;template&gt;
+  &lt;div id="news"&gt;<span style="color: #000000;">
+    {{msg}}
+  </span>&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;<span style="color: #000000;">
+export </span><span style="color: #0000ff;">default</span><span style="color: #000000;"> {
+  name: </span>'news'<span style="color: #000000;">,
+  data () {
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> {
+      msg: </span>'I am news'<span style="color: #000000;">
+    }
+  }
+}
+</span>&lt;/script&gt;</pre>
+</div>
+<p>news.html</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">="utf-8"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="viewport"</span><span style="color: #ff0000;"> content</span><span style="color: #0000ff;">="width=device-width,initial-scale=1.0"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>news<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="news"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #008000;">&lt;!--</span><span style="color: #008000;"> built files will be auto injected </span><span style="color: #008000;">--&gt;</span>
+  <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>最后是主页面app.vue</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">template</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="app"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">a </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="news.html"</span><span style="color: #0000ff;">&gt;</span>news<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">a</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">br</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">a </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="material.html"</span><span style="color: #0000ff;">&gt;</span>material<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">a</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">br</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">a </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="strategy.html"</span><span style="color: #0000ff;">&gt;</span>strategy<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">a</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">br</span><span style="color: #0000ff;">&gt;</span>
+  <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">template</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>然后重启 npm run dev&nbsp;</p>
+<p>就可以看到如下图界面</p>
+<p><img src="http://images2017.cnblogs.com/blog/1298851/201801/1298851-20180117144402709-1822921613.png" alt="" /></p>
+<p>这个时候vue多页面配置就大功告成了。</p>]]></description></item><item><title>three.js - 3D九宫格</title><link>http://www.cnblogs.com/lafitewu/archive/2018/01/12/8276516.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Fri, 12 Jan 2018 08:33:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/01/12/8276516.html</guid><description><![CDATA[<p>想信大家看完前面四节three.js应该对three.js 有了一个大致的了解。</p>
+<p>这一节，就给大家带来一个实例。</p>
+<p>效果截图如下：</p>
+<p><img src="http://images2017.cnblogs.com/blog/1298851/201801/1298851-20180112162444613-344208351.png" alt="" /></p>
+<p>在线地址：<a title="在线地址" href="http://www.17sucai.com//preview/703246/2018-01-09/demo11/index.html" target="_blank">http://www.17sucai.com//preview/703246/2018-01-09/demo11/index.html</a></p>
+<p>人帅话不多，上代码，代码如下：</p>
+<div class="cnblogs_code">
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;erath - three.js&lt;/title&gt;
+    &lt;script src="js/three.js"&gt;&lt;/script&gt;
+    &lt;script src="js/TrackballControls.js"&gt;&lt;/script&gt;
+    &lt;script src="js/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;style&gt;
+    *<span style="color: #000000;"> {
+        padding: 0px;
+        margin: 0px;
+    }
+        html,body,.main {
+            width: </span>100%<span style="color: #000000;">;
+            height: </span>100%<span style="color: #000000;">;
+            overflow: hidden;
+        }
+        .main {
+            position: relative;
+        }
+            .div {
+                </span><span style="color: #0000ff;">float</span><span style="color: #000000;">: left;
+                width: calc(</span>100% / 3<span style="color: #000000;">);
+                height: calc(</span>100% / 3<span style="color: #000000;">);
+                cursor: move;
+            }
+            .btn {
+                position: absolute;
+                left: </span>0<span style="color: #000000;">;
+                right: </span>0<span style="color: #000000;">;
+                bottom: 50px;
+                margin: </span>0<span style="color: #000000;"> auto;
+                width: </span>20%<span style="color: #000000;">;
+                height: 30px;
+                line</span>-<span style="color: #000000;">height: 30px;
+                text</span>-<span style="color: #000000;">align: center;
+                color: white;
+                letter</span>-<span style="color: #000000;">spacing: 20px;
+                background: rgba(</span>139,139,139,.8<span style="color: #000000;">);
+                cursor: pointer;
+                display: none;
+            }
+</span>&lt;/style&gt;
+&lt;body&gt;
+    &lt;div class="main"&gt;
+        &lt;div class="div div1"&gt;&lt;/div&gt;
+        &lt;div class="div div2"&gt;&lt;/div&gt;
+        &lt;div class="div div3"&gt;&lt;/div&gt;
+        &lt;div class="div div4"&gt;&lt;/div&gt;
+        &lt;div class="div div5"&gt;&lt;/div&gt;
+        &lt;div class="div div6"&gt;&lt;/div&gt;
+        &lt;div class="div div7"&gt;&lt;/div&gt;
+        &lt;div class="div div8"&gt;&lt;/div&gt;
+        &lt;div class="div div9"&gt;&lt;/div&gt;
+        &lt;div class="btn"&gt;返回&lt;/div&gt;        
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;script&gt;
+    <span style="color: #0000ff;">function</span><span style="color: #000000;"> Three(className) {
+        </span><span style="color: #0000ff;">this</span><span style="color: #000000;">.off;
+        </span><span style="color: #0000ff;">this</span>.width =<span style="color: #000000;"> $(className).width();
+        </span><span style="color: #0000ff;">this</span>.height =<span style="color: #000000;"> $(className).height();
+        </span><span style="color: #0000ff;">this</span>.renderer =  <span style="color: #0000ff;">new</span><span style="color: #000000;"> THREE.WebGLRenderer({
+            antialias : </span><span style="color: #0000ff;">true</span>   <span style="color: #008000;">//</span><span style="color: #008000;">开启锯齿，默认是false</span>
+<span style="color: #000000;">        });
+        </span><span style="color: #0000ff;">this</span>.renderer.setSize(<span style="color: #0000ff;">this</span>.width, <span style="color: #0000ff;">this</span>.height); <span style="color: #008000;">//</span><span style="color: #008000;"> 给渲染区域设置宽高</span>
+        <span style="color: #0000ff;">this</span>.renderer.setClearColor("white"); <span style="color: #008000;">//</span><span style="color: #008000;"> 设置背景色</span>
+        $(className).append(<span style="color: #0000ff;">this</span><span style="color: #000000;">.renderer.domElement); 
+    }
+    Three.prototype </span>=<span style="color: #000000;"> {
+        init:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(url) {
+            </span><span style="color: #0000ff;">var</span> that = <span style="color: #0000ff;">this</span><span style="color: #000000;">;
+            </span><span style="color: #0000ff;">this</span>.scence = <span style="color: #0000ff;">new</span> THREE.Scene();  <span style="color: #008000;">//</span><span style="color: #008000;"> 创建舞台</span>
+            
+            <span style="color: #008000;">//</span><span style="color: #008000;"> 设置视角及参数</span>
+            <span style="color: #0000ff;">this</span>.camera = <span style="color: #0000ff;">new</span> THREE.PerspectiveCamera(45, <span style="color: #0000ff;">this</span>.width / <span style="color: #0000ff;">this</span>.height, 1, 10000<span style="color: #000000;">);
+            </span><span style="color: #0000ff;">this</span>.camera.position.set(0,0,200<span style="color: #000000;">);
+            </span><span style="color: #0000ff;">this</span>.camera.lookAt(<span style="color: #0000ff;">new</span> THREE.Vector3(0, 0, 0<span style="color: #000000;">));
+            </span><span style="color: #0000ff;">this</span>.controls = <span style="color: #0000ff;">new</span> THREE.TrackballControls(<span style="color: #0000ff;">this</span>.camera, <span style="color: #0000ff;">this</span><span style="color: #000000;">.renderer.domElement);
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> this.controls.minDistance = 200;</span>
+            <span style="color: #0000ff;">this</span>.controls.rotateSpeed = 1.0<span style="color: #000000;">;
+            </span><span style="color: #0000ff;">this</span>.controls.zoomSpeed = 1.2<span style="color: #000000;">;
+            </span><span style="color: #0000ff;">this</span>.controls.panSpeed = 0.8<span style="color: #000000;">;
+            </span><span style="color: #0000ff;">this</span>.controls.noZoom = <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+            </span><span style="color: #0000ff;">this</span>.controls.noPan = <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+            </span><span style="color: #0000ff;">this</span>.controls.staticMoving = <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+            </span><span style="color: #0000ff;">this</span>.controls.dynamicDampingFactor = 0.3<span style="color: #000000;">;  
+
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 设置灯光及参数</span>
+            <span style="color: #0000ff;">this</span>.light = <span style="color: #0000ff;">new</span> THREE.AmbientLight(0xDDDDDD<span style="color: #000000;">);
+            </span><span style="color: #0000ff;">this</span>.light.position.set(100, 100, 200<span style="color: #000000;">);
+            </span><span style="color: #0000ff;">this</span>.scence.add(<span style="color: #0000ff;">this</span><span style="color: #000000;">.light);
+
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 创建角色</span>
+            <span style="color: #0000ff;">var</span> circle =  <span style="color: #0000ff;">new</span> THREE.SphereGeometry(900,50,50<span style="color: #000000;">);
+            </span><span style="color: #0000ff;">var</span> texture = <span style="color: #0000ff;">new</span><span style="color: #000000;"> THREE.TextureLoader();
+            
+            </span><span style="color: #0000ff;">var</span> material = <span style="color: #0000ff;">new</span><span style="color: #000000;"> THREE.MeshBasicMaterial();
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 给circle添加背景图片</span>
+            material.map = texture.load("images/"+url,<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+                that.renderer.render(that.scence, that.camera);
+            });
+            that.mesh </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> THREE.Mesh(circle,material);
+            that.mesh.position.set(</span>0,0,-260<span style="color: #000000;">);
+            that.mesh.scale.x </span>= -1<span style="color: #000000;">;
+            that.scence.add(that.mesh);
+        },
+        animate:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+            </span><span style="color: #0000ff;">this</span>.off = requestAnimationFrame(<span style="color: #0000ff;">this</span>.animate.bind(<span style="color: #0000ff;">this</span><span style="color: #000000;">)); //bind(this) 使函数中的this指向构造函数
+            </span><span style="color: #0000ff;">this</span>.mesh.rotation.y += 0.003<span style="color: #000000;">;
+            </span><span style="color: #0000ff;">this</span>.controls.target.copy( <span style="color: #0000ff;">this</span><span style="color: #000000;">.mesh.position );
+            </span><span style="color: #0000ff;">this</span><span style="color: #000000;">.controls.update();
+            </span><span style="color: #0000ff;">this</span>.renderer.render(<span style="color: #0000ff;">this</span>.scence, <span style="color: #0000ff;">this</span><span style="color: #000000;">.camera);
+        },
+        turnAnimate:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(a) {
+            </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(a) {</span><span style="color: #0000ff;">this</span><span style="color: #000000;">.animate();
+            }</span><span style="color: #0000ff;">else</span><span style="color: #000000;"> {</span><span style="color: #000000;">
+                cancelAnimationFrame(</span><span style="color: #0000ff;">this</span><span style="color: #000000;">.off); // 停止动画，节约资源，优化用户体验
+            }
+        },
+        start:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+            </span><span style="color: #0000ff;">this</span><span style="color: #000000;">.animate();
+        }
+    }
+    
+    </span><span style="color: #0000ff;">function</span><span style="color: #000000;"> Dothree() {
+        </span><span style="color: #0000ff;">var</span> data =<span style="color: #000000;"> [
+            [</span>".div1",".div2",".div3",".div4",".div5",".div6",".div7",".div8",".div9"<span style="color: #000000;">],
+            [</span>"three","three1","three2","three3","three4","three5","three6","three7","three8","three9"<span style="color: #000000;">],
+            [</span>"164409shep99yc3gm01c99.jpg","8748605_144012597000_2.jpg","1430474913_386400657.jpg","2294472375_24a3b8ef46_o.jpg","hefei.jpg","shinei2.jpg","shinei3.jpg","shinei4.jpg","t01e4a292285aaa7eaf.jpg"<span style="color: #000000;">]
+        ];
+        </span><span style="color: #0000ff;">var</span> turn = 1<span style="color: #000000;">;
+
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 进入操作</span>
+        $(".div").click(<span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+            </span><span style="color: #0000ff;">var</span> index = $(<span style="color: #0000ff;">this</span><span style="color: #000000;">).index();
+            </span><span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> j = 0, L = data[0].length; j &lt; L; j ++<span style="color: #000000;">) {
+                data[</span>1][j].turnAnimate(<span style="color: #0000ff;">false</span><span style="color: #000000;">);
+            }
+            $(</span>".div"<span style="color: #000000;">).hide();
+            data[</span>1][index].turnAnimate(<span style="color: #0000ff;">true</span><span style="color: #000000;">);
+            </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(turn) {
+                $(</span><span style="color: #0000ff;">this</span>).css({"width":"100%","height":"100%"}).show(500<span style="color: #000000;">);
+                turn </span>= 0<span style="color: #000000;">;
+            }</span><span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+                $(</span><span style="color: #0000ff;">this</span>).css({"width":"100%","height":"100%"<span style="color: #000000;">}).show();
+            }
+            $(</span><span style="color: #0000ff;">this</span>).children("canvas").css({"width":"100%","height":"100%"<span style="color: #000000;">});
+            $(</span>".btn").slideDown(1000<span style="color: #000000;">);
+        });
+
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 返回操作 </span>
+        $(".btn").click(<span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+            $(</span><span style="color: #0000ff;">this</span>).slideUp(500<span style="color: #000000;">);
+            $(</span>".div").css({"width":"calc(100% / 3)","height":"calc(100% / 3)"}).show(500<span style="color: #000000;">);
+            </span><span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> j = 0, L = data[0].length; j &lt; L; j ++<span style="color: #000000;">) {
+                data[</span>1][j].turnAnimate(<span style="color: #0000ff;">true</span><span style="color: #000000;">);
+            }
+        });
+        </span><span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">var</span> i = 0,l =data[0].length; i &lt; l; i++<span style="color: #000000;">) {
+            data[</span>1][i] = <span style="color: #0000ff;">new</span> Three(data[0<span style="color: #000000;">][i]);
+            data[</span>1][i].init(data[2<span style="color: #000000;">][i]);
+            data[</span>1<span style="color: #000000;">][i].start();
+        }
+    }
+    Dothree();
+</span>&lt;/script&gt;</pre>
+</div>
+<p>源代码，上面有大部分的注释。今天就讲到这里了，下次再会。</p>]]></description></item><item><title>html - 黑科技-5（禁止页面中的字被复制）</title><link>http://www.cnblogs.com/lafitewu/archive/2018/01/10/8259315.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Wed, 10 Jan 2018 08:28:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/01/10/8259315.html</guid><description><![CDATA[<p>当我有次浏览网站时，想把里面有些文字copy过来，发现copy不了。</p>
+<p>这节的黑科技，就教大家如何让别人无法复制，我们所做的页面中的文字。</p>
+<p>//禁止页面复制文字<br />&lt;body onselectstart="return false"&gt;</p>
+<p>对，你没看错，就是在body中加上：onselectstart="return false"</p>
+<p>别人就无法再复制你的文字了。</p>]]></description></item><item><title>three.js - (入门四)</title><link>http://www.cnblogs.com/lafitewu/archive/2018/01/08/8241987.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Mon, 08 Jan 2018 03:52:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/01/08/8241987.html</guid><description><![CDATA[<p>好久没更新three.js 了，前三章了解了部分基础知识。这一章我们来搞点事情，做点有意思的东西。</p>
+<p>效果如下图：</p>
+<p><img src="http://images2017.cnblogs.com/blog/1298851/201801/1298851-20180108113440160-1508842468.png" alt="" /></p>
+<p>因为截图是静止的，实际效果是地球在自转。</p>
+<p>废话不多说，上代码：</p>
+<div class="cnblogs_code">
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;erath - three.js&lt;/title&gt;
+    &lt;script src="js/three.js"&gt;&lt;/script&gt;
+    &lt;script src="js/jquery.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;style&gt;
+    *<span style="color: #000000;"> {
+        padding: 0px;
+        margin: 0px;
+    }
+        html,body,.main {
+            width: </span>100%<span style="color: #000000;">;
+            height: </span>100%<span style="color: #000000;">;
+            overflow: hidden;
+        }
+</span>&lt;/style&gt;
+&lt;body&gt;
+    &lt;div class="main"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;script&gt;
+    <span style="color: #0000ff;">function</span><span style="color: #000000;"> Three(className) {
+        </span><span style="color: #0000ff;">this</span>.width =<span style="color: #000000;"> $(className).width();
+        </span><span style="color: #0000ff;">this</span>.height =<span style="color: #000000;"> $(className).height();
+        </span><span style="color: #0000ff;">this</span>.renderer =  <span style="color: #0000ff;">new</span><span style="color: #000000;"> THREE.WebGLRenderer({
+            antialias : </span><span style="color: #0000ff;">true</span>   <span style="color: #008000;">//</span><span style="color: #008000;">开启锯齿，默认是false</span>
+<span style="color: #000000;">        });
+        </span><span style="color: #0000ff;">this</span>.renderer.setSize(<span style="color: #0000ff;">this</span>.width, <span style="color: #0000ff;">this</span>.height); <span style="color: #008000;">//</span><span style="color: #008000;"> 给渲染区域设置宽高</span>
+        <span style="color: #0000ff;">this</span>.renderer.setClearColor("white"); <span style="color: #008000;">//</span><span style="color: #008000;"> 设置背景色</span>
+        $(className).append(<span style="color: #0000ff;">this</span><span style="color: #000000;">.renderer.domElement); 
+    }
+    Three.prototype </span>=<span style="color: #000000;"> {
+        init:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+            </span><span style="color: #0000ff;">this</span>.scence = <span style="color: #0000ff;">new</span> THREE.Scene();  <span style="color: #008000;">//</span><span style="color: #008000;"> 创建舞台</span>
+            
+            <span style="color: #008000;">//</span><span style="color: #008000;"> 设置视角及参数</span>
+            <span style="color: #0000ff;">this</span>.camera = <span style="color: #0000ff;">new</span> THREE.PerspectiveCamera(45, <span style="color: #0000ff;">this</span>.width / <span style="color: #0000ff;">this</span>.height, 1, 10000<span style="color: #000000;">);
+            </span><span style="color: #0000ff;">this</span>.camera.position.set(0,0,10<span style="color: #000000;">);
+            </span><span style="color: #0000ff;">this</span>.camera.lookAt(<span style="color: #0000ff;">new</span> THREE.Vector3(0, 0, 0<span style="color: #000000;">));
+
+    　　　　</span><span style="color: #008000;">//</span><span style="color: #008000;"> 设置灯光及参数</span>
+            <span style="color: #0000ff;">this</span>.light = <span style="color: #0000ff;">new</span> THREE.AmbientLight(0xDDDDDD<span style="color: #000000;">);
+            </span><span style="color: #0000ff;">this</span>.light.position.set(100, 100, 200<span style="color: #000000;">);
+            </span><span style="color: #0000ff;">this</span>.scence.add(<span style="color: #0000ff;">this</span><span style="color: #000000;">.light);
+
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 创建角色</span>
+            <span style="color: #0000ff;">var</span> circle =  <span style="color: #0000ff;">new</span> THREE.SphereGeometry(755,50,50<span style="color: #000000;">);
+            </span><span style="color: #0000ff;">var</span> texture = <span style="color: #0000ff;">new</span><span style="color: #000000;"> THREE.TextureLoader();
+            
+            </span><span style="color: #0000ff;">var</span> material = <span style="color: #0000ff;">new</span><span style="color: #000000;"> THREE.MeshBasicMaterial();
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> 给circle添加背景图片</span>
+            material.map = texture.load("images/earth_atmos_4096.jpg",<span style="color: #0000ff;">function</span><span style="color: #000000;">(){
+                three.renderer.render(three.scence, three.camera);
+            });
+            three.mesh </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> THREE.Mesh(circle,material);
+            three.mesh.position.set(</span>0,0,-5000<span style="color: #000000;">);
+            three.scence.add(three.mesh);
+        },
+        animate:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+            requestAnimationFrame(three.animate);
+            three.mesh.rotation.y </span>+= 0.01<span style="color: #000000;">;
+            three.renderer.render(three.scence, three.camera);
+        },
+        start:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">() {
+            </span><span style="color: #0000ff;">this</span><span style="color: #000000;">.init();
+            </span><span style="color: #0000ff;">this</span><span style="color: #000000;">.animate();
+        }
+    }
+    </span><span style="color: #0000ff;">var</span> three = <span style="color: #0000ff;">new</span> Three(".main"<span style="color: #000000;">);
+    three.start();
+</span>&lt;/script&gt;</pre>
+</div>
+<p>这里我把地球图片上传上来，不然没有图片也无法加载。</p>
+<p><img src="http://images2017.cnblogs.com/blog/1298851/201801/1298851-20180108115019707-912893575.jpg" alt="" /></p>
+<p>最后提醒大家一点，当有图片加载到three.js 时，需要在服务器端运行。不然也会报错。</p>
+<p>今天的three.js 就讲到这里了，下次再会。</p>]]></description></item><item><title>css - (calc算法)</title><link>http://www.cnblogs.com/lafitewu/archive/2018/01/06/8213503.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Sat, 06 Jan 2018 02:22:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/01/06/8213503.html</guid><description><![CDATA[<p>在项目中碰到一个问题，宽度为100%的容器，如何把其分成均等的三份，不可用js。</p>
+<p>这个时候calc就登场了。</p>
+<p>写法如下：</p>
+<p>width: calc( 100% / 3);</p>
+<p>将每个容器的宽度设置这个宽度就可以了。</p>]]></description></item><item><title>timeDate.js 插件优化</title><link>http://www.cnblogs.com/lafitewu/archive/2018/01/05/8205805.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Fri, 05 Jan 2018 09:27:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/01/05/8205805.html</guid><description><![CDATA[<p>昨天写的时候，在下面代码处就碰到了问题，</p>
+<p>如下：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">if</span><span style="color: #000000;">(data.zero) {
+　　</span><span style="color: #0000ff;">if</span><span style="color: #000000;">(data.Month_zero) {
+   　　</span><span style="color: #0000ff;">if</span>(time.month &lt; 10<span style="color: #000000;">) {
+       　　time.month </span>= "0" +<span style="color: #000000;"> time.month;
+       }
+    }
+    </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(data.Day_zero) {
+       </span><span style="color: #0000ff;">if</span>(time.day &lt; 10<span style="color: #000000;">) {
+           time.day </span>= "0" +<span style="color: #000000;"> time.day;
+       }
+    }
+    </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(data.Hours_zero) {
+       </span><span style="color: #0000ff;">if</span>(time.hours &lt; 10<span style="color: #000000;">) {
+           time.hours </span>= "0" +<span style="color: #000000;"> time.hours;
+       }
+    }
+    </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(data.Min_zero) {
+       </span><span style="color: #0000ff;">if</span>(time.minutes &lt; 10<span style="color: #000000;">) {
+           time.minutes </span>= "0" +<span style="color: #000000;"> time.minutes;
+       }
+    }
+    </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(data.Second_zero) {
+      　</span><span style="color: #0000ff;">if</span>(time.seconds &lt; 10<span style="color: #000000;">) {
+           time.seconds </span>= "0" +<span style="color: #000000;"> time.seconds;
+        }
+    }
+}</span></pre>
+</div>
+<p>因为代码耦合程度太高，所以想用一个函数来封装，如下：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">function</span><span style="color: #000000;"> Zero(a) {
+    </span><span style="color: #0000ff;">if</span>(a &lt; 10<span style="color: #000000;">) {
+        a </span>= "0" +<span style="color: #000000;"> a;
+    }
+}    </span></pre>
+</div>
+<p>却无法让其改变原始的参数值，挣扎了许久，就放下了。</p>
+<p>今天经过一天的征战，终于得以解决。源码如下：</p>
+<p>timeDate.js</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008000;">/*</span><span style="color: #008000;">
+ * timeDate.js
+ * by LafiteWu    
+ * by QQ:863512936
+ * 2018-01-05 v1.1
+ </span><span style="color: #008000;">*/</span><span style="color: #000000;">
+
+
+(</span><span style="color: #0000ff;">function</span><span style="color: #000000;">($) {
+    $.fn.timeDate </span>= <span style="color: #0000ff;">function</span><span style="color: #000000;">(options) {
+        </span><span style="color: #0000ff;">var</span> that = $(<span style="color: #0000ff;">this</span><span style="color: #000000;">);
+        </span><span style="color: #0000ff;">var</span> defaults =<span style="color: #000000;"> {
+            show: </span>"Y-M-D-W", <span style="color: #008000;">//</span><span style="color: #008000;">显示形式</span>
+             zero: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> 是否开启零,也是总开关，当它值为false时，下面的值无效</span>
+             Month_zero: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> 月份是否加零</span>
+             Day_zero: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> 日期上是否加零</span>
+             Hours_zero: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> 小时前是否加零</span>
+             Min_zero: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> 分钟前是否加零</span>
+             Second_zero: <span style="color: #0000ff;">true</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 秒钟前加零</span>
+<span style="color: #000000;">         };
+         </span><span style="color: #0000ff;">var</span> data =<span style="color: #000000;"> $.extend(defaults,options);
+         </span><span style="color: #0000ff;">var</span> now = <span style="color: #0000ff;">new</span><span style="color: #000000;"> Date(); 
+         </span><span style="color: #0000ff;">var</span> weekday = ["星期天","星期一","星期二","星期三","星期四","星期五","星期六"<span style="color: #000000;">];
+         </span><span style="color: #0000ff;">var</span> time =<span style="color: #000000;"> {
+             year: now.getFullYear(),
+             month: now.getMonth()</span>+1<span style="color: #000000;">,
+             day: now.getDate(),
+             week: weekday[now.getDay()],
+             hours: now.getHours(),
+             minutes: now.getMinutes(),
+             seconds: now.getSeconds(),
+               Zero:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(a) {
+                    </span><span style="color: #0000ff;">if</span>(a &lt; 10<span style="color: #000000;">) {
+                       </span><span style="color: #0000ff;">return</span>  a = "0" +<span style="color: #000000;"> a;
+                    }else {<br />　　　　　　　　　　　　　 return a;<br />　　　　　　　　　　　　}
+               },
+               Html:</span><span style="color: #0000ff;">function</span><span style="color: #000000;">(a) {
+                    that.html(a);
+               }
+         };
+         </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(data.zero) {
+             </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(data.Month_zero) {
+                 time.month </span>=<span style="color: #000000;"> time.Zero(time.month); 
+             }
+             </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(data.Day_zero) {
+                 time.day </span>=<span style="color: #000000;"> time.Zero(time.day);
+             }
+             </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(data.Hours_zero) {
+                 time.hours </span>=<span style="color: #000000;"> time.Zero(time.hours);
+             }
+             </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(data.Min_zero) {
+                 time.minutes </span>=<span style="color: #000000;"> time.Zero(time.minutes);
+             }
+             </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(data.Second_zero) {
+                 time.seconds </span>=<span style="color: #000000;"> time.Zero(time.seconds);
+             }
+         }
+         </span><span style="color: #0000ff;">switch</span><span style="color: #000000;">(data.show) {
+             </span><span style="color: #0000ff;">case</span>("Y"<span style="color: #000000;">):
+                 time.Html(time.year);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("M"<span style="color: #000000;">):
+                 time.Html(time.month);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("D"<span style="color: #000000;">):
+                 time.Html(time.day);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("H"<span style="color: #000000;">):
+                 time.Html(time.hours);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("m"<span style="color: #000000;">):
+                 time.Html(time.minutes);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("S"<span style="color: #000000;">):
+                 time.Html(time.seconds);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("W"<span style="color: #000000;">):
+                 time.Html(time.week);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("Y-M"<span style="color: #000000;">):
+                 time.Html(time.year</span>+"年"+time.month+"月"<span style="color: #000000;">);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("Y/M"<span style="color: #000000;">):
+                 time.Html(time.year</span>+"/"+<span style="color: #000000;">time.month);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("M-D"<span style="color: #000000;">):
+                 time.Html(time.month</span>+"月"+time.day+"日"<span style="color: #000000;">);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("M/D"<span style="color: #000000;">):
+                 time.Html(time.month</span>+"/"+<span style="color: #000000;">time.day);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("M-D-W"<span style="color: #000000;">):
+                 time.Html(time.month</span>+"月"+time.day+"日 "+<span style="color: #000000;">time.week);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("M/D/W"<span style="color: #000000;">):
+                 time.Html(time.month</span>+"/"+time.day+" "+<span style="color: #000000;">time.week);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("Y-M-D"<span style="color: #000000;">):
+                 time.Html(time.year</span>+"年"+time.month+"月"+time.day+"日"<span style="color: #000000;">);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("Y-M-D-W"<span style="color: #000000;">):
+                 time.Html(time.year</span>+"年"+time.month+"月"+time.day+"日 "+<span style="color: #000000;">time.week);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("Y/M/D/W"<span style="color: #000000;">):
+                 time.Html(time.year</span>+"/"+time.month+"/"+time.day+" "+<span style="color: #000000;">time.week);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("Y/M/D"<span style="color: #000000;">):
+                 time.Html(time.year</span>+"/"+time.month+"/"+<span style="color: #000000;">time.day);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("H-m"<span style="color: #000000;">):
+                 time.Html(time.hours</span>+":"+<span style="color: #000000;">time.minutes);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">case</span>("H-m-S"<span style="color: #000000;">):
+                 time.Html(time.hours</span>+":"+time.minutes+":"+<span style="color: #000000;">time.seconds);
+                 </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+             </span><span style="color: #0000ff;">default</span><span style="color: #000000;">:
+                 </span><span style="color: #0000ff;">throw</span> <span style="color: #0000ff;">new</span> Error("Check if your format is correct"<span style="color: #000000;">);
+         }
+    }
+})(jQuery);</span></pre>
+</div>
+<p>好，优化完成。</p>]]></description></item><item><title>向页面中插入不同格式的时间（timeDate.js）</title><link>http://www.cnblogs.com/lafitewu/archive/2018/01/04/8194460.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Thu, 04 Jan 2018 09:16:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/01/04/8194460.html</guid><description><![CDATA[<p>前言，因项目需要，需要在H5页面中插入时间。</p>
+<p>为了方便以后直接调用，所以动手做了一个小插件。（此插件基于jquery）</p>
+<p>可以先看看效果（不用插件可以达到一样的效果，方便下次还有调用时间）</p>
+<p>如图：</p>
+<p><img src="http://images2017.cnblogs.com/blog/1298851/201801/1298851-20180104170639018-1447114764.png" alt="" /></p>
+<p>先看看我如何调用的，</p>
+<p>代码如下：</p>
+<div class="cnblogs_code" style="text-align: left;">
+<pre><span style="color: #000000;">$(".l_date").timeDate({show:"H-m"});
+$(".l_year").timeDate({show:"M-D-W"});</span></pre>
+</div>
+<p>对你没看错，就这两行代码，实现上面的时间和日期。</p>
+<p>最后贴上插件源码，如下：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">  1</span> <span style="color: #008000;">/*</span>
+<span style="color: #008080;">  2</span> <span style="color: #008000;"> * timeDate.js
+</span><span style="color: #008080;">  3</span> <span style="color: #008000;"> * by LafiteWu    
+</span><span style="color: #008080;">  4</span> <span style="color: #008000;"> * by QQ:863512936
+</span><span style="color: #008080;">  5</span> <span style="color: #008000;"> * 2018-01-04 v1.0
+</span><span style="color: #008080;">  6</span>  <span style="color: #008000;">*/</span>
+<span style="color: #008080;">  7</span> 
+<span style="color: #008080;">  8</span> 
+<span style="color: #008080;">  9</span> (<span style="color: #0000ff;">function</span><span style="color: #000000;">($) {
+</span><span style="color: #008080;"> 10</span>     $.fn.timeDate = <span style="color: #0000ff;">function</span><span style="color: #000000;">(options) {
+</span><span style="color: #008080;"> 11</span>         <span style="color: #0000ff;">var</span> that = $(<span style="color: #0000ff;">this</span><span style="color: #000000;">);
+</span><span style="color: #008080;"> 12</span>         <span style="color: #0000ff;">var</span> defaults =<span style="color: #000000;"> {
+</span><span style="color: #008080;"> 13</span>             show: "Y/M/D/W", <span style="color: #008000;">//</span><span style="color: #008000;">显示形式 </span>
+<span style="color: #008080;"> 14</span>              zero: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> 是否开启零,也是总开关，当它值为false时，下面的值无效</span>
+<span style="color: #008080;"> 15</span>              Month_zero: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> 月份是否加零</span>
+<span style="color: #008080;"> 16</span>              Day_zero: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> 日期上是否加零</span>
+<span style="color: #008080;"> 17</span>              Hours_zero: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> 小时前是否加零</span>
+<span style="color: #008080;"> 18</span>              Min_zero: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> 分钟前是否加零</span>
+<span style="color: #008080;"> 19</span>              Second_zero: <span style="color: #0000ff;">true</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 秒钟前加零</span>
+<span style="color: #008080;"> 20</span> <span style="color: #000000;">         };
+</span><span style="color: #008080;"> 21</span>          <span style="color: #0000ff;">var</span> data =<span style="color: #000000;"> $.extend(defaults,options);
+</span><span style="color: #008080;"> 22</span>          <span style="color: #0000ff;">var</span> now = <span style="color: #0000ff;">new</span><span style="color: #000000;"> Date(); 
+</span><span style="color: #008080;"> 23</span>          <span style="color: #0000ff;">var</span> weekday = ["星期天","星期一","星期二","星期三","星期四","星期五","星期六"<span style="color: #000000;">];
+</span><span style="color: #008080;"> 24</span>          <span style="color: #0000ff;">var</span> time =<span style="color: #000000;"> {
+</span><span style="color: #008080;"> 25</span> <span style="color: #000000;">             year: now.getFullYear(),
+</span><span style="color: #008080;"> 26</span>              month: now.getMonth()+1<span style="color: #000000;">,
+</span><span style="color: #008080;"> 27</span> <span style="color: #000000;">             day: now.getDate(),
+</span><span style="color: #008080;"> 28</span> <span style="color: #000000;">             week: weekday[now.getDay()],
+</span><span style="color: #008080;"> 29</span> <span style="color: #000000;">             hours: now.getHours(),
+</span><span style="color: #008080;"> 30</span> <span style="color: #000000;">             minutes: now.getMinutes(),
+</span><span style="color: #008080;"> 31</span> <span style="color: #000000;">             seconds: now.getSeconds(),
+</span><span style="color: #008080;"> 32</span> <span style="color: #000000;">         };
+</span><span style="color: #008080;"> 33</span>          <span style="color: #0000ff;">if</span><span style="color: #000000;">(data.zero) {
+</span><span style="color: #008080;"> 34</span>              <span style="color: #0000ff;">if</span><span style="color: #000000;">(data.Month_zero) {
+</span><span style="color: #008080;"> 35</span>                  <span style="color: #0000ff;">if</span>(time.month &lt; 10<span style="color: #000000;">) {
+</span><span style="color: #008080;"> 36</span>                      time.month = "0" +<span style="color: #000000;"> time.month;
+</span><span style="color: #008080;"> 37</span> <span style="color: #000000;">                 }
+</span><span style="color: #008080;"> 38</span> <span style="color: #000000;">             }
+</span><span style="color: #008080;"> 39</span>              <span style="color: #0000ff;">if</span><span style="color: #000000;">(data.Day_zero) {
+</span><span style="color: #008080;"> 40</span>                  <span style="color: #0000ff;">if</span>(time.day &lt; 10<span style="color: #000000;">) {
+</span><span style="color: #008080;"> 41</span>                      time.day = "0" +<span style="color: #000000;"> time.day;
+</span><span style="color: #008080;"> 42</span> <span style="color: #000000;">                 }
+</span><span style="color: #008080;"> 43</span> <span style="color: #000000;">             }
+</span><span style="color: #008080;"> 44</span>              <span style="color: #0000ff;">if</span><span style="color: #000000;">(data.Hours_zero) {
+</span><span style="color: #008080;"> 45</span>                  <span style="color: #0000ff;">if</span>(time.hours &lt; 10<span style="color: #000000;">) {
+</span><span style="color: #008080;"> 46</span>                      time.hours = "0" +<span style="color: #000000;"> time.hours;
+</span><span style="color: #008080;"> 47</span> <span style="color: #000000;">                 }
+</span><span style="color: #008080;"> 48</span> <span style="color: #000000;">             }
+</span><span style="color: #008080;"> 49</span>              <span style="color: #0000ff;">if</span><span style="color: #000000;">(data.Min_zero) {
+</span><span style="color: #008080;"> 50</span>                  <span style="color: #0000ff;">if</span>(time.minutes &lt; 10<span style="color: #000000;">) {
+</span><span style="color: #008080;"> 51</span>                      time.minutes = "0" +<span style="color: #000000;"> time.minutes;
+</span><span style="color: #008080;"> 52</span> <span style="color: #000000;">                 }
+</span><span style="color: #008080;"> 53</span> <span style="color: #000000;">             }
+</span><span style="color: #008080;"> 54</span>              <span style="color: #0000ff;">if</span><span style="color: #000000;">(data.Second_zero) {
+</span><span style="color: #008080;"> 55</span>                  <span style="color: #0000ff;">if</span>(time.seconds &lt; 10<span style="color: #000000;">) {
+</span><span style="color: #008080;"> 56</span>                      time.seconds = "0" +<span style="color: #000000;"> time.seconds;
+</span><span style="color: #008080;"> 57</span> <span style="color: #000000;">                 }
+</span><span style="color: #008080;"> 58</span> <span style="color: #000000;">             }
+</span><span style="color: #008080;"> 59</span> <span style="color: #000000;">         }
+</span><span style="color: #008080;"> 60</span>          <span style="color: #0000ff;">switch</span><span style="color: #000000;">(data.show) {
+</span><span style="color: #008080;"> 61</span>              <span style="color: #0000ff;">case</span>("Y"<span style="color: #000000;">):
+</span><span style="color: #008080;"> 62</span> <span style="color: #000000;">                 Html(time.year);
+</span><span style="color: #008080;"> 63</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 64</span>              <span style="color: #0000ff;">case</span>("M"<span style="color: #000000;">):
+</span><span style="color: #008080;"> 65</span> <span style="color: #000000;">                 Html(time.month);
+</span><span style="color: #008080;"> 66</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 67</span>              <span style="color: #0000ff;">case</span>("D"<span style="color: #000000;">):
+</span><span style="color: #008080;"> 68</span> <span style="color: #000000;">                 Html(time.day);
+</span><span style="color: #008080;"> 69</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 70</span>              <span style="color: #0000ff;">case</span>("H"<span style="color: #000000;">):
+</span><span style="color: #008080;"> 71</span> <span style="color: #000000;">                 Html(time.hours);
+</span><span style="color: #008080;"> 72</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 73</span>              <span style="color: #0000ff;">case</span>("m"<span style="color: #000000;">):
+</span><span style="color: #008080;"> 74</span> <span style="color: #000000;">                 Html(time.minutes);
+</span><span style="color: #008080;"> 75</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 76</span>              <span style="color: #0000ff;">case</span>("S"<span style="color: #000000;">):
+</span><span style="color: #008080;"> 77</span> <span style="color: #000000;">                 Html(time.seconds);
+</span><span style="color: #008080;"> 78</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 79</span>              <span style="color: #0000ff;">case</span>("W"<span style="color: #000000;">):
+</span><span style="color: #008080;"> 80</span> <span style="color: #000000;">                 Html(time.week);
+</span><span style="color: #008080;"> 81</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 82</span>              <span style="color: #0000ff;">case</span>("Y-M"<span style="color: #000000;">):
+</span><span style="color: #008080;"> 83</span>                  Html(time.year+"年"+time.month+"月"<span style="color: #000000;">);
+</span><span style="color: #008080;"> 84</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 85</span>              <span style="color: #0000ff;">case</span>("Y/M"<span style="color: #000000;">):
+</span><span style="color: #008080;"> 86</span>                  Html(time.year+"/"+<span style="color: #000000;">time.month);
+</span><span style="color: #008080;"> 87</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 88</span>              <span style="color: #0000ff;">case</span>("M-D"<span style="color: #000000;">):
+</span><span style="color: #008080;"> 89</span>                  Html(time.month+"月"+time.day+"日"<span style="color: #000000;">);
+</span><span style="color: #008080;"> 90</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 91</span>              <span style="color: #0000ff;">case</span>("M/D"<span style="color: #000000;">):
+</span><span style="color: #008080;"> 92</span>                  Html(time.month+"/"+<span style="color: #000000;">time.day);
+</span><span style="color: #008080;"> 93</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 94</span>              <span style="color: #0000ff;">case</span>("M-D-W"<span style="color: #000000;">):
+</span><span style="color: #008080;"> 95</span>                  Html(time.month+"月"+time.day+"日 "+<span style="color: #000000;">time.week);
+</span><span style="color: #008080;"> 96</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 97</span>              <span style="color: #0000ff;">case</span>("M/D/W"<span style="color: #000000;">):
+</span><span style="color: #008080;"> 98</span>                  Html(time.month+"/"+time.day+" "+<span style="color: #000000;">time.week);
+</span><span style="color: #008080;"> 99</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;">100</span>              <span style="color: #0000ff;">case</span>("Y-M-D"<span style="color: #000000;">):
+</span><span style="color: #008080;">101</span>                  Html(time.year+"年"+time.month+"月"+time.day+"日"<span style="color: #000000;">);
+</span><span style="color: #008080;">102</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;">103</span>              <span style="color: #0000ff;">case</span>("Y-M-D-W"<span style="color: #000000;">):
+</span><span style="color: #008080;">104</span>                  Html(time.year+"年"+time.month+"月"+time.day+"日 "+<span style="color: #000000;">time.week);
+</span><span style="color: #008080;">105</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;">106</span>              <span style="color: #0000ff;">case</span>("Y/M/D/W"<span style="color: #000000;">):
+</span><span style="color: #008080;">107</span>                  Html(time.year+"/"+time.month+"/"+time.day+" "+<span style="color: #000000;">time.week);
+</span><span style="color: #008080;">108</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;">109</span>              <span style="color: #0000ff;">case</span>("Y/M/D"<span style="color: #000000;">):
+</span><span style="color: #008080;">110</span>                  Html(time.year+"/"+time.month+"/"+<span style="color: #000000;">time.day);
+</span><span style="color: #008080;">111</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;">112</span>              <span style="color: #0000ff;">case</span>("H-m"<span style="color: #000000;">):
+</span><span style="color: #008080;">113</span>                  Html(time.hours+":"+<span style="color: #000000;">time.minutes);
+</span><span style="color: #008080;">114</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;">115</span>              <span style="color: #0000ff;">case</span>("H-m-S"<span style="color: #000000;">):
+</span><span style="color: #008080;">116</span>                  Html(time.hours+":"+time.minutes+":"+<span style="color: #000000;">time.seconds);
+</span><span style="color: #008080;">117</span>                  <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+</span><span style="color: #008080;">118</span>              <span style="color: #0000ff;">default</span><span style="color: #000000;">:
+</span><span style="color: #008080;">119</span>                  <span style="color: #0000ff;">throw</span> <span style="color: #0000ff;">new</span> Error("Check if your format is correct"<span style="color: #000000;">);
+</span><span style="color: #008080;">120</span> <span style="color: #000000;">         }
+</span><span style="color: #008080;">121</span>          <span style="color: #0000ff;">function</span><span style="color: #000000;"> Html(a) {
+</span><span style="color: #008080;">122</span> <span style="color: #000000;">             that.html(a);
+</span><span style="color: #008080;">123</span> <span style="color: #000000;">         }
+</span><span style="color: #008080;">124</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">125</span> })(jQuery);</pre>
+</div>
+<p>最后使用说明如下：</p>
+<p>例：</p>
+<div class="cnblogs_code">
+<pre>$(".class"<span style="color: #000000;">).timeDate({
+    show: </span>"Y/M/D/W", <span style="color: #008000;">//</span><span style="color: #008000;">显示形式 Y、M、W、Y-M、M-D-W、Y/M/D/W、H-m、H-m-S 等等</span>
+    zero: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> 是否开启零,也是总开关，当它值为false时，下面的值无效</span>
+    Month_zero: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> 月份是否加零</span>
+    Day_zero: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> 日期上是否加零</span>
+    Hours_zero: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> 小时前是否加零</span>
+    Min_zero: <span style="color: #0000ff;">true</span>, <span style="color: #008000;">//</span><span style="color: #008000;"> 分钟前是否加零</span>
+    Second_zero: <span style="color: #0000ff;">true</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 秒钟前加零    </span>
+});        </pre>
+</div>
+<p>嗯，就是这么容易，大家应该会用了吧，妈妈再也不用担心我写时间麻烦了。</p>
+<p>&nbsp;</p>]]></description></item><item><title>html - 黑科技-4（禁止H5页面滚动）</title><link>http://www.cnblogs.com/lafitewu/archive/2018/01/04/8191395.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Thu, 04 Jan 2018 02:03:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2018/01/04/8191395.html</guid><description><![CDATA[<p>当做移动端H5项目的时候，会碰到页面上下可以滑动。这个时候可以通过以下代码来禁止滚动。</p>
+<p>原生版js: <br />document.querySelector('body').addEventListener('touchmove', function(e) {<br />    　　e.preventDefault();<br />});</p>
+<p>jquery版: <br />$("body").bind('touchmove',function(e) {<br />	　　e.preventDefault()<br />});</p>
+<p>以上这两种方法都可以实现，妈妈再也不用担心，我的页面可以随意拖动了。</p>]]></description></item><item><title>html - 黑科技-3（调用qq对话）</title><link>http://www.cnblogs.com/lafitewu/archive/2017/12/29/8144347.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Fri, 29 Dec 2017 06:29:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2017/12/29/8144347.html</guid><description><![CDATA[<p>现在的APP很多都可以打开QQ，那么在H5中，或者pc端怎么打开呢？</p>
+<p>来上代码：</p>
+<p>// 调用QQ（pc 端）<br />http://wpa.qq.com/msgrd?v=3&amp;uin= // 在最后面加上qq号</p>
+<p>在a标签中引入这个地址，pc端则可以打开QQ对话了。</p>
+<p>// 调用QQ（手机上调用）ps: 浏览器模拟器无效</p>
+<p>QQ联系人：</p>
+<p>&lt;a href="mqqwpa://im/chat?&nbsp;chat_type=wpa&amp;uin=86*****936&amp;version=1&amp;src_type=web&amp;web_src=bjhuli.com"&gt;报名咨询&lt;/a&gt; &nbsp;// ps: 微信内打开无效</p>
+<p>QQ群：</p>
+<p>&lt;a href="mqqapi://card/show_pslcard?&nbsp;src_type=internal&amp;version=1&amp;uin=18863883&amp;card_type=group&amp;source=external"&gt;QQ群&lt;/a&gt;</p>
+<p>这一节黑科技就讲到这里了。</p>
+<p>&nbsp;</p>]]></description></item><item><title>html - 黑科技-2（获取当前的IP地址）</title><link>http://www.cnblogs.com/lafitewu/archive/2017/12/27/8125761.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Wed, 27 Dec 2017 06:56:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2017/12/27/8125761.html</guid><description><![CDATA[<p>有时候我们想要获取ip地址，这时候我来用两行代码实现这个功能。</p>
+<p>首先我们需要引入一个js,&lt;script src="http://pv.sohu.com/cityjson?ie=utf-8"&gt;&lt;/script&gt;</p>
+<p>然后输入以下代码试试：</p>
+<p>alert(returnCitySN['cip'] + returnCitySN['cname']);</p>
+<p>这个时候，就会弹出当前IP地址和当前城市。</p>
+<p>这个时候就大功告成了。</p>]]></description></item><item><title>html - 黑科技-1（调用手机中的电话）</title><link>http://www.cnblogs.com/lafitewu/archive/2017/12/27/8125680.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Wed, 27 Dec 2017 06:44:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2017/12/27/8125680.html</guid><description><![CDATA[<p>有时候做移动端的H5页面时，希望可以直接调用手机电话。</p>
+<p>这时候一行代码就可以实现这个功能，如下：</p>
+<p>&lt;a href="tel://156****2023"&gt;拨打电话&lt;/a&gt;</p>
+<p>对的，你没看错，就这一行代码，就可以实现了。</p>]]></description></item><item><title>three.js - (入门三)</title><link>http://www.cnblogs.com/lafitewu/archive/2017/12/26/8118523.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Tue, 26 Dec 2017 08:10:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2017/12/26/8118523.html</guid><description><![CDATA[<p>前面两节讲得都是在舞台上创建角色，这一节我们就让角色动起来。</p>
+<p>three.js 中一般是用requestAnimationFrame();来做动画，当然也可以用setInterval定时器，这里不建议使用。</p>
+<p>因为动画的核心就只有这个函数，然后如何做成何种动画，就靠自己去构思，去尝试了。</p>
+<p>话不多说，上代码：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html </span><span style="color: #ff0000;">lang</span><span style="color: #0000ff;">="en"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">="UTF-8"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>three.js<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="js/three.js"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+        <span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> 创建场景</span>
+        <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> scene </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> THREE.Scene();
+
+        </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> 创建相机  90 -&gt; 视角；相机拍摄面 -&gt; 一般为长宽比；0.1 -&gt; 近裁剪面； 1000 -&gt; 远裁剪面</span>
+        <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> camera </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> THREE.PerspectiveCamera(</span><span style="background-color: #f5f5f5; color: #000000;">90</span><span style="background-color: #f5f5f5; color: #000000;">, window.innerWidth</span><span style="background-color: #f5f5f5; color: #000000;">/</span><span style="background-color: #f5f5f5; color: #000000;">window.innerHeight, 0.1, 1000);</span>
+
+        <span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> 渲染器</span>
+        <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> renderer </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> 设置背景颜色</span>
+<span style="background-color: #f5f5f5; color: #000000;">        renderer.setClearColor(</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">#5AC7FF</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">);
+        document.body.appendChild(renderer.domElement);
+
+        </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> 创建物体   CubeGeometry 代表立体图形 1,3,2 分别代表长宽高</span>
+        <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> geometry </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> THREE.CubeGeometry(</span><span style="background-color: #f5f5f5; color: #000000;">1</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">3</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">2</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">2</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">2</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">5</span><span style="background-color: #f5f5f5; color: #000000;">);
+        </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;">网孔基础材料（MeshBasicMaterial）为其填充颜色</span>
+        <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> material </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> THREE.MeshBasicMaterial({color: </span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">#990033</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">});
+        </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;">网孔(Mesh)：网孔是用来承载几何模型的一个对象，还可以把材料应用到它上面</span>
+        <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> cube </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> THREE.Mesh(geometry, material);
+        </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;">将物体添加到场景</span>
+<span style="background-color: #f5f5f5; color: #000000;">        scene.add(cube);
+        camera.position.z </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">5</span><span style="background-color: #f5f5f5; color: #000000;">;
+        renderer.render(scene, camera);
+        </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;">渲染循环（render loop）</span>
+        <span style="background-color: #f5f5f5; color: #0000ff;">function</span><span style="background-color: #f5f5f5; color: #000000;"> render() {
+            </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> requestAnimationFrame 相当于setInterval </span>
+<span style="background-color: #f5f5f5; color: #000000;">            requestAnimationFrame(render);
+            </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> cube.rotation.x += 0.1;</span>
+<span style="background-color: #f5f5f5; color: #000000;">            cube.rotation.y </span><span style="background-color: #f5f5f5; color: #000000;">+=</span> <span style="background-color: #f5f5f5; color: #000000;">0.05</span><span style="background-color: #f5f5f5; color: #000000;">;
+            </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> cube.rotation.z += 0.1;</span>
+<span style="background-color: #f5f5f5; color: #000000;">            renderer.render(scene, camera);
+        }
+        render();
+    </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>这样，就可以在屏幕中间，看到一个自转的立方体。</p>
+<p>说起自转，下节就讲讲如何在屏幕中间，做一个自转的地球。</p>]]></description></item><item><title>three.js - (入门二)</title><link>http://www.cnblogs.com/lafitewu/archive/2017/12/16/8046725.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Sat, 16 Dec 2017 07:40:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2017/12/16/8046725.html</guid><description><![CDATA[<p>上一章节讲了如何完整的创建一个three.js的简单例子，这一节，分别细说每个必要元素的类别及功能。</p>
+<p>讲在前面的话：这一节主要是细说类别。那么我希望大家多去尝试每个功能，就像刚买了新手机一样，每个新鲜的功能都去试一下，</p>
+<p>这样自己才能深刻得体会到，这个代码原来是这个效果，这个功能原来是这个代码实现的。让我们进入正题：</p>
+<p>1.renderer(渲染器),用法及参数如下：</p>
+<p>renderer=new THREE.WebGLRenderer({<br />      　　antialias:true,//antialias:true/false是否开启反锯齿<br />      　　precision:"highp",//precision:highp/mediump/lowp着色精度选择<br />      　　alpha:true,//alpha:true/false是否可以设置背景色透明<br />      　　premultipliedAlpha:false,//?<br />      　　stencil:false,//?<br />      　　preserveDrawingBuffer:true,//preserveDrawingBuffer:true/false是否保存绘图缓冲<br />      　　maxLights:1//maxLights:最大灯光数<br />})</p>
+<p>2.camera（相机）</p>
+<p>　　a.正投影相机：THREE.OrthographicCamera(left, right, top, bottom, near, far) （远近高低比例都相同）</p>
+<p>　　b.透视投影相机：THREE.PerspectiveCamera(fov, aspect, near, far) （远处的物体比近处的物体小）</p>
+<p>　　fov相当于视角，当它为0的时候，相当于闭着眼。这里取值多为45左右，当然也可以自己设不同的值试一试效果；</p>
+<p>　　near：可以认为是眼睛距离近处的距离；</p>
+<p>　　far：表示你远处的裁面；</p>
+<p>　　aspect：实际窗口的纵横比，即宽度除以高度</p>
+<p>3.light（光源）</p>
+<p>　　a.环境光THREE.AmbientLight(hex) &nbsp; // hex:16进制的颜色值</p>
+<p>　　什么是环境光？</p>
+<p>　　环境光是经过多次反射而来的光称为环境光，无法确定其最初的方向。环境光是一种无处不在的光。环境光源放出的光线被认为来自任何方向。</p>
+<p>　　因此，当你仅为场景指定环境光时，所有的物体无论法向量如何，都将表现为同样的明暗程度。（这是因为，反射光可以从各个方向进入您的眼睛）</p>
+<p>&nbsp;</p>
+<p>　　b.点光源：PointLight( color, intensity, distance ) &nbsp;</p>
+<p>　　Color：光的颜色;</p>
+<p>　　Intensity：光的强度;</p>
+<p>　　distance：光的距离</p>
+<p>&nbsp;</p>
+<p>　　c.聚光灯：THREE.SpotLight( hex, intensity, distance, angle, exponent )</p>
+<p>　　Angle：聚光灯着色的角度;</p>
+<p>　　exponent：光源模型中，衰减的一个参数，越大衰减约快</p>
+<p>&nbsp;</p>
+<p>　　d.平行光：THREE.DirectionalLight = function ( hex, intensity )</p>
+<p>4.geometry（各种形状）</p>
+<p>　　a.长方体：THREE.CubeGeometry(width, height, depth, widthSegments, heightSegments, depthSegments);</p>
+<p>　　b.平面：THREE.PlaneGeometry(width, height, widthSegments, heightSegments);</p>
+<p>　　c.球体：THREE.SphereGeometry(radius, segmentsWidth, segmentsHeight, phiStart, phiLength, thetaStart, thetaLength);</p>
+<p><em>　　</em>d.圆形：THREE.CircleGeometry(radius, segments, thetaStart, thetaLength);</p>
+<p>　　e.圆柱体：THREE.CylinderGeometry(radiusTop, radiusBottom, height,radiusSegments, heightSegments, openEnded) &nbsp;//ps:当openEnded -&gt; 为 true时，上下不封口。</p>
+<p>　　f.正四面体：THREE.TetrahedronGeometry(radius, detail);</p>
+<p>　　g.正八面体：THREE.OctahedronGeometry(radius, detail);</p>
+<p>　　h.正十二面体：THREE.IcosahedronGeometry(radius, detail);</p>
+<p>　　i.圆环：THREE.TorusGeometry(radius, tube, radialSegments, tubularSegments, arc);</p>
+<p>　　j.圆环结：THREE.TorusKnotGeometry(radius, tube, radialSegments, tubularSegments, p, q, heightScale);</p>
+<p>5.material（材质）</p>
+<p>　　a.基本材质：THREE.MeshBasicMaterial（opt）</p>
+<p>　　opt对象参数：</p>
+<p>　　visible ：是否可见，默认为 true</p>
+<p>　　side ：渲染面片正面或是反面，默认为正面 THREE.FrontSide ，可设置为反面THREE.BackSide ，或双面 THREE.DoubleSide</p>
+<p>　　wireframe ：是否渲染线而非面，默认为 false</p>
+<p>　　color ：十六进制 RGB 颜色</p>
+<p>　　map ：使用纹理贴图</p>
+<p>&nbsp;</p>
+<p>　　b.Lambert 材质（MeshLambertMaterial）</p>
+<p>　　opt参数：</p>
+<p>　　color：设置材质颜色</p>
+<p>　　ambient 表示对环境光的反射能力，只有当设置了 AmbientLight 后，该值才是有效的</p>
+<p>　　emissive 是材质的自发光颜色，可以用来表现光源的颜色</p>
+<p>&nbsp;</p>
+<p>　　c.Phong 材质（MeshPhongMaterial）</p>
+<p>　　opt参数：</p>
+<p>　　color,ambient,emissive: 同上;</p>
+<p>　　specular: 镜面反射系数作说明</p>
+<p>　　shininess: 当 shininess 值越大时，高光的光斑越小，默认值为 30</p>
+<p>&nbsp;</p>
+<p>介绍到这里，大致的一些属性及种类就介绍到这里了。希望大家最好能一一尝试，这样看是看不出什么的，实际有什么不同的，当尝试之后，会茅塞顿开。</p>]]></description></item><item><title>three.js - (入门一)</title><link>http://www.cnblogs.com/lafitewu/archive/2017/12/14/8038300.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Thu, 14 Dec 2017 08:13:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2017/12/14/8038300.html</guid><description><![CDATA[<p>什么是three.js？它有什么用？这里我就不做详细的介绍了，毕竟百度很强大。</p>
+<p>作为程序员，先把思路想好，在开始敲代码是很重要的（个人愚见）。</p>
+<p>大概思路如下：</p>
+<p>1.场景（scene）； &nbsp;// three中所有元素都应该放在它里面，相当于一个舞台，所有的东西都应该在舞台上呈现。</p>
+<p>2.相机（camera）；// three中的相机其实就是人们看上面scene（舞台）的视角，就比如看舞台，因为位置不同，也就有不同的视角。</p>
+<p>3.渲染器（renderer）；// three中的渲染器，就相当于这个舞台的大小及颜色，没有这个设置，这个舞台是没有用的。</p>
+<p>4.物体（geometry）；// three中的物体，就相当于舞台上的演员，没有演员，那我们就只能看到舞台的背景及大小。</p>
+<p>5.网孔（Mesh）； // three中的网孔，就跟这个舞台是所有其他元素（相机、渲染器等等）的载体，而网孔就是物体及物体的其他特征（颜色等特征）的载体。</p>
+<p>这是创建最基本的5个步骤，缺一不可。</p>
+<p>不说废话上代码：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html </span><span style="color: #ff0000;">lang</span><span style="color: #0000ff;">="en"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">="UTF-8"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>three.js 第一个demo<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="js/three.js"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+        <span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> 创建场景</span>
+        <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> scene </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> THREE.Scene();
+
+        </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> 创建相机  90 -&gt; 视角；相机拍摄面 -&gt; 一般为长宽比；0.1 -&gt; 近裁剪面； 1000 -&gt; 远裁剪面</span>
+        <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> camera </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> THREE.PerspectiveCamera(</span><span style="background-color: #f5f5f5; color: #000000;">90</span><span style="background-color: #f5f5f5; color: #000000;">, window.innerWidth</span><span style="background-color: #f5f5f5; color: #000000;">/</span><span style="background-color: #f5f5f5; color: #000000;">window.innerHeight, 0.1, 1000);</span>
+
+        <span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> 渲染器</span>
+        <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> renderer </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);<br />
+        </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> 设置背景颜色</span>
+<span style="background-color: #f5f5f5; color: #000000;">        renderer.setClearColor(</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">#5AC7FF</span><span style="background-color: #f5f5f5; color: #000000;">'</span><span style="background-color: #f5f5f5; color: #000000;">);
+        document.body.appendChild(renderer.domElement);
+
+        </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;"> 创建物体   CubeGeometry 代表立体图形 1,3,2 分别代表长宽高</span>
+        <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> geometry </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> THREE.CubeGeometry(</span><span style="background-color: #f5f5f5; color: #000000;">1</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">3</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">2</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">2</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">2</span><span style="background-color: #f5f5f5; color: #000000;">,</span><span style="background-color: #f5f5f5; color: #000000;">5</span><span style="background-color: #f5f5f5; color: #000000;">);
+
+        </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;">网孔基础材料（MeshBasicMaterial）为其填充颜色</span>
+        <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> material </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> THREE.MeshBasicMaterial({color: </span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">#990033</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">});
+
+        </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;">网孔(Mesh)：网孔是用来承载几何模型的一个对象，还可以把材料应用到它上面</span>
+        <span style="background-color: #f5f5f5; color: #0000ff;">var</span><span style="background-color: #f5f5f5; color: #000000;"> cube </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #0000ff;">new</span><span style="background-color: #f5f5f5; color: #000000;"> THREE.Mesh(geometry, material);
+        </span><span style="background-color: #f5f5f5; color: #008000;">//</span><span style="background-color: #f5f5f5; color: #008000;">将物体添加到场景</span>
+<span style="background-color: #f5f5f5; color: #000000;">        scene.add(cube);
+
+        camera.position.z </span><span style="background-color: #f5f5f5; color: #000000;">=</span> <span style="background-color: #f5f5f5; color: #000000;">5</span><span style="background-color: #f5f5f5; color: #000000;">;
+
+        renderer.render(scene, camera);
+    </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>这段代码的效果图如下：</p>
+<p><img src="http://images2017.cnblogs.com/blog/1298851/201712/1298851-20171214161047951-1937125052.png" alt="" /></p>
+<p>简单的入门今天就到这儿了，要想了解更多请看下回分解。</p>
+<p>&nbsp;</p>]]></description></item><item><title>html - 自适应</title><link>http://www.cnblogs.com/lafitewu/archive/2017/12/13/8033645.html</link><dc:creator>Lafitewu</dc:creator><author>Lafitewu</author><pubDate>Wed, 13 Dec 2017 08:37:00 GMT</pubDate><guid>http://www.cnblogs.com/lafitewu/archive/2017/12/13/8033645.html</guid><description><![CDATA[<p>前段时间刚踩过的坑，拿出来与大家一起分享。</p>
+<p>如下图1，所示，大家做网页时有没有遇到过呢？ 因为不同电脑有不同的分辨率，当在浏览器浏览时，可以通过Ctrl+滚动滚轮，调节大小，来模拟不同的分辨率。</p>
+<p><img src="http://images2017.cnblogs.com/blog/1298851/201712/1298851-20171213155132097-1432219189.png" alt="" /></p>
+<p style="text-align: center;">图1</p>
+<p>&nbsp;</p>
+<p>当使用固定高度时，就会出现如图1所示的问题，或者图片会变形。</p>
+<p>那么闲话不多说，直接上代码。</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html </span><span style="color: #ff0000;">lang</span><span style="color: #0000ff;">="en"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">="UTF-8"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>自适应（不设高度）- demo <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">style</span><span style="color: #0000ff;">&gt;</span><span style="background-color: #f5f5f5; color: #800000;">
+    * </span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+        padding</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 0</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+        margin</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 0</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+    <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+        .nav </span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            position</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> relative</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            padding</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 10px 0</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            width</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 100%</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            display</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> inline-block</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            background</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> gray</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+        <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+            .nav_con </span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+                display</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> inline-block</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+                margin-left</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 50px</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+                line-height</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 30px</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+            <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+                .nav_con ul </span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+                    width</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 100%</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+                <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+                    .nav_con ul li </span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+                        float</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> left</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+                        list-style</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> none</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+                        margin-left</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 60px</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+                    <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+        .lunbo </span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            position</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> relative</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            width</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 100%</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+        <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+            .lunbo img </span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+                width</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 100%</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+            <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+        .lun_nav </span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            position</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> relative</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+            width</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 100%</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+        <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+            .lun_nav a </span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+                float</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> left</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+                width</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 33.33333%</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+                overflow</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> hidden</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+            <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+                .lun_nav a img </span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+                    width</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> 100%</span><span style="background-color: #f5f5f5; color: #000000;">;</span><span style="background-color: #f5f5f5; color: #ff0000;">
+                    transition</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> .4s</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+                <span style="background-color: #f5f5f5; color: #000000;">}</span><span style="background-color: #f5f5f5; color: #800000;">
+                .lun_nav a img:hover </span><span style="background-color: #f5f5f5; color: #000000;">{</span><span style="background-color: #f5f5f5; color: #ff0000;">
+                    transform</span><span style="background-color: #f5f5f5; color: #000000;">:</span><span style="background-color: #f5f5f5; color: #0000ff;"> scale(1.1)</span><span style="background-color: #f5f5f5; color: #000000;">;</span>
+                <span style="background-color: #f5f5f5; color: #000000;">}</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">style</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="nav"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="nav_con"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">ul</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>首页<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>导航<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>联系我们<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>资料<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>个人中心<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>游戏<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>相册<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">li</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">ul</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="lunbo"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">img </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="images/banner1.jpg"</span><span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">class</span><span style="color: #0000ff;">="lun_nav"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">a </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="#"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">img </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="images/nav1.jpg"</span><span style="color: #0000ff;">/&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">a</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">a </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="#"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">img </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="images/nav2.jpg"</span><span style="color: #0000ff;">/&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">a</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">a </span><span style="color: #ff0000;">href</span><span style="color: #0000ff;">="#"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">img </span><span style="color: #ff0000;">src</span><span style="color: #0000ff;">="images/nav3.jpg"</span><span style="color: #0000ff;">/&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">a</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>ps: 图片可自己替换，我这里不提供。因为重点在代码。（不同分辨率，效果都一样，亲测有效。）</p>
+<p>大家可以看到css样式中，所有元素都没有设置固定的高度。效果图，如图2所示。</p>
+<p><img src="http://images2017.cnblogs.com/blog/1298851/201712/1298851-20171213163051644-622161417.png" alt="" /></p>
+<p style="text-align: center;">图2</p>
+<p style="text-align: left;">最后补充一点，做响应式，也可以用这种方法。</p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: left;">&nbsp;</p>
+<p>&nbsp;</p>]]></description></item></channel></rss>
