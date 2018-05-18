@@ -11,7 +11,7 @@
     <!-- QQ应用模式 -->
     <meta name="x5-page-mode" content="app">
     <title>悦头条</title>
-    <style type="text/css">
+  <style type="text/css">
       *{ -webkit-box-sizing:border-box;
          -moz-box-sizing:border-box;
          box-sizing:border-box;
@@ -91,33 +91,23 @@
 				color: #fe7800;
 			}
 			.text-div2 {
-				margin-left: -10vw;
+				width: 50%;
+				margin-left: 0vw;
 			}
+				.text-div2 .title2 {
+					display: block;
+					width: 100%;
+					text-overflow:ellipsis;
+					white-space:nowrap;
+					overflow:hidden;
+				}
     </style>
 
-    <script type="text/javascript">
-    	var arr = ["https://3g.jun4.com/38","http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1394791029432"];
-    	var random = parseInt(Math.random()*arr.length);
-    	// console.log(arr[random]);
-		// 微信分享跳转
-    	pushHistory();  
-            window.addEventListener("popstate", function(e) {  
-                //需要跳转的页面 
-                window.location.href = arr[random];
-               }, false);  
-            function pushHistory() {  
-                var state = {  
-                    title: "title",  
-                    url: "#"  
-                };  
-                window.history.pushState(state, "title", "#");  
-            }		
-
+    <script type="text/javascript">		
 		function GetParams(){
 			var r = window.location.search.substr(1);
 			var icon = r.match(/headImg=(\S+)&nickName/);
-			var name = decodeURI(r.match(/nickName=(\S+)/)[1]);
-			console.log(name);
+			var name = decodeURI(r.match(/nickName=(\S+)&from/));
 			var articleUrl = r.split('&phoneNum=')[0];
 			articleUrl = articleUrl.split('articleUrl=')[1];
 			phoneNum = r.split('&phoneNum=')[1];
@@ -186,10 +176,62 @@
 			var params = GetParams();
 			articleUrl = params.articleUrl;
 			phoneNum = params.phoneNum;
-			name = params.nickName;
+			name = params.nickName.split(",")[1];
 			icon = params.headImg;
-			// console.log(name)
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum};
+
+			// 站外跳转
+			var arr;
+			var actionUrl;
+			var len;
+			function actions() {
+				// http://182.92.82.188:8084/yfax-htt-api/api/htt/queryAdsUrl
+				Ajax('get', 'http://axzyzlm.cn/yfax-htt-api/api/htt/queryAdsUrl', sendData, function(data){
+					var res = JSON.parse(data);
+					console.log(res);
+					if (res.data == null) {
+						actionUrl = "http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1394791029432";
+					}else {
+						var deepLink = parseInt(res.data.deepLinkRate);
+			    		var downLink = parseInt(res.data.downloadRate);
+			    		arr = res.data.adsUrl;
+			    		len = parseInt(Math.random()*arr.length);
+			    		console.log(len);
+			    		// console.log(arr[len].url); //站外随机跳转url
+			    		rand(deepLink*10);
+					}
+				},function(error) {
+					console.log(error);
+				});
+				// http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1394791029432
+				// arr = ["https://3g.jun4.com/38","http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1394791029432"];
+			}
+			// 随机概率
+	    	function rand(deep) {
+	    		var randNum = parseInt(Math.random()*101);
+	    		console.log(randNum);
+	    		if(randNum <= deep) {
+	    			actionUrl = arr[len].url;
+	    		}else {
+	    			actionUrl = "http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1394791029432";
+	    		}
+	    	}
+			actions();
+			
+			// 微信分享跳转
+	    	pushHistory();  
+	        window.addEventListener("popstate", function(e) {  
+	            //需要跳转的页面 
+	            window.location.href = actionUrl;
+	           }, false);  
+	        function pushHistory() {  
+	            var state = {  
+	                title: "title",  
+	                url: "#"  
+	            };  
+	            window.history.pushState(state, "title", "#");  
+	        }
+
 			Ajax('get', 'http://jiayou88.cn/yfax-htt-api/api/htt/doArticleAward', sendData, function(data){
 			    if (articleUrl.indexOf('eastday.com') > -1) {
 			    	articleUrl = articleUrl.replace('&ttaccid=null', '');
@@ -199,7 +241,6 @@
 					if(name == "null" || name == 'undefined') {
 						document.getElementById("shareBtnDiv").style.display = "flex";
 					}else {
-						console.log(icon);
 						if (icon[1] == "null" || icon == null) {
 							document.getElementsByClassName('logo2')[0].src = "./images/logo.png";
 						}else {
