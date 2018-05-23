@@ -101,6 +101,37 @@
 					white-space:nowrap;
 					overflow:hidden;
 				}
+		.red_btn {
+			z-index: 99;
+			position: fixed;
+			bottom: 7vw;
+			right: 2vw;
+			width: 50px;
+			height: 50px;
+			animation: shake 1s linear infinite;
+		}
+			.red_btn img {
+				width: 100%;
+			}
+		@-webkit-keyframes shake {
+		  from, to {
+		    -webkit-transform: translate3d(0, 0, 0);
+		    transform: translate3d(0, 0, 0);
+		  }
+
+		  10%,90% {
+		    -webkit-transform: translate3d(-10px, 0, 0);
+		    transform: translate3d(-10px, 0, 0);
+		  }
+		30%,40%,50%,60%,70% {
+		    -webkit-transform: translate3d(0, 0, 0);
+		    transform: translate3d(0, 0, 0);
+		  }
+		  20%,80% {
+		    -webkit-transform: translate3d(10px, 0, 0);
+		    transform: translate3d(10px, 0, 0);
+		  }
+		}
     </style>
 
     <script type="text/javascript">		
@@ -238,17 +269,17 @@
 					window.location.href = articleUrl;
 				} else {
 					document.getElementById("mainIframe").src = articleUrl;
-					if(name == "null" || name == 'undefined') {
-						document.getElementById("shareBtnDiv").style.display = "flex";
-					}else {
-						if (icon[1] == "null" || icon == null) {
-							document.getElementsByClassName('logo2')[0].src = "./images/logo.png";
-						}else {
-							document.getElementsByClassName('logo2')[0].src = icon[1];
-						}
-						document.getElementById("shareBtnDiv2").style.display = "flex";
-						document.getElementsByClassName('title2')[0].innerHTML = name;
-					}
+					// if(name == "null" || name == 'undefined') {
+					// 	document.getElementById("shareBtnDiv").style.display = "flex";
+					// }else {
+					// 	if (icon[1] == "null" || icon == null) {
+					// 		document.getElementsByClassName('logo2')[0].src = "./images/logo.png";
+					// 	}else {
+					// 		document.getElementsByClassName('logo2')[0].src = icon[1];
+					// 	}
+					// 	document.getElementById("shareBtnDiv2").style.display = "flex";
+					// 	document.getElementsByClassName('title2')[0].innerHTML = name;
+					// }
 				}
 			}, function(error){
 			    console.log(error);
@@ -260,7 +291,12 @@
     <div class="wrap-page">
          <iframe id="mainIframe" frameBorder=0 width="100%" height="100%" src=""></iframe>
     </div> 
-    <div id="shareBtnDiv" class="footer" style="display: none; overflow: hidden;">
+    <a href="http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1397055195751">
+	    <div class="red_btn">
+	    	<img src="images/mine_invite_redbag_img.png" alt="btn">	
+	    </div>
+	</a>
+    <!-- <div id="shareBtnDiv" class="footer" style="display: none; overflow: hidden;">
     	<img class="logo" src="./images/logo.png">
     	<div class="text-div">
     		<span class="title">悦头条</span>
@@ -280,6 +316,6 @@
     	<div class="download-btn">
     		<a href="http://url.cn/569cYV7" style="height: 80%;">立即下载</a>
     	</div>
-    </div>
+    </div> -->
 </body>
 </html>
