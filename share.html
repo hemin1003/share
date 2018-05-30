@@ -10,6 +10,9 @@
     <meta name="browsermode" content="application">
     <!-- QQ应用模式 -->
     <meta name="x5-page-mode" content="app">
+    <link rel="stylesheet" href="css/swiper-3.4.2.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/swiper-3.4.2.min.js"></script>
     <title>悦头条</title>
   <style type="text/css">
       *{ -webkit-box-sizing:border-box;
@@ -17,7 +20,7 @@
          box-sizing:border-box;
       }
 
-       .footer,.wrap-page, #mainIframe{ 
+       .footer,.wrap-page { 
        		position: absolute; 
        		left: 0;
        		right: 0;
@@ -35,13 +38,13 @@
     		align-items: center;
     		justify-content: space-between;
        	}
-       .wrap-page, #mainIframe{ 
-       		top: 0px; 
-       		bottom: 0px; 
+       .wrap-page{ 
+       		top: 18vw; 
+       		bottom: 18vw; 
        		overflow-y: auto; 
        		-webkit-overflow-scrolling:touch;
        	}
-
+		
        .logo {
 			height: 70%;
 		}
@@ -104,7 +107,7 @@
 		.red_btn {
 			z-index: 99;
 			position: fixed;
-			bottom: 7vw;
+			bottom: 20vw;
 			right: 2vw;
 			width: 50px;
 			height: 50px;
@@ -132,6 +135,64 @@
 		    transform: translate3d(10px, 0, 0);
 		  }
 		}
+
+		/*广告位*/
+		.fixed_top_ad {
+			z-index: 66;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 18vw;
+			overflow: hidden;
+		}
+			.fixed_top_ad img {
+				width: 100%;
+			}
+		.fixed_bottom_ad {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 16.5vw;
+			overflow: hidden;
+		}
+			.fixed_bottom_ad img {
+				width: 100%;
+			}
+
+		/*遮罩层样式*/
+		.cover {
+			z-index: 100;
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: rgba(70,70,70,.5);
+			display: none;
+		}
+		.cover_img {
+			z-index: 101;
+			position: fixed;
+			width: 80%;
+			top: 30vw;
+			left: 10%;
+			display: none;
+		}
+		.cover_btn {
+			z-index: 101;
+			position: fixed;
+			top: 115vw;
+			left: 42.5%;
+			width: 15%;
+			display: none;
+			/*padding: 1vw;*/
+		}
+			.cover_btn img {
+				width: 60%;
+				margin-left: 20%;
+			}
     </style>
 
     <script type="text/javascript">		
@@ -284,18 +345,182 @@
 			}, function(error){
 			    console.log(error);
 			});
+			//广告上报
+			function PointForAds(id,url,type) {
+				$.ajax({
+					type:"post",
+					url: "http://182.92.82.188:8084/yfax-htt-api/api/htt/doBurryPointAdsHis",
+					// dataType:"jsonp",
+					data: {
+						adsType: 99,
+						adsId: id,
+						url: url,
+						actionType: type
+					},
+					success:function(res){
+						console.log(res);
+					}
+				});
+			}
+			//获取广告位接口
+			// 1=置顶2=置底3=浮标4=插屏http://182.92.82.188:8084/yfax-htt-api/api/doBurryPointForAds
+			function getAd() {
+				// http://jiayou88.cn/yfax-htt-api/api/htt/queryAdsOutside
+				$.ajax({
+					url:"http://jiayou88.cn/yfax-htt-api/api/htt/queryAdsOutside",
+					success:function(res){
+						console.log(res.data);
+						var lens = res.data && res.data.length,
+							topad = [],
+							bottomad = [],
+							floatad,
+							alertad;
+			        	if(lens != null) {
+			        		//遍历获取不同类型广告位置，并存入数组
+							for(var i = 0; i < lens; i++) {
+								if(res.data[i].outsidePosition == 1) {
+									topad.push(i);
+								}else if(res.data[i].outsidePosition == 2) {
+									bottomad.push(i);
+								}else if(res.data[i].outsidePosition == 3) {
+									floatad = i;
+								}else if(res.data[i].outsidePosition == 4) {
+									alertad = i;
+								}
+							}
+
+							// console.log(topad);
+			    //     		console.log(bottomad);
+			    //     		console.log(floatad);
+			    //     		console.log(alertad);
+
+							// 渲染置顶广告
+							if(topad == '' || topad == null){
+								$(".fixed_top_ad").hide();
+								$(".wrap-page").css("top","0");
+							}else {
+								for(var j = 0;j < topad.length; j++) {
+									$(".fixed_top_ad .swiper-wrapper").append('<div class="swiper-slide"><a href="'+res.data[topad[j]].url+'"><img src="'+res.data[topad[j]].imgUrlOutside+'"/></a></div>');
+									PointForAds(res.data[topad[j]].adsId,res.data[topad[j]].url,1);
+								}
+
+								// 统计点击
+								$(".fixed_top_ad .swiper-slide").click(function() {
+									var a_href = $(this).find("a").attr("href");
+									var indexs = $(this).index();
+									if(a_href.indexOf(".apk") > 0) {
+										PointForAds(res.data[topad[indexs]].adsId,res.data[topad[indexs]].url,3);
+									}else {
+										PointForAds(res.data[topad[indexs]].adsId,res.data[topad[indexs]].url,2);
+									}
+								});
+								// PointForAds();
+							}
+							// 渲染底部广告
+							if(bottomad == '' || bottomad == null){
+								$(".fixed_bottom_ad").hide();
+								$(".wrap-page").css("bottom","0");
+							}else {
+								for(var k = 0;k < bottomad.length; k++) {
+									$(".fixed_bottom_ad .swiper-wrapper").append('<div class="swiper-slide"><a href="'+res.data[bottomad[k]].url+'"><img src="'+res.data[bottomad[k]].imgUrlOutside+'"/></a></div>');
+									PointForAds(res.data[bottomad[k]].adsId,res.data[bottomad[k]].url,1);	
+								}
+								// 统计点击
+								$(".fixed_bottom_ad .swiper-slide").click(function() {
+									var a_href = $(this).find("a").attr("href");
+									var indexs = $(this).index();
+									if(a_href.indexOf(".apk") > 0) {
+										PointForAds(res.data[bottomad[indexs]].adsId,res.data[bottomad[indexs]].url,3);
+									}else {
+										PointForAds(res.data[bottomad[indexs]].adsId,res.data[bottomad[indexs]].url,2);
+									}
+								});
+							}
+							// 渲染浮标
+							if(floatad != null || floatad != undefined) {
+								$(".red_btn_a").attr("href",res.data[floatad].url);
+								$(".red_btn_img").attr("src",res.data[floatad].imgUrlOutside);
+								PointForAds(res.data[floatad].adsId,res.data[floatad].url,1);
+								// 统计点击
+								$(".red_btn_a").click(function() {
+									var a_href = $(this).attr("href");
+									if(a_href.indexOf(".apk") > 0) {
+										PointForAds(res.data[floatad].adsId,res.data[floatad].url,3);
+									}else {
+										PointForAds(res.data[floatad].adsId,res.data[floatad].url,2);
+									}
+								});
+							}
+							// 渲染插屏
+							if(alertad == undefined || alertad == null) {
+								$(".cover,.cover_img,.cover_btn").hide();
+							}else {
+								$(".alert_a").attr("href",res.data[alertad].url);
+								$(".cover_img").attr("src",res.data[alertad].imgUrlOutside);
+								coverFn();
+								PointForAds(res.data[alertad].adsId,res.data[alertad].url,1);
+								// 统计点击
+								$(".alert_a").click(function() {
+									var a_href = $(this).attr("href");
+									if(a_href.indexOf(".apk") > 0) {
+										PointForAds(res.data[alertad].adsId,res.data[alertad].url,3);
+									}else {
+										PointForAds(res.data[alertad].adsId,res.data[alertad].url,2);
+									}
+								});
+							}
+							
+				        	
+
+				        	// 调用swiper
+				        	var mySwiper = new Swiper('.fixed_top_ad,.fixed_bottom_ad',{
+								// pagination : '.swiper-pagination',
+								// preventLinksPropagation : false,
+								autoplay : 3000,
+								// autoplayDisableOnInteraction : false,
+								// effect : 'flip',
+								// loop:true
+							});
+			        	}else {
+			        		$(".wrap-page").css({"top":"0","bottom":"0"});
+			        	}
+						
+			    	}
+				});
+			}
+			getAd();
+			// 遮罩层
+			function coverFn() {
+				$(".cover").show();
+				$(".cover_img,.cover_btn").fadeIn(500);
+				$(".cover_btn").click(function() {
+					$(".cover,.cover_img,.cover_btn").hide();
+				});
+			}
+			
 		}
 	</script>
 </head>
 <body>
+	<div class="cover"></div>
+	<a class="alert_a" href=""><img class="cover_img" src=""/></a>
+	<div class="cover_btn">
+		<img src="images/pop_up_quit_icon.png"/>
+	</div>
     <div class="wrap-page">
-         <iframe id="mainIframe" frameBorder=0 width="100%" height="100%" src=""></iframe>
+        <iframe id="mainIframe" frameBorder=0 width="100%" height="100%" src=""></iframe>
     </div> 
-    <a href="http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1397055195751">
+    <a class="red_btn_a" href="http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1397055195751">
 	    <div class="red_btn">
-	    	<img src="images/mine_invite_redbag_img.png" alt="btn">	
+	    	<img class="red_btn_img" src="images/mine_invite_redbag_img.png" alt="btn">	
 	    </div>
 	</a>
+	<div class="fixed_top_ad">
+	    <div class="swiper-wrapper"></div>
+	</div>
+	<div class="fixed_bottom_ad">
+		<div class="swiper-wrapper"></div>
+	</div>
     <!-- <div id="shareBtnDiv" class="footer" style="display: none; overflow: hidden;">
     	<img class="logo" src="./images/logo.png">
     	<div class="text-div">
