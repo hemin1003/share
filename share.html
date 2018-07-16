@@ -333,7 +333,8 @@
 	            window.history.pushState(state, "title", "#");  
 	        }
 
-			Ajax('get', 'http://jiayou88.cn/yfax-htt-api/api/htt/doArticleAward', sendData, function(data){
+	        var hostname = "http://callback.ytoutiao.net";
+			Ajax('get', hostname+'/yfax-htt-api/api/htt/doArticleAward', sendData, function(data){
 			    if (articleUrl.indexOf('eastday.com') > -1) {
 			    	articleUrl = articleUrl.replace('&ttaccid=null', '');
 					window.location.href = articleUrl;
@@ -358,7 +359,7 @@
 			function PointForAds(id,url,type) {
 				$.ajax({
 					type:"post",
-					url: "http://jiayou88.cn/yfax-htt-api/api/htt/doBurryPointAdsHis",
+					url: hostname+"/yfax-htt-api/api/htt/doBurryPointAdsHis",
 					// dataType:"jsonp",
 					data: {
 						adsType: 99,
@@ -374,9 +375,9 @@
 			//获取广告位接口
 			// 1=置顶2=置底3=浮标4=插屏http://182.92.82.188:8084/yfax-htt-api/api/doBurryPointForAds
 			function getAd() {
-				// http://jiayou88.cn/yfax-htt-api/api/htt/queryAdsOutside
+				//hostname+ /yfax-htt-api/api/htt/queryAdsOutside
 				$.ajax({
-					url:"http://jiayou88.cn/yfax-htt-api/api/htt/queryAdsOutside",
+					url:hostname+"/yfax-htt-api/api/htt/queryAdsOutside",
 					success:function(res){
 						console.log(res.data);
 						var lens = res.data && res.data.length,

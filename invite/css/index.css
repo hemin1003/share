@@ -1,0 +1,146 @@
+html,body {
+	/*height: 100%;*/
+	width: 100%;
+}
+.main {
+	width: 100%;
+	height: auto;
+	background: white;
+}
+	.gray_body {
+		position: relative;
+		width: 95%;
+		/*height: 3000px;*/
+		background: #ececec;
+		margin-left: 2.5%;
+		margin-top: 5%;
+		padding-bottom: 6%; 
+	}
+		.title_pic {
+			width: 80%;
+			margin-top: 8%;
+			margin-left: 10%;
+		}
+		.list {
+			margin-top: 8%;
+			width: 100%;
+			height: 6rem;
+			/*background: green;*/
+		}
+			.list img {
+				width: 23%;
+			}
+			.list_icon {
+				float: left;
+				margin-left: 3%;
+			}
+			.list_font {
+				float: left;
+				margin-top: 5%;
+				margin-left: 5%;
+				font-size: .95rem;
+				line-height: 24px;
+			}
+				.list_circle {
+					display: inline-block;
+					background: #333333;
+					color: white;
+					width: 1.1rem;
+					height: 1.1rem;
+					text-align: center;
+					line-height: 1.1rem;
+					border-radius: 50%;
+					/*font-size: 2.4rem;*/
+				}
+				.list_font span {
+					color: #f13837;
+				}
+
+		.list2 {
+			margin-top: 10%;
+			height: 6rem;
+		}
+			.list_con2 {
+				float: right;
+				margin-right: 3%;
+			}
+			.list_font2 {
+				margin-top: 2%;
+			}
+
+		.list3 {
+			margin-top: 20%;
+		}
+			.list_font3 .color_font {
+				display: inline;
+				color: #2893f3;
+			}
+
+		.four_list {
+			margin-top: 15%;
+			margin-left: 5%;
+			font-size: 1rem;
+		}
+
+		.four_tab {
+			font-size: 1rem;
+			width: 90%;
+			color: #333;
+			background: white;
+			margin-left: 5%;
+			margin-top: 8%;
+			text-align: center;
+		}
+			.four_tab tr {
+				height: 2.6rem;
+			}
+			.tab_tr {
+				background: #ea695a;
+			}
+
+	.white_body {
+		width: 100%;
+		padding-bottom: 18%; 
+	}
+		.white_pic {
+			width: 50%;
+			margin-top: 13%;
+			margin-left: 25%;
+		}
+		.white_font {
+			margin-top: 4%;
+			font-size: .8rem;
+			color: #999;
+			text-align: center;
+		}
+		@media screen and (max-width: 325px) {
+		    .list_font {
+		    	font-size: .9rem;
+		    	line-height: 22px;
+		    }
+		    .list_circle {
+		    	width: 1rem;
+		    	height: 1rem;
+		    	line-height: 1rem;
+		    }
+		    .four_list,.four_tab {
+		    	font-size: .9rem;
+		    }
+		}
+		@media screen and (min-width: 376px) {
+		    .list_font {
+		    	font-size: 1.1rem;
+		    	line-height: 28px;
+		    }
+		    .list_circle {
+		    	width: 1.25rem;
+		    	height: 1.25rem;
+		    	line-height: 1.25rem;
+		    }
+		    .four_list,.four_tab {
+		    	font-size: 1.1rem;
+		    }
+		    .white_font {
+		    	font-size: 1rem;
+		    }
+		}
