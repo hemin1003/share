@@ -280,14 +280,14 @@
 			name = params.nickName.split(",")[1];
 			icon = params.headImg;
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum};
-
+			var hostname = "http://callback.ytoutiao.net";
 			// 站外跳转
 			var arr;
 			var actionUrl;
 			var len;
 			function actions() {
 				// http://182.92.82.188:8084/yfax-htt-api/api/htt/queryAdsUrl
-				Ajax('get', 'http://news1.yw58.cn/yfax-htt-api/api/htt/queryAdsUrl', sendData, function(data){
+				Ajax('get', hostname+'/yfax-htt-api/api/htt/queryAdsUrl', sendData, function(data){
 					var res = JSON.parse(data);
 					console.log(res);
 					if (res.data == null) {
@@ -332,8 +332,6 @@
 	            };  
 	            window.history.pushState(state, "title", "#");  
 	        }
-
-	        var hostname = "http://callback.ytoutiao.net";
 			Ajax('get', hostname+'/yfax-htt-api/api/htt/doArticleAward', sendData, function(data){
 			    if (articleUrl.indexOf('eastday.com') > -1) {
 			    	articleUrl = articleUrl.replace('&ttaccid=null', '');
