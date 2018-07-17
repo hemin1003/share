@@ -211,12 +211,14 @@
 			var name = decodeURI(r.match(/nickName=(\S+)&from/));
 			var articleUrl = r.split('&phoneNum=')[0];
 			articleUrl = articleUrl.split('articleUrl=')[1];
-			phoneNum = r.split('&phoneNum=')[1];
+			phoneNum = r.match(/phoneNum=(\w+)/)[1];
+			taskId = r.match(/taskId=(\w+)/)[1];
 			return {
 				'articleUrl': articleUrl,
 				'phoneNum': phoneNum,
 				'nickName': name,
-				'headImg': icon
+				'headImg': icon,
+				'taskId': taskId
 			};
 		}
 
@@ -280,6 +282,7 @@
 			taskId = params.taskId;
 			name = params.nickName.split(",")[1];
 			icon = params.headImg;
+			console.log(params);
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum, taskId: taskId};
 			var hostname = "http://callback.ytoutiao.net";
 			var testname = "http://182.92.82.188:8084";
