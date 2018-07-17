@@ -277,7 +277,7 @@
 			var params = GetParams();
 			articleUrl = params.articleUrl;
 			phoneNum = params.phoneNum;
-			taskId = "666";
+			taskId = params.taskId;
 			name = params.nickName.split(",")[1];
 			icon = params.headImg;
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum, taskId: taskId};
@@ -335,7 +335,7 @@
 	        }
 
 	        // doArticleAward  ==>  doShareTaskAward
-			Ajax('get', hostname+'/yfax-htt-api/api/htt/doArticleAward', sendData, function(data){
+			Ajax('get', hostname+'/yfax-htt-api/api/htt/doShareTaskAward', sendData, function(data){
 			    if (articleUrl.indexOf('eastday.com') > -1) {
 			    	articleUrl = articleUrl.replace('&ttaccid=null', '');
 					window.location.href = articleUrl;
