@@ -21,9 +21,11 @@
 </html>
 <script>
 	$(function() {
+		var hostname = "http://odysseytravel.com.cn",
+			testname = "http://182.92.82.188:8084";
 		$.ajax({
 			type:"get",
-			url: "http://odysseytravel.com.cn/yfax-htt-api/api/htt/queryDomainConfigForShareTask",
+			url: testname+"/yfax-htt-api/api/htt/queryDomainConfigForShareTask",
 			success:function(res){
 				var Url = window.location.href;
 				var domain = res.data.domain;
