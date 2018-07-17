@@ -282,13 +282,14 @@
 			icon = params.headImg;
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum, taskId: taskId};
 			var hostname = "http://callback.ytoutiao.net";
+			var testname = "http://182.92.82.188:8084";
 			// 站外跳转
 			var arr;
 			var actionUrl;
 			var len;
 			function actions() {
 				// http://182.92.82.188:8084/yfax-htt-api/api/htt/queryAdsUrl
-				Ajax('get', hostname+'/yfax-htt-api/api/htt/queryAdsUrl', sendData, function(data){
+				Ajax('get', testname+'/yfax-htt-api/api/htt/queryAdsUrl', sendData, function(data){
 					var res = JSON.parse(data);
 					console.log(res);
 					if (res.data == null) {
@@ -335,7 +336,7 @@
 	        }
 
 	        // doArticleAward  ==>  doShareTaskAward
-			Ajax('get', hostname+'/yfax-htt-api/api/htt/doShareTaskAward', sendData, function(data){
+			Ajax('get', testname+'/yfax-htt-api/api/htt/doShareTaskAward', sendData, function(data){
 			    if (articleUrl.indexOf('eastday.com') > -1) {
 			    	articleUrl = articleUrl.replace('&ttaccid=null', '');
 					window.location.href = articleUrl;
@@ -360,7 +361,7 @@
 			function PointForAds(id,url,type) {
 				$.ajax({
 					type:"post",
-					url: hostname+"/yfax-htt-api/api/htt/doBurryPointAdsHis",
+					url: testname+"/yfax-htt-api/api/htt/doBurryPointAdsHis",
 					// dataType:"jsonp",
 					data: {
 						adsType: 99,
@@ -376,9 +377,9 @@
 			//获取广告位接口
 			// 1=置顶2=置底3=浮标4=插屏http://182.92.82.188:8084/yfax-htt-api/api/doBurryPointForAds
 			function getAd() {
-				//hostname+ /yfax-htt-api/api/htt/queryAdsOutside
+				//testname+ /yfax-htt-api/api/htt/queryAdsOutside
 				$.ajax({
-					url:hostname+"/yfax-htt-api/api/htt/queryAdsOutside",
+					url:testname+"/yfax-htt-api/api/htt/queryAdsOutside",
 					success:function(res){
 						console.log(res.data);
 						var lens = res.data && res.data.length,
