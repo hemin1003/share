@@ -1,0 +1,128 @@
+.main {
+	width: 100%;
+	height: auto;
+}
+	.title {
+		width: 100%;
+		height: 4rem;
+		color: white;
+		font-size: 20px;
+		text-indent: 3rem;
+		line-height: 4rem;
+		background: #fe8300;
+	}
+
+	.help {
+		z-index: 9;
+		position: fixed;
+		width: 5rem;
+		bottom: 3rem;
+		right: 1.5rem;
+		display: inline;
+	}
+		.help img {
+			width: 100%;
+		}
+	/*问题列表*/
+	.title_list {
+		z-index: 10;
+		position: fixed;
+		width: 100%;
+		height: 8rem;
+		border-bottom: 1px solid #ddd;
+		background: white;
+	}
+		.title_list_con {
+			position: relative;
+			width: 90%;
+			height: 100%;
+			margin: 0 auto;
+		}
+			.title_list1 {
+				position: relative;
+				width: 100%;
+				height: 35%;
+				margin-top: 4%;
+				text-align: center;
+				line-height: 300%;
+				font-size: .9rem;
+				/*background: black;*/
+			}
+				.title_que {
+					float: left;
+					width: 30%;
+					height: 100%;
+					color: #3a3a3a;
+					border-radius: 45px;
+					border: 1px solid #ddd;
+				}
+				/*点击样式*/
+				.active_que {
+					background: #fe8300;
+					border: none;
+					color: white;
+					transition: .3s;
+				}
+				.special_que {
+					margin: 0 5%;
+				}
+
+	.answer {
+		z-index: 4;
+		position: relative;
+		top: 8rem;
+	}
+	/*问题内容详情*/
+	.novice {
+		width: 100%;
+		height: 3.2rem;
+		background: #E5E5E5;
+		text-indent: 5%;
+		line-height: 3.2rem;
+		color: #fe8300;
+		font-size: .95rem;
+		font-weight: bold;
+	}
+		.novice_list {
+			width: 100%;
+			height: 2.5rem;
+			color: #3a3a3a;
+			line-height: 2.5rem;
+			text-indent: 5%;
+			font-size: .9rem;
+			border-bottom: 1px solid #E5E5E5;
+		}
+			.fire_icon {
+				width: 5.5%;
+				padding-bottom: .5%;
+			}
+		.border_none {
+			border: none;
+		}
+			.nov_list_font {
+				float: left;
+				width: 85%;
+			}
+			.nov_list_img {
+				float: right;
+				width: 14%;
+				transition: .2s;
+			}
+				.nov_list_img img {
+					width: 30%;
+					
+				}
+		.nov_content {
+			width: 100%;
+			padding: 1rem 5%;
+			border-bottom: 1px solid #E5E5E5;
+			color: #919191;
+			font-size: .9rem;
+			line-height: 1.5rem;
+			display: none;
+		}
+	.footer {
+		width: 100%;
+		height: 25rem;
+		background: #E5E5E5;
+	}

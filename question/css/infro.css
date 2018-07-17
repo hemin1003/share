@@ -1,0 +1,23 @@
+.banner {
+	width: 100%;
+}
+	.banner img {
+		width: 100%;
+	}
+.step {
+	width: 100%;
+	background: white;
+}
+	.step img {
+		width: 90%;
+		margin-left: 5%;
+		padding: 6% 5%;
+	}
+.step_color {
+	background: #FEF5F5;
+}
+	.green_btn {
+		width: 70%;
+    	margin: 2rem 0;
+    	margin-left: 15%;
+	}
