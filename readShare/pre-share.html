@@ -23,7 +23,7 @@
 	$(function() {
 		$.ajax({
 			type:"get",
-			url: "http://odysseytravel.com.cn/yfax-htt-api/api/htt/queryDomainConfigForWechat",
+			url: "http://odysseytravel.com.cn/yfax-htt-api/api/htt/queryDomainConfigForShareTask",
 			success:function(res){
 				var Url = window.location.href;
 				var domain = res.data.domain;
