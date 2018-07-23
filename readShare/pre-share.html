@@ -26,7 +26,7 @@ var _hmt = _hmt || [];
 			testname = "http://182.92.82.188:8084";
 		$.ajax({
 			type:"get",
-			url: testname+"/yfax-htt-api/api/htt/queryDomainConfigForShareTask",
+			url: hostname+"/yfax-htt-api/api/htt/queryDomainConfigForShareTask",
 			success:function(res){
 				var Url = window.location.href;
 				var domain = res.data.domain;
