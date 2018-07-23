@@ -21,14 +21,16 @@
 </html>
 <script>
 	$(function() {
+		var hostname = "news1.yw58.cn",
+			testname = "http://182.92.82.188:8084";
 		$.ajax({
 			type:"get",
-			url: "http://odysseytravel.com.cn/yfax-htt-api/api/htt/queryDomainConfigForWechat",
+			url: hostname+"/yfax-htt-api/api/htt/queryDomainConfigForWechat",
 			success:function(res){
 				var Url = window.location.href;
 				var domain = res.data.domain;
-				var goUrl = Url.replace('ykccjiaju.cn', domain);
-				if(goUrl.indexOf("ykccjiaju.cn") > -1){
+				var goUrl = Url.replace(hostname, domain);
+				if(goUrl.indexOf(hostname) > -1){
 					console.log(goUrl);
 					return;
 				}

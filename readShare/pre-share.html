@@ -22,7 +22,7 @@ var _hmt = _hmt || [];
 </html>
 <script>
 	$(function() {
-		var hostname = "http://odysseytravel.com.cn",
+		var hostname = "news1.xc163.cn",
 			testname = "http://182.92.82.188:8084";
 		$.ajax({
 			type:"get",
@@ -30,8 +30,8 @@ var _hmt = _hmt || [];
 			success:function(res){
 				var Url = window.location.href;
 				var domain = res.data.domain;
-				var goUrl = Url.replace('ykccjiaju.cn', domain);
-				if(goUrl.indexOf("ykccjiaju.cn") > -1){
+				var goUrl = Url.replace(hostname, domain);
+				if(goUrl.indexOf(hostname) > -1){
 					console.log(goUrl);
 					return;
 				}
