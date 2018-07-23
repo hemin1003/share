@@ -14,14 +14,15 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/swiper-3.4.2.min.js"></script>
     <script>
-	var _hmt = _hmt || [];
-	(function() {
-	  var hm = document.createElement("script");
-	  hm.src = "https://hm.baidu.com/hm.js?7e4b7bac78784ad068675194cead88f0";
-	  var s = document.getElementsByTagName("script")[0]; 
-	  s.parentNode.insertBefore(hm, s);
-	})();
-	</script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7e4b7bac78784ad068675194cead88f0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
     <title>悦头条</title>
   <style type="text/css">
       *{ -webkit-box-sizing:border-box;
@@ -211,12 +212,14 @@
 			var name = decodeURI(r.match(/nickName=(\S+)&from/));
 			var articleUrl = r.split('&phoneNum=')[0];
 			articleUrl = articleUrl.split('articleUrl=')[1];
-			phoneNum = r.split('&phoneNum=')[1];
+			phoneNum = r.match(/phoneNum=(\w+)/)[1];
+			taskId = r.match(/taskId=(\w+)/)[1];
 			return {
 				'articleUrl': articleUrl,
 				'phoneNum': phoneNum,
 				'nickName': name,
-				'headImg': icon
+				'headImg': icon,
+				'taskId': taskId
 			};
 		}
 
@@ -280,6 +283,7 @@
 			taskId = params.taskId;
 			name = params.nickName.split(",")[1];
 			icon = params.headImg;
+			console.log(params);
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum, taskId: taskId};
 			var hostname = "http://callback.ytoutiao.net";
 			var testname = "http://182.92.82.188:8084";
