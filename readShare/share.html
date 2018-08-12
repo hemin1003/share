@@ -210,10 +210,23 @@ var _hmt = _hmt || [];
 			var r = window.location.search.substr(1);
 			var icon = r.match(/headImg=(\S+)&nickName/);
 			var name = decodeURI(r.match(/nickName=(\S+)&from/));
-			var articleUrl = r.split('&phoneNum=')[0];
-			articleUrl = articleUrl.split('articleUrl=')[1];
+			var articleUrl;
+			// var articleUrl = r.match(/articleUrl=(\S+)&headImg/)[1];
+			// 新增判断
+			var headImg = r.match(/headImg=(\S+)/);
+			if(headImg) {
+				// console.log('有图像');
+				articleUrl = r.match(/articleUrl=(\S+)&headImg/)[1];
+			}else {
+				// console.log('无图像');
+				articleUrl = r.match(/articleUrl=(\S+)/)[1];
+			}
+			console.log("图"+headImg);
+			// var articleUrl = r.split('&phoneNum=')[0];
+			// articleUrl = articleUrl.split('articleUrl=')[1];
 			phoneNum = r.match(/phoneNum=(\w+)/)[1];
 			taskId = r.match(/taskId=(\w+)/)[1];
+			// console.log("草"+articleUrl);
 			return {
 				'articleUrl': articleUrl,
 				'phoneNum': phoneNum,
