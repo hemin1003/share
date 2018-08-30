@@ -18,22 +18,6 @@
     <!-- 百度ad -->
     <!-- <script data-product="20035" data-android-channal="h5a20180523ban223" data-ios-channal="h5a20180523ban223" src="//cdn.ipadview.com/jssdk/combo.bundle.js"></script> -->
     <script>
-	(function(){
-      var o = document.getElementsByTagName("script");
-      var c = o[o.length-1].parentNode;
-      var ta = document.createElement('script'); ta.type = 'text/javascript'; ta.async = true;
-      ta.src = '//yun.lvehaisen.com/h5-mami/msdk/tmk.js';
-      ta.onload = function() {
-        new TuiSDK({
-          container: "#red_btn",
-          appKey: '2FeUYuki19ygFVQmQMUvpGYUyu9v',
-          slotId: '197490'
-        });
-      }
-      var s = document.querySelector('head'); s.appendChild(ta);
-    })();
-</script>
-    <script>
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
@@ -208,6 +192,11 @@ var _hmt = _hmt || [];
 			.fixed_bottom_ad img {
 				width: 100%;
 			}
+		.block_div {
+			height: 20vw;
+			width: 100%;
+			background: transparent;
+		}
 
 		/*遮罩层样式*/
 		.cover {
@@ -557,7 +546,7 @@ var _hmt = _hmt || [];
 								// loop:true
 							});
 			        	}else {
-			        		$(".wrap-page").css({"top":"0","bottom":"0"});
+			        		$(".wrap-page").css({"top":"0","bottom":"20vw"});
 			        	}
 						
 			    	}
@@ -618,6 +607,7 @@ var _hmt = _hmt || [];
 	<div class="fixed_bottom_ad">
 		<div class="swiper-wrapper"></div>
 	</div>
+	<!-- <div class="block_div"></div> -->
     <div id="shareBtnDiv" class="footer" style="overflow: hidden;">
     	<img class="logo" src="./images/logo.png">
     	<div class="text-div">
@@ -643,4 +633,21 @@ var _hmt = _hmt || [];
     </div> -->
 </body>
 </html>
+<script>
+	(function(){
+      var o = document.getElementsByTagName("script");
+      var c = o[o.length-1].parentNode;
+      var ta = document.createElement('script'); ta.type = 'text/javascript'; ta.async = true;
+      ta.src = '//yun.lvehaisen.com/h5-mami/msdk/tmk.js';
+      ta.onload = function() {
+        new TuiSDK({
+          container: "#red_btn",
+          appKey: '2FeUYuki19ygFVQmQMUvpGYUyu9v',
+          slotId: '197490',
+          local: "right: 0vw; top: 60%"
+        });
+      }
+      var s = document.querySelector('head'); s.appendChild(ta);
+    })();
+</script>
 
