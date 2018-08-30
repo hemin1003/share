@@ -16,7 +16,7 @@
     <!-- 推呀引入 -->
     <script src="http://yun.poppyta.com/h5-mami/msdk/tmk.js"></script>
     <!-- 百度ad -->
-    <script data-product="20035" data-android-channal="h5a20180523ban223" data-ios-channal="h5a20180523ban223" src="//cdn.ipadview.com/jssdk/combo.bundle.js"></script>
+    <!-- <script data-product="20035" data-android-channal="h5a20180523ban223" data-ios-channal="h5a20180523ban223" src="//cdn.ipadview.com/jssdk/combo.bundle.js"></script> -->
     <script>
 	(function(){
       var o = document.getElementsByTagName("script");
@@ -56,17 +56,19 @@ var _hmt = _hmt || [];
        		right: 0;
        	} 
        .footer{ 
-       		height: 10%; 
-       		text-align: left; 
+       		position: fixed;
+       		height: 20vw;
+       		/*text-align: left; */
        		z-index: 900;
        		bottom: 0;
-       		padding-left: 5%;
-       		padding-right: 3%;
+       		/*padding-left: 5%;*/
+       		/*padding-right: 3%;*/
        		/*background-color: rgba(0,0,0,0.6);*/
        		background: white;
-       		display: flex;
-    		align-items: center;
-    		justify-content: space-between;
+       		/*display: flex;*/
+    		/*align-items: center;*/
+    		/*justify-content: space-between;*/
+    		box-shadow: 0px -3px 2px 0px rgba(0, 0, 0, 0.15);
        	}
        .wrap-page{ 
        		top: 18vw; 
@@ -76,29 +78,45 @@ var _hmt = _hmt || [];
        	}
 		
        .logo {
-			height: 70%;
+       		float: left;
+			width: 12vw;
+			height: 12vw;
+			margin-top: 4vw;
+			margin-left: 5vw;
+			border-radius: 90px;
 		}
 
 		.text-div {
+			float: left;
 			color: black;
-			display: flex;
-			flex-direction: column;
-			height: 100%;
-			line-height: 30px;
-		    justify-content: center;
+			height: 16vw;
+			width: 50%;
+			margin-top: 4vw;
+			margin-left: 4vw;
+			/*background: red;*/
 		}
 		.text-div .title {
-			font-size: 1.125rem;
+			font-size: 4.5vw;
 		}
 		.text-div .detail {
-			font-size: .8rem;
+			display: block;
+			margin-top: 2vw;
+			font-size: 3.7vw;
+			color: #9F9F9F;
 		}
 
 		.download-btn {
+			float: right;
+			margin-right: 3vw;
+			width: 20vw;
+			height: 8vw;
+			margin-top: 6vw;
+			text-align: center;
+			line-height: 8vw;
+			font-size: 4vw;
+			border-radius: 90px;
+			color: white;
 			background-color: #fe7800;
-			padding: 8px 15px;
-			border-radius: 6px;
-			margin-left: 5%;
 		}
 		.download-btn a:link {   
 			font-size: 0.9rem;   
@@ -603,12 +621,14 @@ var _hmt = _hmt || [];
     <div id="shareBtnDiv" class="footer" style="overflow: hidden;">
     	<img class="logo" src="./images/logo.png">
     	<div class="text-div">
-    		<span class="title">悦头条</span>
+    		<span class="title">悦头条</span><br/>
     		<span class="detail">看资讯就送大礼包</span>
     	</div>
-    	<div class="download-btn">
-    		<a href="http://url.cn/5fEeGsL" style="height: 80%;">立即下载</a>
-    	</div>
+    	<a href="http://url.cn/5fEeGsL">
+	    	<div class="download-btn">
+	    		打开
+	    	</div>
+    	</a>
     </div>
 
      <!-- <div id="shareBtnDiv2" class="footer" style="display: none; overflow: hidden;color: black">
