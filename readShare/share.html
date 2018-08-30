@@ -15,6 +15,8 @@
     <script src="js/swiper-3.4.2.min.js"></script>
     <!-- 推呀引入 -->
     <script src="http://yun.poppyta.com/h5-mami/msdk/tmk.js"></script>
+    <!-- 百度ad -->
+    <script data-product="20035" data-android-channal="h5a20180523ban223" data-ios-channal="h5a20180523ban223" src="//cdn.ipadview.com/jssdk/combo.bundle.js"></script>
     <script>
 	(function(){
       var o = document.getElementsByTagName("script");
@@ -325,8 +327,8 @@ var _hmt = _hmt || [];
 			icon = params.headImg;
 			console.log(params);
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum, taskId: taskId};
-			var hostname = "http://callback.ytoutiao.net";
-			// var hostname = "http://182.92.82.188:8084";
+			// var hostname = "http://callback.ytoutiao.net";
+			var hostname = "http://182.92.82.188:8084";
 			// 站外跳转
 			var arr;
 			var actionUrl;
@@ -526,8 +528,6 @@ var _hmt = _hmt || [];
 									}
 								});
 							}
-							
-				        	
 
 				        	// 调用swiper
 				        	var mySwiper = new Swiper('.fixed_top_ad,.fixed_bottom_ad',{
@@ -554,7 +554,29 @@ var _hmt = _hmt || [];
 					$(".cover,.cover_img,.cover_btn").hide();
 				});
 			}
-			
+
+			// 推啊上报接口
+			function tuiA(type) {
+				$.ajax({
+					type:"post",
+					url: hostname+"/yfax-htt-api/api/htt/doBurryPointAdsHis",
+					// dataType:"jsonp",
+					data: {
+						adsType: 88,
+						adsId: "",
+						url: "",
+						actionType: type
+					},
+					success:function(res){
+						console.log(res);
+					}
+				});
+			}
+			tuiA(1);
+			// 新增推啊广告上报
+			$(".fubiao-dialog").click(function() {
+				tuiA(2);
+			});
 		}
 	</script>
 </head>
