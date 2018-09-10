@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- <link rel="stylesheet" href="css/swiper-3.4.2.min.css"> -->
+    <script src="js/jquery.min.js"></script>
+    <!-- <script src="js/swiper-3.4.2.min.js"></script> -->
+    <!-- 推呀引入 -->
+    <!-- <script src="http://yun.poppyta.com/h5-mami/msdk/tmk.js"></script> -->
+    <!-- 百度ad -->
+    <!-- <script data-product="20035" data-android-channal="h5a20180523ban223" data-ios-channal="h5a20180523ban223" src="//cdn.ipadview.com/jssdk/combo.bundle.js"></script> -->
+<!--     <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7e4b7bac78784ad068675194cead88f0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script> -->
+
+    <title>悦头条</title>
+  <style type="text/css">
+      *{ -webkit-box-sizing:border-box;
+         -moz-box-sizing:border-box;
+         box-sizing:border-box;
+      }
+
+       .footer,.wrap-page { 
+       		position: absolute; 
+       		left: 0;
+       		right: 0;
+       	} 
+       .footer{ 
+       		position: fixed;
+       		height: 20vw;
+       		/*text-align: left; */
+       		z-index: 900;
+       		bottom: 0;
+       		/*padding-left: 5%;*/
+       		/*padding-right: 3%;*/
+       		/*background-color: rgba(0,0,0,0.6);*/
+       		background: white;
+       		/*display: flex;*/
+    		/*align-items: center;*/
+    		/*justify-content: space-between;*/
+    		box-shadow: 0px -3px 2px 0px rgba(0, 0, 0, 0.15);
+       	}
+       .wrap-page{ 
+       		top: 0vw; 
+       		bottom: 0vw; 
+       		overflow-y: auto; 
+       		-webkit-overflow-scrolling:touch;
+       	}
+		
+       .logo {
+       		float: left;
+			width: 12vw;
+			height: 12vw;
+			margin-top: 4vw;
+			margin-left: 5vw;
+			border-radius: 90px;
+		}
+
+		.text-div {
+			float: left;
+			color: black;
+			height: 16vw;
+			width: 50%;
+			margin-top: 4vw;
+			margin-left: 4vw;
+			/*background: red;*/
+		}
+		.text-div .title {
+			font-size: 4.5vw;
+		}
+		.text-div .detail {
+			display: block;
+			margin-top: 2vw;
+			font-size: 3.7vw;
+			color: #9F9F9F;
+		}
+
+		.download-btn {
+			float: right;
+			margin-right: 3vw;
+			width: 20vw;
+			height: 8vw;
+			margin-top: 6vw;
+			text-align: center;
+			line-height: 8vw;
+			font-size: 4vw;
+			border-radius: 90px;
+			color: white;
+			background-color: #fe7800;
+		}
+		.download-btn a:link {   
+			font-size: 0.9rem;   
+			color: #fff;   
+			text-decoration: none;   
+		}   
+		.download-btn a:visited {   
+			font-size: 0.9rem;   
+			color: #fff;   
+			text-decoration: none;   
+		}
+
+		#shareBtnDiv2 {
+			background: white;
+			color: black;
+		}
+			.logo2 {
+				width: 14%;
+				height: 75%;
+				border-radius: 50%;
+			}
+			.detail font {
+				color: #fe7800;
+			}
+			.text-div2 {
+				width: 50%;
+				margin-left: 0vw;
+			}
+				.text-div2 .title2 {
+					display: block;
+					width: 100%;
+					text-overflow:ellipsis;
+					white-space:nowrap;
+					overflow:hidden;
+				}
+		.red_btn {
+			z-index: 99;
+			position: fixed;
+			bottom: 20vw;
+			right: 2vw;
+			width: 50px;
+			height: 50px;
+			animation: shake 1s linear infinite;
+		}
+			.red_btn img {
+				width: 100%;
+			}
+		@-webkit-keyframes shake {
+		  from, to {
+		    -webkit-transform: translate3d(0, 0, 0);
+		    transform: translate3d(0, 0, 0);
+		  }
+
+		  10%,90% {
+		    -webkit-transform: translate3d(-10px, 0, 0);
+		    transform: translate3d(-10px, 0, 0);
+		  }
+		30%,40%,50%,60%,70% {
+		    -webkit-transform: translate3d(0, 0, 0);
+		    transform: translate3d(0, 0, 0);
+		  }
+		  20%,80% {
+		    -webkit-transform: translate3d(10px, 0, 0);
+		    transform: translate3d(10px, 0, 0);
+		  }
+		}
+
+		/*广告位*/
+		.fixed_top_ad {
+			z-index: 66;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 18vw;
+			overflow: hidden;
+		}
+			.fixed_top_ad img {
+				width: 100%;
+			}
+		.fixed_bottom_ad {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 16.5vw;
+			overflow: hidden;
+		}
+			.fixed_bottom_ad img {
+				width: 100%;
+			}
+		.block_div {
+			height: 20vw;
+			width: 100%;
+			background: transparent;
+		}
+
+		/*遮罩层样式*/
+		.cover {
+			z-index: 100;
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: rgba(70,70,70,.5);
+			display: none;
+		}
+		.cover_img {
+			z-index: 101;
+			position: fixed;
+			width: 80%;
+			top: 30vw;
+			left: 10%;
+			display: none;
+		}
+		.cover_btn {
+			z-index: 101;
+			position: fixed;
+			top: 115vw;
+			left: 42.5%;
+			width: 15%;
+			display: none;
+			/*padding: 1vw;*/
+		}
+			.cover_btn img {
+				width: 60%;
+				margin-left: 20%;
+			}
+    </style>
+
+    <script type="text/javascript">	
+	    function getQueryString(name) {
+		    var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+		    var r = window.location.search.substr(1).match(reg);
+		    if (r != null) {
+		        return unescape(r[2]);
+		    }
+		    return null;
+		}	
+		function GetParams(){
+			var r = window.location.search.substr(1);
+			var icon = r.match(/headImg=(\S+)&nickName/);
+			var name = decodeURI(r.match(/nickName=(\S+)&from/));
+			var isTitle = r.match(/title=(\S+)/);
+			var articleUrl;
+			if(isTitle != null) {
+				var title = decodeURI(r.match(/title=(\S+)&articleUrl/)[1]);
+				console.log(title);
+				$("title").html(title || "悦头条");
+			}
+			var boboUrl = getQueryString('articleUrl').split('?')[0];
+			if(boboUrl == "https://s2.bbobo.com/bobo/ads/ytt.html") {
+				articleUrl = r.match(/articleUrl=(\S+)/)[1];
+			}else {
+				articleUrl = getQueryString('articleUrl');
+			}
+			console.log(boboUrl);
+			
+			var headImg = r.match(/headImg=(\S+)/);
+			phoneNum = getQueryString('phoneNum');
+			taskId = getQueryString('taskId');
+			return {
+				'articleUrl': articleUrl,
+				'phoneNum': phoneNum,
+				'nickName': name,
+				'headImg': icon,
+				'taskId': taskId
+			};
+		}
+
+		function Ajax(type, url, data, success, failed){
+		    // 创建ajax对象
+		    var xhr = null;
+		    if(window.XMLHttpRequest){
+		        xhr = new XMLHttpRequest();
+		    } else {
+		        xhr = new ActiveXObject('Microsoft.XMLHTTP')
+		    }
+		 
+		    var type = type.toUpperCase();
+		    // 用于清除缓存
+		    var random = Math.random();
+		 
+		    if(typeof data == 'object'){
+		        var str = '';
+		        for(var key in data){
+		            str += key+'='+data[key]+'&';
+		        }
+		        data = str.replace(/&$/, '');
+		    }
+		 
+		    if(type == 'GET'){
+		        if(data){
+		            xhr.open('GET', url + '?' + data, true);
+		        } else {
+		            xhr.open('GET', url + '?t=' + random, true);
+		        }
+		        xhr.send();
+		 
+		    } else if(type == 'POST'){
+		        xhr.open('POST', url, true);
+		        // 如果需要像 html 表单那样 POST 数据，请使用 setRequestHeader() 来添加 http 头。
+		        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		        xhr.send(data);
+		    }
+		 
+		    // 处理返回数据
+		    xhr.onreadystatechange = function(){
+		        if(xhr.readyState == 4){
+		            if(xhr.status == 200){
+		                success(xhr.responseText);
+		            } else {
+		                if(failed){
+		                    failed(xhr.status);
+		                }
+		            }
+		        }
+		    }
+		}
+
+		var articleUrl ="";
+		var phoneNum = "";
+		var taskId = "";
+		window.onload = function() {
+			var params = GetParams();
+			articleUrl = params.articleUrl;
+			phoneNum = params.phoneNum;
+			taskId = params.taskId;
+			name = params.nickName.split(",")[1];
+			icon = params.headImg;
+			console.log(params);
+			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum, taskId: taskId};
+			var hostname = "http://callback.ytoutiao.net";
+			// var hostname = "http://182.92.82.188:8084";
+			// 站外跳转
+			var arr;
+			var actionUrl;
+			var len;
+			function actions() {
+				// http://182.92.82.188:8084/yfax-htt-api/api/htt/queryAdsUrl
+				Ajax('get', hostname+'/yfax-htt-api/api/htt/queryAdsUrl', sendData, function(data){
+					var res = JSON.parse(data);
+					console.log(res);
+					if (res.data == null) {
+						actionUrl = "http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1394791029432";
+					}else {
+						var deepLink = parseInt(res.data.deepLinkRate);
+			    		var downLink = parseInt(res.data.downloadRate);
+			    		arr = res.data.adsUrl;
+			    		len = parseInt(Math.random()*arr.length);
+			    		console.log(len);
+			    		// console.log(arr[len].url); //站外随机跳转url
+			    		rand(deepLink*10);
+					}
+				},function(error) {
+					console.log(error);
+				});
+				// http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1394791029432
+				// arr = ["https://3g.jun4.com/38","http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1394791029432"];
+			}
+			// 随机概率
+	    	function rand(deep) {
+	    		var randNum = parseInt(Math.random()*101);
+	    		console.log(randNum);
+	    		if(randNum <= deep) {
+	    			actionUrl = arr[len].url;
+	    		}else {
+	    			actionUrl = "http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1394791029432";
+	    		}
+	    	}
+			actions();
+			
+			// 微信分享跳转
+	    	pushHistory();  
+	        window.addEventListener("popstate", function(e) {  
+	            //需要跳转的页面 
+	            window.location.href = actionUrl;
+	           }, false);  
+	        function pushHistory() {  
+	            var state = {  
+	                title: "title",  
+	                url: "#"  
+	            };  
+	            window.history.pushState(state, "title", "#");  
+	        }
+
+	        // doArticleAward  ==>  doShareTaskAward
+			Ajax('get', hostname+'/yfax-htt-api/api/htt/doShareTaskAward', sendData, function(data){
+				console.log(articleUrl);
+			    if (articleUrl.indexOf('eastday.com') > -1) {
+			    	articleUrl = articleUrl.replace('&ttaccid=null', '');
+					window.location.href = articleUrl;
+				} else {
+					document.getElementById("mainIframe").src = articleUrl;
+					// if(name == "null" || name == 'undefined') {
+					// 	document.getElementById("shareBtnDiv").style.display = "flex";
+					// }else {
+					// 	if (icon[1] == "null" || icon == null) {
+					// 		document.getElementsByClassName('logo2')[0].src = "./images/logo.png";
+					// 	}else {
+					// 		document.getElementsByClassName('logo2')[0].src = icon[1];
+					// 	}
+					// 	document.getElementById("shareBtnDiv2").style.display = "flex";
+					// 	document.getElementsByClassName('title2')[0].innerHTML = name;
+					// }
+				}
+			}, function(error){
+			    console.log(error);
+			});
+			//广告上报
+			function PointForAds(id,url,type) {
+				$.ajax({
+					type:"post",
+					url: hostname+"/yfax-htt-api/api/htt/doBurryPointAdsHis",
+					// dataType:"jsonp",
+					data: {
+						adsType: 99,
+						adsId: id,
+						url: url,
+						actionType: type
+					},
+					success:function(res){
+						console.log(res);
+					}
+				});
+			}
+			//获取广告位接口
+			// 1=置顶2=置底3=浮标4=插屏http://182.92.82.188:8084/yfax-htt-api/api/doBurryPointForAds
+			function getAd() {
+				//hostname+ /yfax-htt-api/api/htt/queryAdsOutside
+				$.ajax({
+					url:hostname+"/yfax-htt-api/api/htt/queryAdsOutside",
+					success:function(res){
+						console.log(res.data);
+						var lens = res.data && res.data.length,
+							topad = [],
+							bottomad = [],
+							floatad,
+							alertad;
+			        	if(lens != null) {
+			        		//遍历获取不同类型广告位置，并存入数组
+							for(var i = 0; i < lens; i++) {
+								if(res.data[i].outsidePosition == 1) {
+									topad.push(i);
+								}else if(res.data[i].outsidePosition == 2) {
+									bottomad.push(i);
+								}else if(res.data[i].outsidePosition == 3) {
+									floatad = i;
+								}else if(res.data[i].outsidePosition == 4) {
+									alertad = i;
+								}
+							}
+
+							// console.log(topad);
+			    //     		console.log(bottomad);
+			    //     		console.log(floatad);
+			    //     		console.log(alertad);
+
+							// 渲染置顶广告
+							if(topad == '' || topad == null){
+								$(".fixed_top_ad").hide();
+								$(".wrap-page").css("top","0");
+							}else {
+								for(var j = 0;j < topad.length; j++) {
+									$(".fixed_top_ad .swiper-wrapper").append('<div class="swiper-slide"><a href="'+res.data[topad[j]].url+'"><img src="'+res.data[topad[j]].imgUrlOutside+'"/></a></div>');
+									PointForAds(res.data[topad[j]].adsId,res.data[topad[j]].url,1);
+								}
+
+								// 统计点击
+								$(".fixed_top_ad .swiper-slide").click(function() {
+									var a_href = $(this).find("a").attr("href");
+									var indexs = $(this).index();
+									if(a_href.indexOf(".apk") > 0) {
+										PointForAds(res.data[topad[indexs]].adsId,res.data[topad[indexs]].url,3);
+									}else {
+										PointForAds(res.data[topad[indexs]].adsId,res.data[topad[indexs]].url,2);
+									}
+								});
+								// PointForAds();
+							}
+							// 渲染底部广告
+							if(bottomad == '' || bottomad == null){
+								$(".fixed_bottom_ad").hide();
+								$(".wrap-page").css("bottom","0");
+							}else {
+								for(var k = 0;k < bottomad.length; k++) {
+									$(".fixed_bottom_ad .swiper-wrapper").append('<div class="swiper-slide"><a href="'+res.data[bottomad[k]].url+'"><img src="'+res.data[bottomad[k]].imgUrlOutside+'"/></a></div>');
+									PointForAds(res.data[bottomad[k]].adsId,res.data[bottomad[k]].url,1);	
+								}
+								// 统计点击
+								$(".fixed_bottom_ad .swiper-slide").click(function() {
+									var a_href = $(this).find("a").attr("href");
+									var indexs = $(this).index();
+									if(a_href.indexOf(".apk") > 0) {
+										PointForAds(res.data[bottomad[indexs]].adsId,res.data[bottomad[indexs]].url,3);
+									}else {
+										PointForAds(res.data[bottomad[indexs]].adsId,res.data[bottomad[indexs]].url,2);
+									}
+								});
+							}
+							// 渲染浮标
+							if(floatad != null || floatad != undefined) {
+								$(".red_btn_a").attr("href",res.data[floatad].url);
+								$(".red_btn_img").attr("src",res.data[floatad].imgUrlOutside);
+								PointForAds(res.data[floatad].adsId,res.data[floatad].url,1);
+								// 统计点击
+								$(".red_btn_a").click(function() {
+									var a_href = $(this).attr("href");
+									if(a_href.indexOf(".apk") > 0) {
+										PointForAds(res.data[floatad].adsId,res.data[floatad].url,3);
+									}else {
+										PointForAds(res.data[floatad].adsId,res.data[floatad].url,2);
+									}
+								});
+							}
+							// 渲染插屏
+							if(alertad == undefined || alertad == null) {
+								$(".cover,.cover_img,.cover_btn").hide();
+							}else {
+								$(".alert_a").attr("href",res.data[alertad].url);
+								$(".cover_img").attr("src",res.data[alertad].imgUrlOutside);
+								coverFn();
+								PointForAds(res.data[alertad].adsId,res.data[alertad].url,1);
+								// 统计点击
+								$(".alert_a").click(function() {
+									var a_href = $(this).attr("href");
+									if(a_href.indexOf(".apk") > 0) {
+										PointForAds(res.data[alertad].adsId,res.data[alertad].url,3);
+									}else {
+										PointForAds(res.data[alertad].adsId,res.data[alertad].url,2);
+									}
+								});
+							}
+
+				        	// 调用swiper
+				        	var mySwiper = new Swiper('.fixed_top_ad,.fixed_bottom_ad',{
+								// pagination : '.swiper-pagination',
+								// preventLinksPropagation : false,
+								autoplay : 3000,
+								// autoplayDisableOnInteraction : false,
+								// effect : 'flip',
+								// loop:true
+							});
+			        	}else {
+			        		$(".wrap-page").css({"top":"0","bottom":"0vw"});
+			        	}
+						
+			    	}
+				});
+			}
+			getAd();
+			// 遮罩层
+			function coverFn() {
+				$(".cover").show();
+				$(".cover_img,.cover_btn").fadeIn(500);
+				$(".cover_btn").click(function() {
+					$(".cover,.cover_img,.cover_btn").hide();
+				});
+			}
+
+			// 推啊上报接口
+			// function tuiA(type) {
+			// 	$.ajax({
+			// 		type:"post",
+			// 		url: hostname+"/yfax-htt-api/api/htt/doBurryPointAdsHis",
+			// 		// dataType:"jsonp",
+			// 		data: {
+			// 			adsType: 88,
+			// 			adsId: "",
+			// 			url: "",
+			// 			actionType: type
+			// 		},
+			// 		success:function(res){
+			// 			console.log(res);
+			// 		}
+			// 	});
+			// }
+			// tuiA(1);
+			// // 新增推啊广告上报
+			// $(".fubiao-dialog").click(function() {
+			// 	tuiA(2);
+			// });
+		}
+	</script>
+</head>
+<body>
+	<div class="cover"></div>
+	<a class="alert_a" href=""><img class="cover_img" src=""/></a>
+	<div class="cover_btn">
+		<img src="images/pop_up_quit_icon.png"/>
+	</div>
+    <div class="wrap-page">
+        <iframe id="mainIframe" frameBorder=0 width="100%" height="100%" src=""></iframe>
+    </div> 
+    <!-- <a class="red_btn_a" href="http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1397055195751"> -->
+	   <!--  <div id="red_btn" class="red_btn">
+	    	<img class="red_btn_img" src="images/mine_invite_redbag_img.png" alt="btn">	
+	    </div> -->
+	<!-- </a> -->
+	<!-- <div class="fixed_top_ad">
+	    <div class="swiper-wrapper"></div>
+	</div>
+	<div class="fixed_bottom_ad">
+		<div class="swiper-wrapper"></div>
+	</div> -->
+	<!-- <div class="block_div"></div> -->
+    <!-- <div id="shareBtnDiv" class="footer" style="overflow: hidden;">
+    	<img class="logo" src="./images/logo.png">
+    	<div class="text-div">
+    		<span class="title">悦头条</span><br/>
+    		<span class="detail">看资讯就送大礼包</span>
+    	</div>
+    	<a href="https://at.umeng.com/TvW1Hj">
+	    	<div class="download-btn">
+	    		打开
+	    	</div>
+    	</a>
+    </div> -->
+
+     <!-- <div id="shareBtnDiv2" class="footer" style="display: none; overflow: hidden;color: black">
+    	<img class="logo2" src=""/>
+    	<div class="text-div text-div2">
+    		<span class="title2"></span>
+    		<span class="detail detail2">在用<font>悦头条</font>邀你一起</span>
+    	</div>
+    	<div class="download-btn">
+    		<a href="http://url.cn/569cYV7" style="height: 80%;">立即下载</a>
+    	</div>
+    </div> -->
+</body>
+</html>
+<!-- <script>
+	(function(){
+      var o = document.getElementsByTagName("script");
+      var c = o[o.length-1].parentNode;
+      var ta = document.createElement('script'); ta.type = 'text/javascript'; ta.async = true;
+      ta.src = '//yun.lvehaisen.com/h5-mami/msdk/tmk.js';
+      ta.onload = function() {
+        new TuiSDK({
+          container: "#red_btn",
+          appKey: '2FeUYuki19ygFVQmQMUvpGYUyu9v',
+          slotId: '197490',
+          local: "right: 0vw; top: 60%"
+        });
+      }
+      var s = document.querySelector('head'); s.appendChild(ta);
+    })();
+</script> -->
+
