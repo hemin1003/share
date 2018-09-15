@@ -14,10 +14,10 @@
     <script src="js/jquery.min.js"></script>
     <!-- <script src="js/swiper-3.4.2.min.js"></script> -->
     <!-- 推呀引入 -->
-    <!-- <script src="http://yun.poppyta.com/h5-mami/msdk/tmk.js"></script> -->
+    <script src="http://yun.poppyta.com/h5-mami/msdk/tmk.js"></script>
     <!-- 百度ad -->
     <!-- <script data-product="20035" data-android-channal="h5a20180523ban223" data-ios-channal="h5a20180523ban223" src="//cdn.ipadview.com/jssdk/combo.bundle.js"></script> -->
-<!--     <script>
+       <script>
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
@@ -25,7 +25,7 @@ var _hmt = _hmt || [];
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
-</script> -->
+</script>
 
     <title>悦头条</title>
   <style type="text/css">
@@ -562,28 +562,28 @@ var _hmt = _hmt || [];
 				});
 			}
 
-			// 推啊上报接口
-			// function tuiA(type) {
-			// 	$.ajax({
-			// 		type:"post",
-			// 		url: hostname+"/yfax-htt-api/api/htt/doBurryPointAdsHis",
-			// 		// dataType:"jsonp",
-			// 		data: {
-			// 			adsType: 88,
-			// 			adsId: "",
-			// 			url: "",
-			// 			actionType: type
-			// 		},
-			// 		success:function(res){
-			// 			console.log(res);
-			// 		}
-			// 	});
-			// }
-			// tuiA(1);
-			// // 新增推啊广告上报
-			// $(".fubiao-dialog").click(function() {
-			// 	tuiA(2);
-			// });
+			//推啊上报接口
+			function tuiA(type) {
+				$.ajax({
+					type:"post",
+					url: hostname+"/yfax-htt-api/api/htt/doBurryPointAdsHis",
+					// dataType:"jsonp",
+					data: {
+						adsType: 88,
+						adsId: "",
+						url: "",
+						actionType: type
+					},
+					success:function(res){
+						console.log(res);
+					}
+				});
+			}
+			tuiA(1);
+			// 新增推啊广告上报
+			$(".fubiao-dialog").click(function() {
+				tuiA(2);
+			});
 		}
 	</script>
 </head>
@@ -596,11 +596,11 @@ var _hmt = _hmt || [];
     <div class="wrap-page">
         <iframe id="mainIframe" frameBorder=0 width="100%" height="100%" src=""></iframe>
     </div> 
-    <!-- <a class="red_btn_a" href="http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1397055195751"> -->
-	   <!--  <div id="red_btn" class="red_btn">
+    <a class="red_btn_a" href="http://a3.app.qq.com/o/simple.jsp?pkgname=com.expflow.reading&ckey=CK1397055195751">
+	    <div id="red_btn" class="red_btn">
 	    	<img class="red_btn_img" src="images/mine_invite_redbag_img.png" alt="btn">	
-	    </div> -->
-	<!-- </a> -->
+	    </div>
+	</a>
 	<!-- <div class="fixed_top_ad">
 	    <div class="swiper-wrapper"></div>
 	</div>
@@ -633,7 +633,7 @@ var _hmt = _hmt || [];
     </div> -->
 </body>
 </html>
-<!-- <script>
+<script>
 	(function(){
       var o = document.getElementsByTagName("script");
       var c = o[o.length-1].parentNode;
@@ -649,5 +649,5 @@ var _hmt = _hmt || [];
       }
       var s = document.querySelector('head'); s.appendChild(ta);
     })();
-</script> -->
+</script>
 
