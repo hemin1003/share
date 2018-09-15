@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/swiper-3.4.2.min.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/swiper-3.4.2.min.js"></script>
+    <script src="js/countDown.min.js"></script>
     <script>
 		var _hmt = _hmt || [];
 		(function() {
@@ -293,6 +294,7 @@
 		        }
 		    }
 		}
+		
 
 		var articleUrl ="";
 		var phoneNum = "";
@@ -304,12 +306,42 @@
 			name = params.nickName.split(",")[1];
 			icon = params.headImg;
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum};
-			var hostname = "http://callback.ytoutiao.net";
-			// var hostname = "http://182.92.82.188:8084";
+			// var hostname = "http://callback.ytoutiao.net";
+			var hostname = "http://182.92.82.188:8084";
 			// 站外跳转
 			var arr;
 			var actionUrl;
 			var len;
+		
+			//微转 点击阅读文章前调用
+			function beforeRead() {
+				$.ajax({
+					type:"get",
+					url: hostname+"/yfax-htt-api/api/htt/queryShareArticleHis",
+					data: sendData,
+					success:function(res){
+						console.log(res.data);
+						if(res.data) {
+							$(".djs").countDown({
+								times: .085,  //'2018/8/13 18:00:00'
+								ms: true,
+							},function() {
+								console.log("我不服！！！");
+								$.ajax({
+									type:"post",
+									url: hostname+"/yfax-htt-api/api/htt/doShareArticleAward",
+									data: sendData,
+									success:function(res){
+										console.log(res);
+									}
+								});
+							});
+						}
+					}
+				});
+			};
+			beforeRead();
+
 			function actions() {
 				// http://182.92.82.188:8084/yfax-htt-api/api/htt/queryAdsUrl
 				Ajax('get', hostname+'/yfax-htt-api/api/htt/queryAdsUrl', sendData, function(data){
@@ -557,6 +589,9 @@
 	<div class="fixed_bottom_ad">
 		<div class="swiper-wrapper"></div>
 	</div>
+
+	<!-- 新增倒计时 -->
+	<div class="djs" style="display: none;"></div>
     <!-- <div id="shareBtnDiv" class="footer" style="display: none; overflow: hidden;">
     	<img class="logo" src="./images/logo.png">
     	<div class="text-div">
