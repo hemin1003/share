@@ -30,6 +30,28 @@
          box-sizing:border-box;
       }
 
+      .loadcover {
+			z-index: 99;
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			width: 100%;
+			height: 100%;
+			background: white;
+		}
+			.loadcover img {
+				position: fixed;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				width: 20vw;
+				height: 20vw;
+				margin: auto;
+			}
+
        .footer,.wrap-page { 
        		position: absolute; 
        		left: 0;
@@ -49,7 +71,8 @@
     		justify-content: space-between;
        	}
        .wrap-page{ 
-       		top: 18vw; 
+       		top: 0vw;
+       		/*top: 18vw; */
        		bottom: 18vw; 
        		overflow-y: auto; 
        		-webkit-overflow-scrolling:touch;
@@ -583,12 +606,12 @@
 	    	<img class="red_btn_img" src="images/mine_invite_redbag_img.png" alt="btn">	
 	    </div>
 	</a>
-	<div class="fixed_top_ad">
+	<!-- <div class="fixed_top_ad">
 	    <div class="swiper-wrapper"></div>
 	</div>
 	<div class="fixed_bottom_ad">
 		<div class="swiper-wrapper"></div>
-	</div>
+	</div> -->
 
 	<!-- 新增倒计时 -->
 	<div class="djs" style="display: none;"></div>
@@ -615,3 +638,4 @@
     </div> -->
 </body>
 </html>
+<script src="js/onload.js"></script>
