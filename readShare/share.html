@@ -26,13 +26,34 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-
     <title>悦头条</title>
   <style type="text/css">
       *{ -webkit-box-sizing:border-box;
          -moz-box-sizing:border-box;
          box-sizing:border-box;
       }
+
+      .loadcover {
+			z-index: 99;
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			width: 100%;
+			height: 100%;
+			background: white;
+		}
+			.loadcover img {
+				position: fixed;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				width: 20vw;
+				height: 20vw;
+				margin: auto;
+			}
 
        .footer,.wrap-page { 
        		position: absolute; 
@@ -588,7 +609,7 @@ var _hmt = _hmt || [];
 	</script>
 </head>
 <body>
-	<div class="cover"></div>
+	<!-- <div class="cover"></div> -->
 	<a class="alert_a" href=""><img class="cover_img" src=""/></a>
 	<div class="cover_btn">
 		<img src="images/pop_up_quit_icon.png"/>
@@ -634,6 +655,7 @@ var _hmt = _hmt || [];
     </div> -->
 </body>
 </html>
+<script src="js/onload.js"></script>
 <script>
 	(function(){
       var o = document.getElementsByTagName("script");
@@ -651,4 +673,3 @@ var _hmt = _hmt || [];
       var s = document.querySelector('head'); s.appendChild(ta);
     })();
 </script>
-
