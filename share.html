@@ -352,7 +352,7 @@
 								console.log("我不服！！！");
 								$.ajax({
 									type:"post",
-									url: hostname+"/yfax-htt-api/api/htt/doShareArticleAward",
+									url: "http://192.168.0.205:8080"+"/yfax-htt-api/api/htt/doShareArticleAward",
 									data: sendData,
 									success:function(res){
 										console.log(res);
