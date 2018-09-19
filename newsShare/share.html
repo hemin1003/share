@@ -434,155 +434,150 @@ var _hmt = _hmt || [];
 			    console.log(error);
 			});
 			//广告上报
-			function PointForAds(id,url,type) {
-				$.ajax({
-					type:"post",
-					url: hostname+"/yfax-htt-api/api/htt/doBurryPointAdsHis",
-					// dataType:"jsonp",
-					data: {
-						adsType: 99,
-						adsId: id,
-						url: url,
-						actionType: type
-					},
-					success:function(res){
-						console.log(res);
-					}
-				});
-			}
+			// function PointForAds(id,url,type) {
+			// 	$.ajax({
+			// 		type:"post",
+			// 		url: hostname+"/yfax-htt-api/api/htt/doBurryPointAdsHis",
+			// 		// dataType:"jsonp",
+			// 		data: {
+			// 			adsType: 99,
+			// 			adsId: id,
+			// 			url: url,
+			// 			actionType: type
+			// 		},
+			// 		success:function(res){
+			// 			console.log(res);
+			// 		}
+			// 	});
+			// }
 			//获取广告位接口
 			// 1=置顶2=置底3=浮标4=插屏http://182.92.82.188:8084/yfax-htt-api/api/doBurryPointForAds
-			function getAd() {
-				//hostname+ /yfax-htt-api/api/htt/queryAdsOutside
-				$.ajax({
-					url:hostname+"/yfax-htt-api/api/htt/queryAdsOutside",
-					success:function(res){
-						console.log(res.data);
-						var lens = res.data && res.data.length,
-							topad = [],
-							bottomad = [],
-							floatad,
-							alertad;
-			        	if(lens != null) {
-			        		//遍历获取不同类型广告位置，并存入数组
-							for(var i = 0; i < lens; i++) {
-								if(res.data[i].outsidePosition == 1) {
-									topad.push(i);
-								}else if(res.data[i].outsidePosition == 2) {
-									bottomad.push(i);
-								}else if(res.data[i].outsidePosition == 3) {
-									floatad = i;
-								}else if(res.data[i].outsidePosition == 4) {
-									alertad = i;
-								}
-							}
+			// function getAd() {
+			// 	//hostname+ /yfax-htt-api/api/htt/queryAdsOutside
+			// 	$.ajax({
+			// 		url:hostname+"/yfax-htt-api/api/htt/queryAdsOutside",
+			// 		success:function(res){
+			// 			console.log(res.data);
+			// 			var lens = res.data && res.data.length,
+			// 				topad = [],
+			// 				bottomad = [],
+			// 				floatad,
+			// 				alertad;
+			//         	if(lens != null) {
+			//         		//遍历获取不同类型广告位置，并存入数组
+			// 				for(var i = 0; i < lens; i++) {
+			// 					if(res.data[i].outsidePosition == 1) {
+			// 						topad.push(i);
+			// 					}else if(res.data[i].outsidePosition == 2) {
+			// 						bottomad.push(i);
+			// 					}else if(res.data[i].outsidePosition == 3) {
+			// 						floatad = i;
+			// 					}else if(res.data[i].outsidePosition == 4) {
+			// 						alertad = i;
+			// 					}
+			// 				}
 
-							// console.log(topad);
-			    //     		console.log(bottomad);
-			    //     		console.log(floatad);
-			    //     		console.log(alertad);
+			// 				// 渲染置顶广告
+			// 				if(topad == '' || topad == null){
+			// 					$(".fixed_top_ad").hide();
+			// 					$(".wrap-page").css("top","0");
+			// 				}else {
+			// 					for(var j = 0;j < topad.length; j++) {
+			// 						$(".fixed_top_ad .swiper-wrapper").append('<div class="swiper-slide"><a href="'+res.data[topad[j]].url+'"><img src="'+res.data[topad[j]].imgUrlOutside+'"/></a></div>');
+			// 						PointForAds(res.data[topad[j]].adsId,res.data[topad[j]].url,1);
+			// 					}
 
-							// 渲染置顶广告
-							if(topad == '' || topad == null){
-								$(".fixed_top_ad").hide();
-								$(".wrap-page").css("top","0");
-							}else {
-								for(var j = 0;j < topad.length; j++) {
-									$(".fixed_top_ad .swiper-wrapper").append('<div class="swiper-slide"><a href="'+res.data[topad[j]].url+'"><img src="'+res.data[topad[j]].imgUrlOutside+'"/></a></div>');
-									PointForAds(res.data[topad[j]].adsId,res.data[topad[j]].url,1);
-								}
+			// 					// 统计点击
+			// 					$(".fixed_top_ad .swiper-slide").click(function() {
+			// 						var a_href = $(this).find("a").attr("href");
+			// 						var indexs = $(this).index();
+			// 						if(a_href.indexOf(".apk") > 0) {
+			// 							PointForAds(res.data[topad[indexs]].adsId,res.data[topad[indexs]].url,3);
+			// 						}else {
+			// 							PointForAds(res.data[topad[indexs]].adsId,res.data[topad[indexs]].url,2);
+			// 						}
+			// 					});
+			// 					// PointForAds();
+			// 				}
+			// 				// 渲染底部广告
+			// 				if(bottomad == '' || bottomad == null){
+			// 					$(".fixed_bottom_ad").hide();
+			// 					$(".wrap-page").css("bottom","0");
+			// 				}else {
+			// 					for(var k = 0;k < bottomad.length; k++) {
+			// 						$(".fixed_bottom_ad .swiper-wrapper").append('<div class="swiper-slide"><a href="'+res.data[bottomad[k]].url+'"><img src="'+res.data[bottomad[k]].imgUrlOutside+'"/></a></div>');
+			// 						PointForAds(res.data[bottomad[k]].adsId,res.data[bottomad[k]].url,1);	
+			// 					}
+			// 					// 统计点击
+			// 					$(".fixed_bottom_ad .swiper-slide").click(function() {
+			// 						var a_href = $(this).find("a").attr("href");
+			// 						var indexs = $(this).index();
+			// 						if(a_href.indexOf(".apk") > 0) {
+			// 							PointForAds(res.data[bottomad[indexs]].adsId,res.data[bottomad[indexs]].url,3);
+			// 						}else {
+			// 							PointForAds(res.data[bottomad[indexs]].adsId,res.data[bottomad[indexs]].url,2);
+			// 						}
+			// 					});
+			// 				}
+			// 				// 渲染浮标
+			// 				if(floatad != null || floatad != undefined) {
+			// 					$(".red_btn_a").attr("href",res.data[floatad].url);
+			// 					$(".red_btn_img").attr("src",res.data[floatad].imgUrlOutside);
+			// 					PointForAds(res.data[floatad].adsId,res.data[floatad].url,1);
+			// 					// 统计点击
+			// 					$(".red_btn_a").click(function() {
+			// 						var a_href = $(this).attr("href");
+			// 						if(a_href.indexOf(".apk") > 0) {
+			// 							PointForAds(res.data[floatad].adsId,res.data[floatad].url,3);
+			// 						}else {
+			// 							PointForAds(res.data[floatad].adsId,res.data[floatad].url,2);
+			// 						}
+			// 					});
+			// 				}
+			// 				// 渲染插屏
+			// 				if(alertad == undefined || alertad == null) {
+			// 					$(".cover,.cover_img,.cover_btn").hide();
+			// 				}else {
+			// 					$(".alert_a").attr("href",res.data[alertad].url);
+			// 					$(".cover_img").attr("src",res.data[alertad].imgUrlOutside);
+			// 					coverFn();
+			// 					PointForAds(res.data[alertad].adsId,res.data[alertad].url,1);
+			// 					// 统计点击
+			// 					$(".alert_a").click(function() {
+			// 						var a_href = $(this).attr("href");
+			// 						if(a_href.indexOf(".apk") > 0) {
+			// 							PointForAds(res.data[alertad].adsId,res.data[alertad].url,3);
+			// 						}else {
+			// 							PointForAds(res.data[alertad].adsId,res.data[alertad].url,2);
+			// 						}
+			// 					});
+			// 				}
 
-								// 统计点击
-								$(".fixed_top_ad .swiper-slide").click(function() {
-									var a_href = $(this).find("a").attr("href");
-									var indexs = $(this).index();
-									if(a_href.indexOf(".apk") > 0) {
-										PointForAds(res.data[topad[indexs]].adsId,res.data[topad[indexs]].url,3);
-									}else {
-										PointForAds(res.data[topad[indexs]].adsId,res.data[topad[indexs]].url,2);
-									}
-								});
-								// PointForAds();
-							}
-							// 渲染底部广告
-							if(bottomad == '' || bottomad == null){
-								$(".fixed_bottom_ad").hide();
-								$(".wrap-page").css("bottom","0");
-							}else {
-								for(var k = 0;k < bottomad.length; k++) {
-									$(".fixed_bottom_ad .swiper-wrapper").append('<div class="swiper-slide"><a href="'+res.data[bottomad[k]].url+'"><img src="'+res.data[bottomad[k]].imgUrlOutside+'"/></a></div>');
-									PointForAds(res.data[bottomad[k]].adsId,res.data[bottomad[k]].url,1);	
-								}
-								// 统计点击
-								$(".fixed_bottom_ad .swiper-slide").click(function() {
-									var a_href = $(this).find("a").attr("href");
-									var indexs = $(this).index();
-									if(a_href.indexOf(".apk") > 0) {
-										PointForAds(res.data[bottomad[indexs]].adsId,res.data[bottomad[indexs]].url,3);
-									}else {
-										PointForAds(res.data[bottomad[indexs]].adsId,res.data[bottomad[indexs]].url,2);
-									}
-								});
-							}
-							// 渲染浮标
-							if(floatad != null || floatad != undefined) {
-								$(".red_btn_a").attr("href",res.data[floatad].url);
-								$(".red_btn_img").attr("src",res.data[floatad].imgUrlOutside);
-								PointForAds(res.data[floatad].adsId,res.data[floatad].url,1);
-								// 统计点击
-								$(".red_btn_a").click(function() {
-									var a_href = $(this).attr("href");
-									if(a_href.indexOf(".apk") > 0) {
-										PointForAds(res.data[floatad].adsId,res.data[floatad].url,3);
-									}else {
-										PointForAds(res.data[floatad].adsId,res.data[floatad].url,2);
-									}
-								});
-							}
-							// 渲染插屏
-							if(alertad == undefined || alertad == null) {
-								$(".cover,.cover_img,.cover_btn").hide();
-							}else {
-								$(".alert_a").attr("href",res.data[alertad].url);
-								$(".cover_img").attr("src",res.data[alertad].imgUrlOutside);
-								coverFn();
-								PointForAds(res.data[alertad].adsId,res.data[alertad].url,1);
-								// 统计点击
-								$(".alert_a").click(function() {
-									var a_href = $(this).attr("href");
-									if(a_href.indexOf(".apk") > 0) {
-										PointForAds(res.data[alertad].adsId,res.data[alertad].url,3);
-									}else {
-										PointForAds(res.data[alertad].adsId,res.data[alertad].url,2);
-									}
-								});
-							}
-
-				        	// 调用swiper
-				        	var mySwiper = new Swiper('.fixed_top_ad,.fixed_bottom_ad',{
-								// pagination : '.swiper-pagination',
-								// preventLinksPropagation : false,
-								autoplay : 3000,
-								// autoplayDisableOnInteraction : false,
-								// effect : 'flip',
-								// loop:true
-							});
-			        	}else {
-			        		$(".wrap-page").css({"top":"0","bottom":"0vw"});
-			        	}
+			// 	        	// 调用swiper
+			// 	        	var mySwiper = new Swiper('.fixed_top_ad,.fixed_bottom_ad',{
+			// 					// pagination : '.swiper-pagination',
+			// 					// preventLinksPropagation : false,
+			// 					autoplay : 3000,
+			// 					// autoplayDisableOnInteraction : false,
+			// 					// effect : 'flip',
+			// 					// loop:true
+			// 				});
+			//         	}else {
+			//         		$(".wrap-page").css({"top":"0","bottom":"0vw"});
+			//         	}
 						
-			    	}
-				});
-			}
-			getAd();
-			// 遮罩层
-			function coverFn() {
-				$(".cover").show();
-				$(".cover_img,.cover_btn").fadeIn(500);
-				$(".cover_btn").click(function() {
-					$(".cover,.cover_img,.cover_btn").hide();
-				});
-			}
+			//     	}
+			// 	});
+			// }
+			// getAd();
+			// // 遮罩层
+			// function coverFn() {
+			// 	$(".cover").show();
+			// 	$(".cover_img,.cover_btn").fadeIn(500);
+			// 	$(".cover_btn").click(function() {
+			// 		$(".cover,.cover_img,.cover_btn").hide();
+			// 	});
+			// }
 
 			//推啊上报接口
 			function tuiA(type) {
