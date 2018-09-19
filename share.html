@@ -331,7 +331,7 @@
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum};
 			// var hostname = "http://callback.ytoutiao.net";
 			var hostname = "http://182.92.82.188:8084";
-			// 站外跳转
+			// 站外跳转192.168.0.205:8080
 			var arr;
 			var actionUrl;
 			var len;
@@ -340,7 +340,7 @@
 			function beforeRead() {
 				$.ajax({
 					type:"get",
-					url: hostname+"/yfax-htt-api/api/htt/queryShareArticleHis",
+					url: "http://192.168.0.205:8080"+"/yfax-htt-api/api/htt/queryShareArticleHis",
 					data: sendData,
 					success:function(res){
 						console.log(res.data);
