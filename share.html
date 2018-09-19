@@ -242,20 +242,22 @@
 			var icon = r.match(/headImg=(\S+)&nickName/);
 			var name = decodeURI(r.match(/nickName=(\S+)&from/));
 			var isTitle = r.match(/title=(\S+)/);
-			var articleUrl;
+			var articleUrl,goldUrl;
 			if(isTitle != null) {
 				var title = decodeURI(r.match(/title=(\S+)&articleUrl/)[1]);
 				console.log(title);
 				$("title").html(title || "悦头条");
 			}
-			articleUrl = r.match(/articleUrl=(\S+)/)[1];
-			// var boboUrl = getQueryString('articleUrl').split('?')[0];
-			// if(boboUrl == "http://s2.zhansha.tv/bobo/ads/ytt.html") {
-			// 	articleUrl = r.match(/articleUrl=(\S+)/)[1];
-			// 	console.log('66666');
-			// }else {
-			// 	articleUrl = getQueryString('articleUrl');
-			// }
+			// 判断是否有bobo
+			if(r.split('&')[0].split('bobo').length == 2) {
+				goldUrl = r.split('&')[0].split('articleUrl=')[1].split('?')[0];
+			}
+			var boboUrl = getQueryString('articleUrl').split('?')[0];
+			if(boboUrl == goldUrl) {
+				articleUrl = r.match(/articleUrl=(\S+)/)[1];
+			}else {
+				articleUrl = getQueryString('articleUrl');
+			}
 			console.log(articleUrl);
 			
 			var headImg = r.match(/headImg=(\S+)/);
