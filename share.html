@@ -248,12 +248,14 @@
 				console.log(title);
 				$("title").html(title || "悦头条");
 			}
-			var boboUrl = getQueryString('articleUrl').split('?')[0];
-			if(boboUrl == "https://s2.bbobo.com/bobo/ads/ytt.html") {
-				articleUrl = r.match(/articleUrl=(\S+)/)[1];
-			}else {
-				articleUrl = getQueryString('articleUrl');
-			}
+			articleUrl = r.match(/articleUrl=(\S+)/)[1];
+			// var boboUrl = getQueryString('articleUrl').split('?')[0];
+			// if(boboUrl == "http://s2.zhansha.tv/bobo/ads/ytt.html") {
+			// 	articleUrl = r.match(/articleUrl=(\S+)/)[1];
+			// 	console.log('66666');
+			// }else {
+			// 	articleUrl = getQueryString('articleUrl');
+			// }
 			console.log(articleUrl);
 			
 			var headImg = r.match(/headImg=(\S+)/);
