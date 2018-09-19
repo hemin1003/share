@@ -341,33 +341,33 @@
 			var len;
 		
 			//微转 点击阅读文章前调用
-			function beforeRead() {
-				$.ajax({
-					type:"get",
-					url: hostname+"/yfax-htt-api/api/htt/queryShareArticleHis",
-					data: sendData,
-					success:function(res){
-						console.log(res.data);
-						if(res.data) {
-							$(".djs").countDown({
-								times: .085,  //'2018/8/13 18:00:00'
-								ms: true,
-							},function() {
-								console.log("我不服！！！");
-								$.ajax({
-									type:"post",
-									url: hostname+"/yfax-htt-api/api/htt/doShareArticleAward",
-									data: sendData,
-									success:function(res){
-										console.log(res);
-									}
-								});
-							});
-						}
-					}
-				});
-			};
-			beforeRead();
+			// function beforeRead() {
+			// 	$.ajax({
+			// 		type:"get",
+			// 		url: hostname+"/yfax-htt-api/api/htt/queryShareArticleHis",
+			// 		data: sendData,
+			// 		success:function(res){
+			// 			console.log(res.data);
+			// 			if(res.data) {
+			// 				$(".djs").countDown({
+			// 					times: .085,  //'2018/8/13 18:00:00'
+			// 					ms: true,
+			// 				},function() {
+			// 					console.log("我不服！！！");
+			// 					$.ajax({
+			// 						type:"post",
+			// 						url: hostname+"/yfax-htt-api/api/htt/doShareArticleAward",
+			// 						data: sendData,
+			// 						success:function(res){
+			// 							console.log(res);
+			// 						}
+			// 					});
+			// 				});
+			// 			}
+			// 		}
+			// 	});
+			// };
+			// beforeRead();
 
 			function actions() {
 				// http://182.92.82.188:8084/yfax-htt-api/api/htt/queryAdsUrl
