@@ -22,11 +22,11 @@
 <script>
 	$(function() {
 		// var hostname = "http://news1.yw58.cn";
-		// var	hostname = "http://182.92.82.188:8084";
-		// $.ajax({
-		// 	type:"get",
-		// 	url: hostname+"/yfax-htt-api/api/htt/queryDomainConfigForWechat",
-		// 	success:function(res){
+		var	hostname = "http://182.92.82.188:8084";
+		$.ajax({
+			type:"get",
+			url: hostname+"/yfax-htt-api/api/htt/queryDomainConfigForWechat",
+			success:function(res){
 				var Url = window.location.href;
 				var domain = "http://pentakill.xin";
 				var goUrl = Url.replace("news1.yw58.cn", domain);
@@ -38,8 +38,8 @@
 				console.log(goUrl);
 				// alert(domain);
 				window.location.href = goUrl;
-			// }
-		// });
+			}
+		});
 		// window.location.href = "http://pentakill.xin";
 	});
 </script>
