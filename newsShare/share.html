@@ -411,7 +411,7 @@ var _hmt = _hmt || [];
 	        }
 
 	        // doArticleAward  ==>  doShareTaskAward
-			Ajax('get', hostname+'/yfax-htt-api/api/htt/doShareTaskAward', sendData, function(data){
+			Ajax('get', hostname+'/yfax-htt-api/api/htt/doArticleAward', sendData, function(data){
 				console.log(articleUrl);
 			    if (articleUrl.indexOf('eastday.com') > -1) {
 			    	articleUrl = articleUrl.replace('&ttaccid=null', '');
