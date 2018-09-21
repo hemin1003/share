@@ -26,8 +26,12 @@ var _hmt = _hmt || [];
 		var hostname = "http://182.92.82.188:8084";
 		$.ajax({
 			type:"get",
-			url: hostname+"/yfax-htt-api/api/htt/queryDomainConfigForShareTask",
+			url: hostname+"/yfax-htt-api/api/htt/queryNewDomainConfig",
+			data: {
+				flag: 5
+			},
 			success:function(res){
+				console.log(res);
 				var Url = window.location.href;
 				var domain = res.data.domain;
 				var goUrl = Url.replace("news1.xc163.cn", domain);
