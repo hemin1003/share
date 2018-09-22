@@ -28,20 +28,22 @@ var _hmt = _hmt || [];
 			type:"get",
 			url: hostname+"/yfax-htt-api/api/htt/queryNewDomainConfig",
 			data: {
-				flag: 5
+				flag: 6
 			},
 			success:function(res){
 				console.log(res);
 				var Url = window.location.href;
-				var domain = res.data.domain;
-				var goUrl = Url.replace("news1.xc163.cn", domain);
-				if(goUrl.indexOf("news1.lafite.cn") > -1){
-					console.log(goUrl);
-					return;
-				}
-				goUrl = goUrl.replace('pre-share.html', 'share.html');
-				console.log(goUrl);
-				window.location.href = goUrl;
+				var Str = Url.split('articleUrl=')[1].split('id=')[1];
+				console.log(Url.split('articleUrl=')[1].split('id=')[1]);
+				// var domain = res.data.domain;
+				// var goUrl = Url.replace("news1.xc163.cn", domain);
+				// if(goUrl.indexOf("news1.lafite.cn") > -1){
+				// 	console.log(goUrl);
+				// 	return;
+				// }
+				// goUrl = goUrl.replace('pre-share.html', 'share.html');
+				// console.log(goUrl);
+				window.location.href = "http://"+res.data.domain+"/ytt/index.html?id="+Str;
 			}
 		});
 	});
