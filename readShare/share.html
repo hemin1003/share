@@ -279,7 +279,24 @@ var _hmt = _hmt || [];
 			}else {
 				articleUrl = getQueryString('articleUrl');
 			}
-			console.log(boboUrl);
+			// console.log(boboUrl.split('news.midongtech.com'));
+			if(boboUrl.split('news.midongtech.com').length == 2) {
+				$(".footer").hide();	
+			}else {
+				var o = document.getElementsByTagName("script");
+		      var c = o[o.length-1].parentNode;
+		      var ta = document.createElement('script'); ta.type = 'text/javascript'; ta.async = true;
+		      ta.src = '//yun.lvehaisen.com/h5-mami/msdk/tmk.js';
+		      ta.onload = function() {
+		        new TuiSDK({
+		          container: "#red_btn",
+		          appKey: '2FeUYuki19ygFVQmQMUvpGYUyu9v',
+		          slotId: '197490',
+		          local: "right: 0vw; top: 60%"
+		        });
+		      }
+		      var s = document.querySelector('head'); s.appendChild(ta);
+			}
 			
 			var headImg = r.match(/headImg=(\S+)/);
 			phoneNum = getQueryString('phoneNum');
@@ -354,6 +371,9 @@ var _hmt = _hmt || [];
 			name = params.nickName.split(",")[1];
 			icon = params.headImg;
 			console.log(params);
+
+			// console.log(articleUrl.split('news.midongtech.com'))
+
 			var sendData = {articleUrl:articleUrl, phoneNum:phoneNum, taskId: taskId};
 			var hostname = "http://callback.ytoutiao.net";
 			// var hostname = "http://182.92.82.188:8084";
@@ -656,7 +676,7 @@ var _hmt = _hmt || [];
 </body>
 </html>
 <script src="js/onload.js"></script>
-<script>
+<!-- <script>
 	(function(){
       var o = document.getElementsByTagName("script");
       var c = o[o.length-1].parentNode;
@@ -672,4 +692,4 @@ var _hmt = _hmt || [];
       }
       var s = document.querySelector('head'); s.appendChild(ta);
     })();
-</script>
+</script> -->
