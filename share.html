@@ -251,6 +251,8 @@
 			// 判断是否有bobo
 			if(r.split('&')[0].split('bobo').length == 2) {
 				goldUrl = r.split('&')[0].split('articleUrl=')[1].split('?')[0];
+			}else {
+				goldUrl = r.split('&')[1].split('articleUrl=')[1].split('?')[0]
 			}
 			var boboUrl = getQueryString('articleUrl').split('?')[0];
 			if(boboUrl == goldUrl) {
