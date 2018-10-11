@@ -14,7 +14,7 @@
     <script src="js/jquery.min.js"></script>
     <!-- <script src="js/swiper-3.4.2.min.js"></script> -->
     <!-- 推呀引入 -->
-    <script src="http://yun.poppyta.com/h5-mami/msdk/tmk.js"></script>
+    <!-- <script src="http://yun.poppyta.com/h5-mami/msdk/tmk.js"></script> -->
     <!-- 百度ad -->
     <!-- <script data-product="20035" data-android-channal="h5a20180523ban223" data-ios-channal="h5a20180523ban223" src="//cdn.ipadview.com/jssdk/combo.bundle.js"></script> -->
        <script>
@@ -580,27 +580,27 @@ var _hmt = _hmt || [];
 			// }
 
 			//推啊上报接口
-			function tuiA(type) {
-				$.ajax({
-					type:"post",
-					url: hostname+"/yfax-htt-api/api/htt/doBurryPointAdsHis",
-					// dataType:"jsonp",
-					data: {
-						adsType: 88,
-						adsId: "",
-						url: "",
-						actionType: type
-					},
-					success:function(res){
-						console.log(res);
-					}
-				});
-			}
-			tuiA(1);
-			// 新增推啊广告上报
-			$(".fubiao-dialog").click(function() {
-				tuiA(2);
-			});
+			// function tuiA(type) {
+			// 	$.ajax({
+			// 		type:"post",
+			// 		url: hostname+"/yfax-htt-api/api/htt/doBurryPointAdsHis",
+			// 		// dataType:"jsonp",
+			// 		data: {
+			// 			adsType: 88,
+			// 			adsId: "",
+			// 			url: "",
+			// 			actionType: type
+			// 		},
+			// 		success:function(res){
+			// 			console.log(res);
+			// 		}
+			// 	});
+			// }
+			// tuiA(1);
+			// // 新增推啊广告上报
+			// $(".fubiao-dialog").click(function() {
+			// 	tuiA(2);
+			// });
 		}
 	</script>
 </head>
@@ -624,8 +624,8 @@ var _hmt = _hmt || [];
 	<div class="fixed_bottom_ad">
 		<div class="swiper-wrapper"></div>
 	</div> -->
-	<div class="block_div"></div>
-    <div id="shareBtnDiv" class="footer" style="overflow: hidden;">
+	<!-- <div class="block_div"></div> -->
+    <!-- <div id="shareBtnDiv" class="footer" style="overflow: hidden;">
     	<img class="logo" src="./images/logo.png">
     	<div class="text-div">
     		<span class="title">悦头条</span><br/>
@@ -636,7 +636,7 @@ var _hmt = _hmt || [];
 	    		打开
 	    	</div>
     	</a>
-    </div>
+    </div> -->
 
      <!-- <div id="shareBtnDiv2" class="footer" style="display: none; overflow: hidden;color: black">
     	<img class="logo2" src=""/>
@@ -651,7 +651,7 @@ var _hmt = _hmt || [];
 </body>
 </html>
 <script src="js/onload.js"></script>
-<script>
+<!-- <script>
 	(function(){
       var o = document.getElementsByTagName("script");
       var c = o[o.length-1].parentNode;
@@ -667,5 +667,5 @@ var _hmt = _hmt || [];
       }
       var s = document.querySelector('head'); s.appendChild(ta);
     })();
-</script>
+</script> -->
 
