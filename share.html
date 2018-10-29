@@ -259,6 +259,7 @@
 				articleUrl = r.match(/articleUrl=(\S+)/)[1];
 			}else {
 				articleUrl = r.match(/articleUrl=(\S+)/)[1];
+				// console.log('56565656');
 				// articleUrl = getQueryString('articleUrl');
 			}
 			console.log(articleUrl);
@@ -497,7 +498,7 @@
 							}else {
 								for(var j = 0;j < topad.length; j++) {
 									$(".fixed_top_ad .swiper-wrapper").append('<div class="swiper-slide"><a href="'+res.data[topad[j]].url+'"><img src="'+res.data[topad[j]].imgUrlOutside+'"/></a></div>');
-									PointForAds(res.data[topad[j]].adsId,res.data[topad[j]].url,1);
+									// PointForAds(res.data[topad[j]].adsId,res.data[topad[j]].url,1);
 								}
 
 								// 统计点击
